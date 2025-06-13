@@ -1,0 +1,156 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert';
+@use '../../utils/utils' as *;
+
+$spark-heading-size-2xl-font-family: get-var(spark-theme-heading-font-family) !default;
+$spark-heading-size-2xl-font-weight: 400 !default;
+$spark-heading-size-2xl-font-size: convert.to-rem(72px) !default;
+$spark-heading-size-2xl-line-height: convert.to-rem(92px) !default;
+$spark-heading-size-2xl-letter-spacing: convert.to-rem(-1.5px) !default;
+$spark-heading-size-2xl-letter-spacing-bold: convert.to-rem(0px) !default;
+
+$spark-heading-size-xl-font-family: get-var(spark-theme-heading-font-family) !default;
+$spark-heading-size-xl-font-weight: 400 !default;
+$spark-heading-size-xl-font-size: convert.to-rem(60px) !default;
+$spark-heading-size-xl-line-height: convert.to-rem(80px) !default;
+$spark-heading-size-xl-letter-spacing: convert.to-rem(-1px) !default;
+$spark-heading-size-xl-letter-spacing-bold: convert.to-rem(0px) !default;
+
+$spark-heading-size-l-font-family: get-var(spark-theme-heading-font-family) !default;
+$spark-heading-size-l-font-weight: 400 !default;
+$spark-heading-size-l-font-size: convert.to-rem(48px) !default;
+$spark-heading-size-l-line-height: convert.to-rem(64px) !default;
+$spark-heading-size-l-letter-spacing: convert.to-rem(-0.5px) !default;
+$spark-heading-size-l-letter-spacing-bold: convert.to-rem(0px) !default;
+
+$spark-heading-size-m-font-family: get-var(spark-theme-heading-font-family) !default;
+$spark-heading-size-m-font-weight: 400 !default;
+$spark-heading-size-m-font-size: convert.to-rem(36px) !default;
+$spark-heading-size-m-line-height: convert.to-rem(48px) !default;
+$spark-heading-size-m-letter-spacing: convert.to-rem(0px) !default;
+$spark-heading-size-m-letter-spacing-bold: convert.to-rem(0px) !default;
+
+$spark-heading-size-ms-font-family: get-var(spark-theme-heading-font-family) !default;
+$spark-heading-size-ms-font-weight: 400 !default;
+$spark-heading-size-ms-font-size: convert.to-rem(32px) !default;
+$spark-heading-size-ms-line-height: convert.to-rem(40px) !default;
+$spark-heading-size-ms-letter-spacing: convert.to-rem(0px) !default;
+$spark-heading-size-ms-letter-spacing-bold: convert.to-rem(0px) !default;
+
+$spark-heading-size-s-font-family: get-var(spark-theme-heading-font-family) !default;
+$spark-heading-size-s-font-weight: 400 !default;
+$spark-heading-size-s-font-size: convert.to-rem(24px) !default;
+$spark-heading-size-s-line-height: convert.to-rem(32px) !default;
+$spark-heading-size-s-letter-spacing: convert.to-rem(0px) !default;
+$spark-heading-size-s-letter-spacing-bold: convert.to-rem(0px) !default;
+
+$spark-heading-size-xs-font-family: get-var(spark-theme-heading-font-family) !default;
+$spark-heading-size-xs-font-weight: 400 !default;
+$spark-heading-size-xs-font-size: convert.to-rem(20px) !default;
+$spark-heading-size-xs-line-height: convert.to-rem(28px) !default;
+$spark-heading-size-xs-letter-spacing: convert.to-rem(0px) !default;
+$spark-heading-size-xs-letter-spacing-bold: convert.to-rem(0px) !default;
+
+$heading-sizes: (
+    '2xl': (
+        font-family: $spark-heading-size-2xl-font-family,
+        font-size: $spark-heading-size-2xl-font-size,
+        font-weight: $spark-heading-size-2xl-font-weight,
+        line-height: $spark-heading-size-2xl-line-height,
+        letter-spacing: $spark-heading-size-2xl-letter-spacing,
+        letter-spacing-bold: $spark-heading-size-2xl-letter-spacing-bold
+    ),
+    'xl': (
+        font-family: $spark-heading-size-xl-font-family,
+        font-size: $spark-heading-size-xl-font-size,
+        font-weight: $spark-heading-size-xl-font-weight,
+        line-height: $spark-heading-size-xl-line-height,
+        letter-spacing: $spark-heading-size-xl-letter-spacing,
+        letter-spacing-bold: $spark-heading-size-xl-letter-spacing-bold
+    ),
+    'l': (
+        font-family: $spark-heading-size-l-font-family,
+        font-size: $spark-heading-size-l-font-size,
+        font-weight: $spark-heading-size-l-font-weight,
+        line-height: $spark-heading-size-l-line-height,
+        letter-spacing: $spark-heading-size-l-letter-spacing,
+        letter-spacing-bold: $spark-heading-size-l-letter-spacing-bold
+    ),
+    'm': (
+        font-family: $spark-heading-size-m-font-family,
+        font-size: $spark-heading-size-m-font-size,
+        font-weight: $spark-heading-size-m-font-weight,
+        line-height: $spark-heading-size-m-line-height,
+        letter-spacing: $spark-heading-size-m-letter-spacing,
+        letter-spacing-bold: $spark-heading-size-m-letter-spacing-bold
+    ),
+    'ms': (
+        font-family: $spark-heading-size-ms-font-family,
+        font-size: $spark-heading-size-ms-font-size,
+        font-weight: $spark-heading-size-ms-font-weight,
+        line-height: $spark-heading-size-ms-line-height,
+        letter-spacing: $spark-heading-size-ms-letter-spacing,
+        letter-spacing-bold: $spark-heading-size-ms-letter-spacing-bold
+    ),
+    's': (
+        font-family: $spark-heading-size-s-font-family,
+        font-size: $spark-heading-size-s-font-size,
+        font-weight: $spark-heading-size-s-font-weight,
+        line-height: $spark-heading-size-s-line-height,
+        letter-spacing: $spark-heading-size-s-letter-spacing,
+        letter-spacing-bold: $spark-heading-size-s-letter-spacing-bold
+    ),
+    'xs': (
+        font-family: $spark-heading-size-xs-font-family,
+        font-size: $spark-heading-size-xs-font-size,
+        font-weight: $spark-heading-size-xs-font-weight,
+        line-height: $spark-heading-size-xs-line-height,
+        letter-spacing: $spark-heading-size-xs-letter-spacing,
+        letter-spacing-bold: $spark-heading-size-xs-letter-spacing-bold
+    )
+);
+
+$heading-default-sizes: (
+    '1': (
+        font-family: $spark-heading-size-xl-font-family,
+        font-size: $spark-heading-size-xl-font-size,
+        font-weight: $spark-heading-size-xl-font-weight,
+        line-height: $spark-heading-size-xl-line-height,
+        letter-spacing: $spark-heading-size-xl-letter-spacing
+    ),
+    '2': (
+        font-family: $spark-heading-size-l-font-family,
+        font-size: $spark-heading-size-l-font-size,
+        font-weight: $spark-heading-size-l-font-weight,
+        line-height: $spark-heading-size-l-line-height,
+        letter-spacing: $spark-heading-size-l-letter-spacing
+    ),
+    '3': (
+        font-family: $spark-heading-size-m-font-family,
+        font-size: $spark-heading-size-m-font-size,
+        font-weight: $spark-heading-size-m-font-weight,
+        line-height: $spark-heading-size-m-line-height,
+        letter-spacing: $spark-heading-size-m-letter-spacing
+    ),
+    '4': (
+        font-family: $spark-heading-size-ms-font-family,
+        font-size: $spark-heading-size-ms-font-size,
+        font-weight: $spark-heading-size-ms-font-weight,
+        line-height: $spark-heading-size-ms-line-height,
+        letter-spacing: $spark-heading-size-ms-letter-spacing
+    ),
+    '5': (
+        font-family: $spark-heading-size-s-font-family,
+        font-size: $spark-heading-size-s-font-size,
+        font-weight: $spark-heading-size-s-font-weight,
+        line-height: $spark-heading-size-s-line-height,
+        letter-spacing: $spark-heading-size-s-letter-spacing
+    ),
+    '6': (
+        font-family: $spark-heading-size-xs-font-family,
+        font-size: $spark-heading-size-xs-font-size,
+        font-weight: $spark-heading-size-xs-font-weight,
+        line-height: $spark-heading-size-xs-line-height,
+        letter-spacing: $spark-heading-size-xs-letter-spacing
+    )
+);

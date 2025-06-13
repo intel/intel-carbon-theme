@@ -1,0 +1,229 @@
+@use '@carbon/styles/scss/components/ui-shell/header';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './vars' as *;
+@use '../../../interactions/index.scss' as *;
+@use '../../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    --#{$prefix}-background: var(--header-background-blue);
+    --#{$prefix}-background-hover: var(--background-hover);
+    --#{$prefix}-background-active: var(--background-active);
+    --#{$prefix}-icon-primary: var(--text-on-color);
+    --#{$prefix}-icon-secondary: var(--text-on-color);
+    --#{$prefix}-text-primary: var(--text-on-color);
+    --#{$prefix}-text-secondary: var(--text-on-color);
+    --#{$prefix}-layer: var(--layer-01);
+    border-block-end: none !important;
+
+    --logo-img-width: 48px;
+    --unboxed-logo-margin-left: 1rem;
+    &:has(.spark-ui-shell-header-logo.unboxed) {
+        --logo-img-width: 80px;
+    }
+
+    .spark-ui-shell-header-logo {
+        height: 100%;
+        width: var(--logo-img-width);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+
+        &.unboxed {
+            margin-left: var(--unboxed-logo-margin-left);
+        }
+    }
+
+    &[header-mode='white'] {
+        --#{$prefix}-background: var(--header-background-white);
+        --#{$prefix}-icon-primary: var(--text-primary);
+        --#{$prefix}-icon-secondary: var(--text-primary);
+        --#{$prefix}-text-primary: var(--text-primary);
+        --#{$prefix}-text-secondary: var(--text-primary);
+    }
+
+    &[header-mode='blue'] {
+        --#{$prefix}-background: var(--header-background-blue);
+    }
+
+    &[header-mode='black'] {
+        --#{$prefix}-background: var(--header-background-black);
+    }
+
+    .spark-icon {
+        color: #{var(--#{$prefix}-icon-primary)};
+    }
+
+    &__action {
+        &:hover,
+        &:active,
+        &--active {
+            > svg {
+                --#{$prefix}-icon-primary: var(--text-primary);
+            }
+
+            .spark-icon {
+                color: var(--text-primary);
+            }
+        }
+    }
+
+    &__menu-arrow {
+        display: none;
+    }
+
+    &__submenu &__menu-item::after {
+        font-family: 'spark-icon';
+        content: '\f15d';
+        display: inline-block;
+        font-size: 1rem;
+        margin-left: 0.5rem;
+        color: #{var(--#{$prefix}-icon-primary)};
+        transition: transform 0.1s ease;
+        transform: rotate(0deg);
+    }
+
+    .#{$prefix}--side-nav__header-navigation &__submenu &__menu-item::after {
+        color: var(--icon-primary);
+    }
+
+    .#{$base}__menu .#{$base}__menu-item::after {
+        content: none;
+    }
+
+    &__submenu &__menu-item[aria-expanded='true']::after,
+    &__submenu &__menu-item[aria-expanded='true']::after {
+        color: var(--text-primary);
+        transform: rotate(180deg);
+    }
+
+    &__submenu &__menu-item:hover[aria-expanded='false']::after,
+    &__submenu &__menu-item:hover[aria-expanded='false']::after {
+        color: var(--text-primary);
+        transform: rotate(0deg);
+    }
+
+    a.#{$base}__name {
+        --#{$prefix}-body-compact-01-font-size: #{to-rem(20px)};
+        font-weight: 400;
+    }
+
+    .#{$base}__nav {
+        &::before {
+            content: none;
+        }
+
+        a.#{$base}__menu-item {
+            @include spark-focus;
+            --#{$prefix}-spark-focus-border-offset: -3px;
+            font-size: to-rem(14px);
+            font-weight: 500;
+
+            &:focus {
+                --focus: var(--header-selected-border-on-color);
+            }
+
+            &--current::after {
+                block-size: to-rem(4px);
+                inset-block-end: to-rem(-1px);
+                --#{$prefix}-border-interactive: var(--header-selected-border-on-color);
+            }
+
+            &:hover {
+                --#{$prefix}-text-primary: var(--text-primary);
+                --#{$prefix}-icon-primary: var(--text-primary);
+            }
+        }
+
+        a.#{$base}__menu-title[aria-expanded='true'] {
+            --#{$prefix}-text-secondary: var(--text-primary);
+
+            &:hover {
+                --#{$prefix}-background-hover: var(--layer-hover-01);
+            }
+
+            &::after {
+                transform: rotate(180deg);
+            }
+
+            .#{$base}__menu-arrow {
+                --#{$prefix}-icon-secondary: var(--text-primary);
+            }
+
+            & + .#{$base}__menu .#{$base}__menu-item {
+                --#{$prefix}-layer: var(--layer-01);
+                --#{$prefix}-text-secondary: var(--text-secondary);
+
+                &:hover {
+                    --#{$prefix}-layer-hover: var(--layer-hover-01);
+                }
+
+                &:active {
+                    --#{$prefix}-layer-active: var(--layer-active-01);
+                }
+            }
+        }
+    }
+}
+:root,
+[data-theme='g-100'],
+[data-theme='g-90'],
+[data-theme='tb-g-100'] {
+    .#{$base} {
+        &[header-mode='white'] {
+            .spark-ui-shell-header-logo {
+                background-image: var(--spark-logo-digital-boxed-black1c);
+                &.unboxed {
+                    background-image: var(--spark-logo-digital-unboxed-energyblue-white);
+                }
+            }
+        }
+        &[header-mode='blue'],
+        &[header-mode='black'] {
+            .spark-ui-shell-header-logo {
+                background-image: var(--spark-logo-digital-boxed-black1c);
+                &.unboxed {
+                    background-image: var(--spark-logo-digital-unboxed-energyblue-white);
+                }
+            }
+        }
+    }
+}
+[data-theme='white'],
+[data-theme='g-10'],
+[data-theme='tb-white'],
+[data-theme='tb-g-10'] {
+    .#{$base} {
+        &[header-mode='white'] {
+            .spark-ui-shell-header-logo {
+                background-image: var(--spark-logo-digital-boxed-classicblue);
+                &.unboxed {
+                    background-image: var(--spark-logo-digital-unboxed-classicblue);
+                }
+            }
+        }
+
+        &[header-mode='blue'] {
+            .spark-ui-shell-header-logo {
+                background-image: var(--spark-logo-digital-boxed-classicblue);
+                &.unboxed {
+                    background-image: var(--spark-logo-digital-unboxed-energyblue-white);
+                }
+            }
+        }
+
+        &[header-mode='black'] {
+            .spark-ui-shell-header-logo {
+                background-image: var(--spark-logo-digital-boxed-classicblue);
+                &.unboxed {
+                    background-image: var(--spark-logo-digital-unboxed-energyblue-white);
+                }
+            }
+        }
+    }
+}

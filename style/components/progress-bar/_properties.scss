@@ -1,0 +1,23 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use 'sass:map';
+
+$progress-bar-sizes: (
+    small: (
+        block-size: to-rem(4px),
+        label-font-size: to-rem(11px),
+        label-font-weight: 400,
+        label-line-height: to-rem(12px),
+        helper-font-size: to-rem(11px),
+        helper-font-weight: 400,
+        helper-line-height: to-rem(16px)
+    ),
+    big: (
+        block-size: to-rem(8px),
+        label-font-size: to-rem(14px),
+        label-font-weight: 400,
+        label-line-height: to-rem(16px),
+        helper-font-size: to-rem(14px),
+        helper-font-weight: 400,
+        helper-line-height: to-rem(20px)
+    )
+);

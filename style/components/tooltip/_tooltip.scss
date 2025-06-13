@@ -1,0 +1,28 @@
+@use '@carbon/styles/scss/components/tooltip';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use './vars' as *;
+@use '../popover/popover';
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base}.#{popover.$open} {
+    $content: #{$base}-content;
+    $small: spark-tooltip-content-padding-small;
+    $medium: spark-tooltip-content-padding-medium;
+
+    &.#{popover.$high-contrast} .#{popover.$content}.#{$content} {
+        --#{$prefix}-popover-border-radius: #{$spacing-01};
+    }
+    &.#{$medium}.#{popover.$high-contrast} .#{popover.$content}.#{$content} {
+        padding-block: $spacing-03;
+    }
+    &.#{$small}.#{popover.$high-contrast} .#{popover.$content}.#{$content} {
+        padding-block: $spacing-01;
+    }
+}

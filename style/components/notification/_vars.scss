@@ -1,0 +1,7 @@
+@use '../../../prefix' as *;
+
+$prefix: $spark-theme-prefix;
+$base-actionable: #{$prefix}--actionable-notification;
+$base-inline: #{$prefix}--inline-notification;
+$base-toast: #{$prefix}--toast-notification;
+$name: spark-notification;

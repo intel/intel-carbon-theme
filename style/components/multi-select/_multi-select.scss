@@ -1,0 +1,166 @@
+@use '@carbon/styles/scss/components/multiselect';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/layout';
+@use '@carbon/styles/scss/theme';
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+@use '../list-box/list-box';
+@use '../../mixins/spark-error-icon' as *;
+@use '../list-box/properties' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+$open: null;
+
+.#{$base}__wrapper {
+    $open: #{$base}--open !global;
+    $read-only: #{$base}--readonly;
+    $filterable: #{$base}--filterable;
+    --#{$prefix}-layer-selected: #{var(--layer-selected-02)};
+    --#{$prefix}-layer-selected-hover: #{var(--layer-selected-02)};
+
+    @include layout.redefine-tokens(
+        $overrides: (
+            size: (
+                height: (
+                    sm: $spark-list-box-size-sm,
+                    md: $spark-list-box-size-md,
+                    lg: $spark-list-box-size-lg
+                )
+            ),
+            density: (
+                padding-inline: (
+                    small: $spark-list-box-padding-inline-sm,
+                    normal: $spark-list-box-padding-inline-md,
+                    condensed: $spark-list-box-padding-inline-lg
+                )
+            )
+        )
+    );
+
+    @each $height-class-name, $height-value in list-box.$sizes {
+        & .#{list-box.$base-class}--#{$height-class-name} {
+            @include layout.use(
+                'size',
+                $default: #{$height-value},
+                $min: #{$height-value},
+                $max: #{$height-value}
+            );
+            block-size: layout.size('height');
+        }
+    }
+
+    @each $padding-class-name, $padding-value in list-box.$padding-inline {
+        & .#{list-box.$base-class}--#{$padding-class-name} {
+            @include layout.use(
+                'density',
+                $default: #{$padding-value},
+                $min: #{$padding-value},
+                $max: #{$padding-value}
+            );
+            &:not(.#{list-box.$invalid}):not(.#{list-box.$warning}) .#{list-box.$field} {
+                padding-inline: layout.density('padding-inline')
+                    calc(#{layout.density('padding-inline')} + 2rem);
+            }
+            &.#{list-box.$invalid} .#{list-box.$field},
+            .#{list-box.$warning} .#{list-box.$field} {
+                padding-inline: layout.density('padding-inline')
+                    calc(#{layout.density('padding-inline')} + 3rem);
+            }
+        }
+    }
+
+    & .#{list-box.$field}--wrapper--input-focused,
+    & .#{$filterable}--input-focused {
+        @include spark-focus-style;
+    }
+
+    & .#{$base}--invalid .#{list-box.$field}--wrapper--input-focused,
+    & .#{$base}--invalid.#{$filterable}--input-focused {
+        border: 2px solid var(--support-error);
+    }
+    &
+        .#{$base}--invalid
+        .#{list-box.$field}--wrapper:not(.#{list-box.$field}--wrapper--input-focused),
+    & .#{$base}--invalid:not(.#{$filterable}--input-focused) {
+        border: 2px solid transparent;
+    }
+
+    & .#{$filterable} .#{list-box.$field} .cds--text-input:not(:focus) {
+        outline: none;
+    }
+
+    & .#{$base} {
+        --cds-field: #{var(--field-02)};
+        border: 1px solid var(--border-strong-01);
+
+        & .#{list-box.$menu} {
+            --cds-layer: #{var(--layer-02)};
+
+            & .#{list-box.$menu-item}[disabled] {
+                --cds-spark-checkbox-label-color: #{var(--text-disabled)};
+
+                & .cds--checkbox-label {
+                    --cds-text-disabled: #{var(--text-disabled)};
+                }
+            }
+        }
+    }
+
+    & .#{list-box.$disabled} {
+        --cds-field: #{var(--layer-disabled)};
+        --cds-border-strong: #{var(--layer-disabled)};
+    }
+
+    & .#{read-only} {
+        --cds-border-strong: #{var(--layer-disabled)};
+    }
+
+    & .cds--label,
+    .cds--form__helper-text,
+    .cds--form-requirement {
+        font-size: 12px;
+    }
+
+    .#{$prefix}--list-box__menu-icon {
+        position: absolute;
+        svg {
+            display: none;
+        }
+
+        &::after {
+            font-family: 'spark-icon';
+            content: '\f15d';
+            display: inline-block;
+            font-size: 1rem;
+            color: var(--icon-primary);
+        }
+    }
+
+    @each $size, $icon-margin in (sm: to-rem(4px), md: to-rem(4px), lg: to-rem(12px)) {
+        .#{$prefix}--list-box--#{$size} .#{$prefix}--list-box__menu-icon {
+            right: $icon-margin;
+        }
+    }
+}
+
+.cds--list-box .cds--list-box__field:disabled {
+    --icon-primary: var(--icon-disabled);
+}
+
+.#{$prefix}--list-box:hover {
+    --#{$prefix}-field-hover: #{var(--field-hover-02)};
+}
+
+.#{$prefix}--list-box--invalid {
+    position: relative;
+    svg.cds--list-box__invalid-icon {
+        visibility: hidden;
+    }
+    @include spark-error-icon-for-input();
+}

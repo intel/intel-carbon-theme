@@ -1,0 +1,83 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$spark-date-picker-label-font-size: to-rem(12px) !default;
+
+$spark-date-picker-range-input-inline-size: to-rem(152px) !default;
+$spark-date-picker-range-inputs-gap: to-rem(8px) !default;
+
+$spark-date-picker-input-border-width: 1px !default;
+
+$spark-date-picker-inline-size-sm: to-rem(
+    calc(114px + 2 * $spark-date-picker-input-border-width)
+) !default;
+$spark-date-picker-inline-size-md: to-rem(
+    calc(116px + 2 * $spark-date-picker-input-border-width)
+) !default;
+$spark-date-picker-inline-size-lg: to-rem(
+    calc(130px + 2 * $spark-date-picker-input-border-width)
+) !default;
+
+$spark-date-picker-block-size-sm: to-rem(24px) !default;
+$spark-date-picker-block-size-md: to-rem(32px) !default;
+$spark-date-picker-block-size-lg: to-rem(40px) !default;
+
+$spark-date-picker-padding-inline-sm: #{get-var(spark-theme-spacing-03)} !default;
+$spark-date-picker-padding-inline-md: #{get-var(spark-theme-spacing-03)} !default;
+$spark-date-picker-padding-inline-lg: #{get-var(spark-theme-spacing-05)} !default;
+
+$spark-date-picker-font-size-sm: to-rem(12px) !default;
+$spark-date-picker-font-size-md: to-rem(14px) !default;
+$spark-date-picker-font-size-lg: to-rem(16px) !default;
+
+$spark-date-picker-line-height-sm: to-rem(14px) !default;
+$spark-date-picker-line-height-md: to-rem(16px) !default;
+$spark-date-picker-line-height-lg: to-rem(20px) !default;
+
+$spark-date-picker-message-font-size: to-rem(14px) !default;
+
+$spark-date-picker-selected-date-indicator-block-size: to-rem(2px) !default;
+$spark-date-picker-selected-date-indicator-inline-size: 1.25rem !default;
+$spark-date-picker-selected-date-indicator-inset-block-end: 1.75rem !default;
+
+$spark-date-picker-calendar-month-year-font-weight: 500 !default;
+$spark-date-picker-calendar-item-today-font-weight: 400 !default;
+
+$spark-date-picker-error-icon-size: to-rem(16px) !default;
+$spark-date-picker-error-icon-font-size: to-rem(16px) !default;
+$spark-date-picker-error-icon-line-height: to-rem(16px) !default;
+$spark-date-picker-icon-size: to-rem(16px);
+$spark-date-picker-icon-font-size: to-rem(16px);
+$spark-date-picker-icon-line-height: to-rem(16px);
+$spark-date-picker-icon-top-offset: to-rem(0px);
+$spark-date-picker-icon-right-offset: to-rem(14px);
+
+$spark-date-picker-icon-arrow-left-offset: to-rem(14px);
+$spark-date-picker-icon-arrow-right-offset: to-rem(12px);
+
+$date-picker-sizes: (
+    'sm': (
+        inline-size: $spark-date-picker-inline-size-sm,
+        block-size: $spark-date-picker-block-size-sm,
+        padding-inline: $spark-date-picker-padding-inline-sm,
+        font-size: $spark-date-picker-font-size-sm,
+        line-height: $spark-date-picker-line-height-sm
+    ),
+    'md': (
+        inline-size: $spark-date-picker-inline-size-md,
+        block-size: $spark-date-picker-block-size-md,
+        padding-inline: $spark-date-picker-padding-inline-md,
+        font-size: $spark-date-picker-font-size-md,
+        line-height: $spark-date-picker-line-height-md
+    ),
+    'lg': (
+        inline-size: $spark-date-picker-inline-size-lg,
+        block-size: $spark-date-picker-block-size-lg,
+        padding-inline: $spark-date-picker-padding-inline-lg,
+        font-size: $spark-date-picker-font-size-lg,
+        line-height: $spark-date-picker-line-height-lg
+    )
+);

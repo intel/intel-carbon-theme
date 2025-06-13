@@ -1,0 +1,66 @@
+@use '@carbon/styles/scss/utilities/layout';
+@use '@carbon/styles/scss/components/modal';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '../../interactions' as *;
+@use './vars' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    $header: #{$base}-header;
+    $content: #{$base}-content;
+    $footer: #{$base}-footer;
+    $close-button: #{$base}-close-button;
+
+    --#{$prefix}-layer: #{var(--layer-03)};
+
+    .#{$header} {
+        padding-block-start: $spacing-07;
+        padding-inline: $spacing-07;
+        --#{$prefix}-heading-03-font-size: #{to-rem(20px)};
+        --#{$prefix}-heading-03-font-weight: #{400};
+        --#{$prefix}-heading-03-line-height: #{to-rem(28px)};
+        --#{$prefix}-icon-primary: #{var(--icon-primary)};
+        --#{$prefix}-layer-hover: #{var(--background-hover)};
+    }
+    .#{$close-button} {
+        inset-block-start: to-rem(22px);
+        inset-inline-end: to-rem(16px);
+    }
+    &-close {
+        @include spark-focus;
+
+        &:focus {
+            border-color: unset;
+        }
+
+        &:active {
+            background-color: var(--button-secondary-active);
+        }
+    }
+
+    .#{$content} {
+        padding-block: $spacing-07;
+        padding-inline: $spacing-07;
+    }
+
+    .#{$footer} {
+        margin-block: $spacing-07;
+        padding-inline: $spacing-07;
+        block-size: $spacing-08;
+        gap: $spacing-05;
+        .#{$prefix}--btn {
+            flex: none;
+            block-size: $spacing-08;
+            padding-block: 0;
+            align-items: center;
+            box-shadow: none;
+        }
+    }
+}

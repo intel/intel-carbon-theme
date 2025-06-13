@@ -1,0 +1,41 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$spark-file-uploader-label-font-size: to-rem(14px) !default;
+$spark-file-uploader-label-font-weight: 500 !default;
+$spark-file-uploader-label-line-height: to-rem(18px) !default;
+
+$spark-file-uploader-info-font-size: to-rem(14px) !default;
+$spark-file-uploader-info-font-weight: 400 !default;
+$spark-file-uploader-info-line-height: to-rem(18px) !default;
+
+$spark-file-uploader-file-items-gap: to-rem(8px) !default;
+
+$spark-file-uploader-sm-file-item-font-size: to-rem(12px) !default;
+$spark-file-uploader-sm-file-item-font-weight: 400 !default;
+$spark-file-uploader-sm-file-item-line-height: to-rem(20px) !default;
+
+$file-uploader-sizes: (
+    'lg': (
+        file-item-height: to-rem(40px),
+        file-item-font-size: to-rem(16px),
+        file-item-font-weight: 400,
+        file-item-line-height: to-rem(24px)
+    ),
+    'md': (
+        file-item-font-size: to-rem(32px),
+        file-item-font-weight: to-rem(14px),
+        file-item-line-height: 400,
+        file-item-height: to-rem(20px)
+    ),
+    'sm': (
+        file-item-font-size: to-rem(24px),
+        file-item-font-weight: to-rem(12px),
+        file-item-line-height: 400,
+        file-item-height: to-rem(20px)
+    )
+);

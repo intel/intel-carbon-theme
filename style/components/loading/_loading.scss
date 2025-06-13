@@ -1,0 +1,32 @@
+@use '@carbon/styles/scss/components/loading';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './vars' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    --#{$prefix}-border-subtle-01: #{var(--border-subtle-01)};
+    --#{$prefix}-interactive: #{var(--primary)};
+
+    block-size: to-rem(88px);
+    inline-size: to-rem(88px);
+    &__svg {
+        circle {
+            stroke-width: to-rem(10px);
+        }
+    }
+    &--small {
+        block-size: to-rem(16px);
+        inline-size: to-rem(16px);
+        &__svg {
+            circle {
+                stroke-width: to-rem(3px);
+            }
+        }
+    }
+}

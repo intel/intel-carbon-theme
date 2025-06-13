@@ -1,0 +1,87 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    icon-primary: (
+        #2b2c30,
+        #2b2c30,
+        #ffffff,
+        #ffffff
+    ),
+    icon-secondary: (
+        #6a6d75,
+        #6a6d75,
+        #b7b9be,
+        #b7b9be
+    ),
+    icon-on-color: (
+        #ffffff,
+        #ffffff,
+        #ffffff,
+        #ffffff
+    ),
+    icon-on-color-disabled: (
+        #b2b3b9,
+        #b2b3b9,
+        #6b6e76,
+        #6b6e76
+    ),
+    icon-interactive: (
+        #0054ae,
+        #0054ae,
+        #00c7fd,
+        #00c7fd
+    ),
+    icon-inverse: (
+        #ffffff,
+        #ffffff,
+        #2b2c30,
+        #2b2c30
+    ),
+    icon-disabled: (
+        #b2b3b9,
+        #b2b3b9,
+        #6b6e76,
+        #6b6e76
+    )
+);
+
+$tb-theme-modes: (
+    icon-primary: (
+        #2b2c30,
+        #1c223b,
+        #ffffff
+    ),
+    icon-secondary: (
+        #6a6d75,
+        #676d84,
+        #acaebc
+    ),
+    icon-on-color: (
+        #ffffff,
+        #ffffff,
+        #ffffff
+    ),
+    icon-on-color-disabled: (
+        #b2b3b9,
+        #acaebc,
+        #676d84
+    ),
+    icon-interactive: (
+        #09857c,
+        #09857c,
+        #16cfb1
+    ),
+    icon-inverse: (
+        #ffffff,
+        #ffffff,
+        #1c223b
+    ),
+    icon-disabled: (
+        #b2b3b9,
+        #acaebc,
+        #676d84
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

@@ -1,0 +1,244 @@
+@use '@carbon/styles/scss/utilities/layout';
+@use '@carbon/styles/scss/components/button';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/theme';
+@use './properties' as *;
+@use './vars' as *;
+@use '../../interactions/index' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+$icon-only: null;
+
+.#{$base} {
+    $primary: #{$base}--primary;
+    $secondary: #{$base}--secondary;
+    $tertiary: #{$base}--tertiary;
+    $ghost: #{$base}--ghost;
+    $danger: #{$base}--danger;
+    $icon-only: #{$base}--icon-only !global;
+    $disabled: #{$base}--disabled;
+    $icon-reverse: #{$name}--icon-reverse;
+    $unstyled: #{$name}--unstyled;
+    $underline: #{$name}--underline;
+
+    @include layout.use('size', $default: 'md', $min: 'sm', $max: 'lg');
+    @include layout.use('density', $default: 'normal');
+    @include spark-focus(true);
+    @include layout.redefine-tokens(
+        $overrides: (
+            size: (
+                height: (
+                    sm: $spark-button-s-block-size,
+                    md: $spark-button-m-block-size,
+                    lg: $spark-button-l-block-size
+                )
+            ),
+            density: (
+                padding-inline: (
+                    normal: $spark-button-l-padding-inline
+                )
+            )
+        )
+    );
+
+    --#{$prefix}-body-compact-01-font-weight: #{$spark-button-font-weight};
+
+    padding-inline-end: layout.density('padding-inline');
+    border: none;
+
+    // center button content
+    display: flex;
+    align-items: center;
+
+    @each $name, $value in $button-sizes {
+        &.#{$prefix}--layout--size-#{$name} {
+            padding-inline: map-get($value, padding-inline);
+            font-size: map-get($value, font-size);
+            gap: map-get($value, gap);
+        }
+
+        &.#{$icon-reverse} {
+            flex-direction: row-reverse;
+        }
+    }
+
+    &.#{$primary} {
+        --#{$prefix}-text-on-color: #{var(--text-inverse)};
+    }
+
+    &.#{$secondary} {
+        --#{$prefix}-text-on-color: #{var(--button-primary)};
+        border-inline: $spark-button-border-width solid var(--button-primary);
+        border-block: $spark-button-border-width solid var(--button-primary);
+
+        &:hover:not(.#{$disabled}) {
+            --#{$prefix}-text-on-color: #{var(--button-primary-hover)};
+            border-color: var(--button-primary-hover);
+        }
+
+        &:active {
+            --#{$prefix}-text-on-color: #{var(--button-primary-active)};
+            border-color: var(--button-primary-active);
+        }
+    }
+
+    &.#{$tertiary} {
+        border-color: var(--button-secondary);
+
+        &:hover {
+            background-color: var(--button-secondary-hover);
+            --#{$prefix}-text-inverse: #{var(--button-primary-hover)};
+        }
+
+        &:active {
+            background-color: var(--button-secondary-active);
+            --#{$prefix}-text-inverse: #{var(--button-primary-active)};
+        }
+    }
+
+    &.#{$ghost} {
+        color: var(--button-primary);
+
+        &:hover:not(.#{$disabled}) {
+            background-color: var(--button-secondary-hover);
+            color: var(--button-primary);
+        }
+
+        &:active,
+        &:hover:active {
+            background-color: var(--button-secondary-active);
+            color: var(--button-primary);
+        }
+    }
+
+    &.#{$danger} {
+        --#{$prefix}-text-on-color: #{var(--text-on-color)};
+        --#{$prefix}-button-danger-hover: #{var(--button-danger-hover)};
+        --#{$prefix}-button-danger-active: #{var(--button-danger-active)};
+        border-inline: $spark-button-border-width solid var(--button-danger-primary);
+        border-block: $spark-button-border-width solid var(--button-danger-primary);
+
+        &--primary {
+            color: var(--text-on-color);
+            background-color: var(--button-danger-primary);
+
+            &:hover:not(.#{$disabled}) {
+                background-color: var(--button-danger-hover);
+            }
+
+            &:active,
+            &:hover:active {
+                background-color: var(--button-danger-active);
+            }
+        }
+
+        &--tertiary {
+            --#{$prefix}-button-danger-secondary: #{var(--button-danger-primary)};
+            border-inline: $spark-button-border-width solid var(--button-danger-primary);
+            border-block: $spark-button-border-width solid var(--button-danger-primary);
+
+            &:hover:not(.#{$disabled}) {
+                background-color: var(--button-danger-hover);
+            }
+
+            &:active,
+            &:hover:active {
+                background-color: var(--button-danger-active);
+            }
+        }
+
+        &--ghost {
+            --#{$prefix}-button-danger-secondary: #{var(--button-danger-primary)};
+
+            &:hover {
+                --#{$prefix}-text-disabled: #{var(--text-disabled)};
+            }
+        }
+    }
+
+    &.#{$disabled},
+    &.#{$disabled}.#{$unstyled} {
+        --#{$prefix}-button-disabled: #{var(--button-disabled)};
+        --#{$prefix}-text-on-color-disabled: #{var(--text-disabled)};
+        border-color: var(--button-disabled);
+        background-color: var(--button-disabled);
+        color: var(--#{$prefix}-text-on-color-disabled);
+
+        &.#{$underline} {
+            border-color: var(--button-disabled);
+        }
+
+        &:hover {
+            background-color: var(--button-disabled);
+        }
+    }
+
+    &.#{$icon-only} {
+        padding: 0;
+        align-items: center;
+        justify-content: center;
+
+        & * {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &.#{$unstyled} {
+        color: #{var(--button-primary)};
+        background-color: unset;
+        border: unset;
+
+        &:hover:not(.#{$base}--disabled),
+        :active {
+            background-color: unset;
+        }
+
+        &.#{$underline} {
+            border-block-end: $spark-button-border-width solid var(--button-primary);
+        }
+    }
+
+    &.cds--copy-btn.cds--copy {
+        background-color: #{var(--layer-01)};
+
+        svg {
+            fill: #{var(--icon-primary)};
+        }
+
+        &.#{$base}--disabled {
+            background-color: #{var(--layer-01)};
+
+            svg {
+                fill: #{var(--icon-on-color-disabled)};
+            }
+        }
+
+        &:hover:not(.#{$base}--disabled) {
+            background-color: #{var(--field-hover-01)};
+        }
+
+        &:active:not(.#{$base}--disabled),
+        &:active:hover:not(.#{$base}--disabled) {
+            background-color: #{var(--layer-accent-hover-01)};
+        }
+    }
+}
+
+.#{$base}-set {
+    .#{$base} {
+        inline-size: inherit;
+    }
+
+    @each $name, $value in $button-sizes {
+        &:has(.#{$base}.#{$prefix}--layout--size-#{$name}) {
+            gap: map-get($value, set-gap);
+        }
+    }
+}
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}

@@ -1,0 +1,21 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+@use '../../mixins/angular-skeleton' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$base}.#{$prefix}--skeleton {
+        .#{$base}-text {
+            .#{$base}-label {
+                @include angular-skeleton;
+                color: transparent;
+            }
+            .#{$base}-optional {
+                display: none;
+            }
+        }
+        .#{$base}-line {
+            background-color: var(--border-subtle-01);
+        }
+    }
+}

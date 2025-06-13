@@ -1,0 +1,320 @@
+@use '@carbon/styles/scss/components/notification';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../../interactions/' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base-actionable},
+.#{$base-inline},
+.#{$base-toast} {
+    &:not(&--toast) {
+        .#{$base-actionable}__title,
+        .#{$base-inline}__title {
+            --#{$prefix}-heading-compact-01-font-size: #{$spark-notification-inline-title-font-size};
+            --#{$prefix}-heading-compact-01-line-height: #{$spark-notification-inline-title-line-height};
+            font-weight: #{$spark-notification-inline-title-font-weight};
+        }
+    }
+
+    &__action-button {
+        @include spark-focus;
+    }
+
+    &__close-button {
+        @include spark-focus;
+        --#{$prefix}-spark-focus-border-offset: to-rem(-3px);
+    }
+
+    &:not(&--low-contrast) {
+        --#{$prefix}-text-inverse: #{var(--text-inverse)};
+        --#{$prefix}-background-inverse: #{var(--background-inverse)};
+        --#{$prefix}-spark-theme-text-primary: #{var(--text-on-color)};
+        --focus: #{var(--link-inverse)};
+    }
+
+    &--low-contrast {
+        --#{$prefix}-icon-primary: #{var(--icon-primary)};
+        --#{$prefix}-spark-focus-color: #{var(--border-interactive)};
+
+        .#{$base-actionable}__close-button,
+        .#{$base-inline}__close-button,
+        .#{$base-toast}__close-button {
+            @include spark-focus;
+            --#{$prefix}-spark-focus-border-offset: to-rem(-3px);
+        }
+
+        .#{$base-actionable}__action-button,
+        .#{$base-inline}__action-button,
+        .#{$base-toast}__action-button {
+            @include spark-focus;
+        }
+    }
+
+    &__subtitle {
+        --#{$prefix}-body-compact-01-font-size: #{$spark-notification-subtitle-font-size};
+        --#{$prefix}-body-compact-01-line-height: #{$spark-notification-subtitle-line-height};
+        --#{$prefix}-body-compact-01-font-weight: #{$spark-notification-subtitle-font-weight};
+    }
+}
+
+.#{$base-actionable}--toast,
+.#{$base-toast} {
+    .#{$base-actionable}__title,
+    .#{$base-toast}__title {
+        --#{$prefix}-heading-compact-01-font-size: #{$spark-notification-title-font-size};
+        --#{$prefix}-heading-compact-01-line-height: #{$spark-notification-title-line-height};
+        font-weight: #{$spark-notification-title-font-weight};
+    }
+}
+
+.#{$base-toast} {
+    position: relative;
+}
+
+.#{$base-toast}__icon,
+.#{$base-inline}__icon {
+    path {
+        display: none;
+    }
+}
+
+.#{$base-toast},
+.#{$base-actionable}__details,
+.#{$base-inline}__details {
+    &::after {
+        font-family: 'spark-icon';
+        font-weight: #{$spark-notification-icon-font-weight};
+        font-size: #{$spark-notification-icon-font-size};
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: #{$spark-notification-icon-left-position};
+        top: #{$spark-notification-icon-top-position};
+    }
+}
+
+.#{$base-actionable}:not(.#{$base-actionable}--toast) .#{$base-actionable}__details,
+.#{$base-inline} .#{$base-inline}__details {
+    &::after {
+        top: 0;
+        bottom: 0;
+    }
+}
+
+$allBases: (
+    $base-actionable: '__details',
+    $base-inline: '__details',
+    $base-toast: ''
+);
+
+@mixin setIcon($base, $containerSuffix, $iconContent, $iconColor) {
+    @if $containerSuffix == '' {
+        &::after {
+            content: $iconContent;
+            color: $iconColor;
+        }
+    } @else {
+        .#{$base}#{$containerSuffix}::after {
+            content: $iconContent;
+            color: $iconColor;
+        }
+    }
+}
+
+@each $base, $containerSuffix in $allBases {
+    .#{$base}--error {
+        @include setIcon($base, $containerSuffix, '\f182', var(--support-error-inverse));
+
+        &.#{$base}--low-contrast {
+            --#{$prefix}-notification-background-error: #{var(--notification-error-background)};
+            --#{$prefix}-support-error: #{var(--support-error)};
+            &:not(.#{$base}--toast)::before,
+            &:not(:has(.#{$base}__action-button))::before {
+                border-color: #{var(--support-error)};
+                filter: none;
+            }
+
+            @include setIcon($base, $containerSuffix, '\f182', var(--support-error));
+        }
+    }
+
+    .#{$base}--info,
+    .#{$base}--info-square {
+        @include setIcon($base, $containerSuffix, '\f1ce', var(--support-info-inverse));
+
+        &.#{$base}--low-contrast {
+            --#{$prefix}-notification-background-info: #{var(--notification-info-background)};
+            --#{$prefix}-support-info: #{var(--notification-info-border)};
+            &:not(.#{$base-actionable}--toast)::before,
+            &:not(:has(.#{$base-actionable}__action-button))::before {
+                border-color: #{var(--notification-info-border)};
+                filter: none;
+            }
+
+            @include setIcon($base, $containerSuffix, '\f1ce', var(--support-info));
+        }
+    }
+
+    .#{$base}--success {
+        @include setIcon($base, $containerSuffix, '\f150', var(--support-success-inverse));
+
+        &.#{$base}--low-contrast {
+            --#{$prefix}-notification-background-success: #{var(--notification-success-background)};
+            --#{$prefix}-support-success: #{var(--notification-success-border)};
+            &:not(.#{$base-actionable}--toast)::before,
+            &:not(:has(.#{$base-actionable}__action-button))::before {
+                border-color: #{var(--notification-success-border)};
+                filter: none;
+            }
+
+            @include setIcon($base, $containerSuffix, '\f150', var(--support-success));
+        }
+    }
+
+    .#{$base}--warning,
+    .#{$base}--warning-alt {
+        @include setIcon($base, $containerSuffix, '\f106', var(--support-warning-inverse));
+
+        &.#{$base}--low-contrast {
+            --#{$prefix}-notification-background-warning: #{var(--notification-warning-background)};
+            --#{$prefix}-support-warning: #{var(--support-warning)};
+            &:not(.#{$base-actionable}--toast)::before,
+            &:not(:has(.#{$base-actionable}__action-button))::before {
+                border-color: #{var(--notification-warning-border)};
+                filter: none;
+            }
+
+            @include setIcon($base, $containerSuffix, '\f106', var(--support-warning));
+        }
+    }
+}
+
+.#{$base-actionable} {
+    &--toast &__text-wrapper {
+        padding-block: #{$spark-notification-text-wrapper-padding-block};
+    }
+
+    &__button-wrapper {
+        align-items: center;
+    }
+
+    &__action-button {
+        align-items: center;
+        line-height: 1;
+    }
+
+    &:not(&--low-contrast) {
+        .#{$base-actionable}__action-button.#{$prefix}--btn--tertiary {
+            &:focus {
+                --#{$prefix}-notification-action-tertiary-inverse: transparent;
+                --#{$prefix}-notification-action-tertiary-inverse-text: #{var(--text-inverse)};
+                --#{$prefix}-focus-inverse: #{var(--text-inverse)};
+                box-shadow: none;
+            }
+
+            &:focus:hover {
+                --#{$prefix}-notification-action-tertiary-inverse: #{var(--button-secondary-hover)};
+            }
+        }
+
+        // high-contrast actionable inline action button
+        &:not(.#{$base-actionable}--toast) {
+            .#{$base-actionable}__action-button {
+                --#{$prefix}-link-inverse: #{var(--link-inverse)};
+
+                &:hover {
+                    --#{$prefix}-link-inverse: #{var(--link-inverse)};
+                    background-color: #{var(notification-action-hover)};
+                }
+
+                &:focus {
+                    --#{$prefix}-focus-inverse: #{var(--link-inverse)};
+                    outline-width: var(--spark-focus-outline-width-final-primary);
+                }
+            }
+        }
+
+        // high-contrast actionable toast action button
+        &.#{$base-actionable}--toast {
+            .#{$base-actionable}__action-button {
+                --#{$prefix}-notification-action-tertiary-inverse: #{var(
+                        --notification-action-tertiary-inverse
+                    )};
+
+                &:hover {
+                    --#{$prefix}-notification-action-tertiary-inverse-text: #{var(
+                            --notification-action-tertiary-inverse-text
+                        )};
+                    --#{$prefix}-notification-action-tertiary-inverse-hover: #{var(
+                            --notification-action-tertiary-inverse-hover
+                        )};
+                }
+            }
+        }
+    }
+
+    &--low-contrast {
+        // border for low-contrast actionable toast without action button
+        &:not(:has(.#{$base-actionable}__action-button))::before {
+            content: '';
+            position: absolute;
+            box-sizing: border-box;
+            border-width: 1px 1px 1px 0;
+            border-style: solid;
+            block-size: 100%;
+            inline-size: 100%;
+            inset-block-start: 0;
+            inset-inline-start: 0;
+            pointer-events: none;
+        }
+
+        .#{$base-actionable}__action-button.#{$prefix}--btn--tertiary {
+            &:focus {
+                --#{$prefix}-button-tertiary: transparent;
+                --#{$prefix}-text-inverse: #{var(--icon-primary)};
+            }
+        }
+
+        // low-contrast actionable inline action button
+        &:not(.#{$base-actionable}--toast) {
+            .#{$base-actionable}__action-button {
+                &:hover {
+                    --#{$prefix}-notification-action-hover: #{var(--notification-action-hover)};
+                }
+
+                &:focus {
+                    --#{$prefix}-focus: #{var(--border-interactive)};
+                    outline-width: var(--spark-focus-outline-width-final-primary);
+                }
+            }
+        }
+
+        // low-contrast actionable toast action button
+        &.#{$base-actionable}--toast {
+            .#{$base-actionable}__action-button {
+                border: 1px solid var(--text-primary);
+                --#{$prefix}-button-tertiary: #{var(--text-primary)};
+
+                &:hover {
+                    --button-tertiary-hover: #{var(--background-inverse)};
+                    --button-primary-hover: #{var(--text-inverse)};
+                    background: var(--background-inverse);
+                    &:focus {
+                        --cds-text-inverse: var(--text-inverse);
+                    }
+                }
+                &:focus {
+                    --cds-text-inverse: var(--text-primary);
+                }
+            }
+        }
+    }
+}

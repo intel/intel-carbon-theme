@@ -1,0 +1,11 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$prefix}--toast-notification:not(.#{$prefix}--toast-notification--low-contrast) {
+        h3.#{$prefix}--toast-notification__title {
+            color: var(--text-inverse);
+        }
+    }
+}

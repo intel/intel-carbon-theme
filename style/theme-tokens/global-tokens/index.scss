@@ -1,0 +1,98 @@
+@use '../../utils/utils' as *;
+
+// Import all your token files with namespaces
+@use './foundation-tokens' as foundation;
+@use './background-tokens' as background;
+@use './layer-tokens' as layer;
+@use './layer-accent-tokens' as layer-accent;
+@use './field-tokens' as field;
+@use './border-tokens' as border;
+@use './text-tokens' as text;
+@use './link-tokens' as link;
+@use './icon-tokens' as icon;
+@use './button-tokens' as button;
+@use './support-tokens' as support;
+@use './focus-tokens' as focus;
+@use './miscellaneous-tokens' as misc;
+@use './notification-tokens' as notification;
+@use './tag-blue-tokens' as tag-blue;
+@use './tag-cyan-tokens' as tag-cyan;
+@use './tag-green-tokens' as tag-green;
+@use './tag-magenta-tokens' as tag-magenta;
+@use './tag-purple-tokens' as tag-purple;
+@use './tag-red-tokens' as tag-red;
+@use './tag-teal-tokens' as tag-teal;
+@use './tag-gray-tokens' as tag-gray;
+@use './tag-cool-gray-tokens' as tag-cool-gray;
+@use './tag-warm-gray-tokens' as tag-warm-gray;
+@use './collab-badges-user-profile-badges-tokens' as collab-badges-user;
+@use './collab-badges-status-icons-tokens' as collab-badges-status;
+@use './tabs-tokens' as tabs;
+@use './header-tokens' as header;
+
+// Collect all default theme maps
+$all-default-theme-maps: (
+    foundation.$default-theme-modes,
+    background.$default-theme-modes,
+    layer.$default-theme-modes,
+    layer-accent.$default-theme-modes,
+    field.$default-theme-modes,
+    border.$default-theme-modes,
+    text.$default-theme-modes,
+    link.$default-theme-modes,
+    icon.$default-theme-modes,
+    button.$default-theme-modes,
+    support.$default-theme-modes,
+    focus.$default-theme-modes,
+    misc.$default-theme-modes,
+    notification.$default-theme-modes,
+    tag-blue.$default-theme-modes,
+    tag-cyan.$default-theme-modes,
+    tag-green.$default-theme-modes,
+    tag-magenta.$default-theme-modes,
+    tag-purple.$default-theme-modes,
+    tag-red.$default-theme-modes,
+    tag-teal.$default-theme-modes,
+    tag-gray.$default-theme-modes,
+    tag-cool-gray.$default-theme-modes,
+    tag-warm-gray.$default-theme-modes,
+    collab-badges-user.$default-theme-modes,
+    collab-badges-status.$default-theme-modes,
+    tabs.$default-theme-modes,
+    header.$default-theme-modes
+);
+
+// Collect all TB theme maps
+$all-tb-theme-maps: (
+    foundation.$default-theme-modes,
+    background.$tb-theme-modes,
+    layer.$tb-theme-modes,
+    layer-accent.$tb-theme-modes,
+    field.$tb-theme-modes,
+    border.$tb-theme-modes,
+    text.$tb-theme-modes,
+    link.$tb-theme-modes,
+    icon.$tb-theme-modes,
+    button.$tb-theme-modes,
+    support.$tb-theme-modes,
+    focus.$tb-theme-modes,
+    misc.$tb-theme-modes,
+    notification.$tb-theme-modes,
+    tag-blue.$tb-theme-modes,
+    tag-cyan.$tb-theme-modes,
+    tag-green.$tb-theme-modes,
+    tag-magenta.$tb-theme-modes,
+    tag-purple.$tb-theme-modes,
+    tag-red.$tb-theme-modes,
+    tag-teal.$tb-theme-modes,
+    tag-gray.$tb-theme-modes,
+    tag-cool-gray.$tb-theme-modes,
+    tag-warm-gray.$tb-theme-modes,
+    collab-badges-user.$tb-theme-modes,
+    collab-badges-status.$tb-theme-modes,
+    tabs.$tb-theme-modes,
+    header.$tb-theme-modes
+);
+
+// Create all the prefix tokens
+@include process-all-theme-tokens($all-default-theme-maps, $all-tb-theme-maps);

@@ -1,0 +1,131 @@
+@use '@carbon/styles/scss/components/text-input';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/theme';
+@use '@carbon/styles/scss/utilities/layout';
+@use './properties' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+@use '../../mixins/spark-error-icon' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base}__field-wrapper {
+    .#{$base}::placeholder {
+        font-style: italic;
+    }
+
+    @each $size, $value in $text-input-text-sizes {
+        .#{$base}--#{$size} {
+            --#{$prefix}-body-compact-01-font-size: #{$value};
+        }
+    }
+}
+
+.cds--text-input__field-outer-wrapper {
+    @each $size, $value in $text-input-properties {
+        &:has(.#{$base}--#{$size}) {
+            --#{$prefix}-helper-text-01-font-size: #{map-get($value, font-size)};
+        }
+    }
+}
+
+.#{$base}-wrapper {
+    $form-requirement: #{$prefix}--form-requirement;
+    $wrapper-readonly: #{$base}-wrapper--readonly;
+    $label: #{$prefix}--label;
+    $label-wrapper: #{$base}__label-wrapper;
+    $text-input-sizes: (
+        sm: small,
+        md: normal,
+        lg: condensed
+    );
+
+    @include layout.redefine-tokens(
+        $overrides: (
+            size: (
+                height: (
+                    sm: #{$spark-text-input-size-sm},
+                    md: #{$spark-text-input-size-md},
+                    lg: #{$spark-text-input-size-lg}
+                )
+            ),
+            density: (
+                padding-inline: (
+                    small: #{$spark-text-input-padding-inline-sm},
+                    normal: #{$spark-text-input-padding-inline-md},
+                    condensed: #{$spark-text-input-padding-inline-lg}
+                )
+            )
+        )
+    );
+
+    @each $name, $value in $text-input-properties {
+        & .#{$base}--#{$name} {
+            @include layout.use('density', $default: #{map-get($value, density)});
+        }
+
+        &:has(.#{$base}--#{$name}) .#{$label-wrapper} .#{$label} {
+            font-size: #{map-get($value, font-size)};
+            line-height: #{map-get($value, font-line-height)};
+        }
+    }
+
+    & .#{$base} {
+        @include spark-focus;
+        &:not(.#{$prefix}--skeleton) {
+            border: $spark-text-input-border-width solid #{var(--border-strong-01)};
+            background-color: var(--field-02);
+        }
+
+        &--invalid:focus {
+            border: 2px solid #{var(--support-error)};
+        }
+        &--invalid:not(:focus) {
+            border: 2px solid transparent;
+        }
+
+        &:disabled {
+            border: none;
+            background-color: var(--layer-disabled);
+        }
+    }
+
+    &.#{$wrapper-readonly} .#{$base} {
+        border: $spark-text-input-border-width solid var(--border-subtle-02);
+    }
+
+    & .#{$form-requirement} {
+        color: #{var(--text-primary)};
+    }
+}
+.#{$base}__field-wrapper:has(.#{$base}__invalid-icon):not(:has(.#{$base}__invalid-icon--warning)) {
+    position: relative;
+    svg.#{$base}__invalid-icon {
+        visibility: hidden;
+    }
+
+    @include spark-error-icon-for-input();
+
+    &::before {
+        right: 16px;
+        z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+    }
+}
+.#{$base}__field-wrapper,
+.#{$base}__field-wrapper
+    .#{$prefix}--tooltip-trigger__wrapper
+    .#{$base}--password__visibility__toggle {
+    svg {
+        z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+    }
+}
+
+.#{$prefix}--btn.#{$base}--password__visibility__toggle.#{$prefix}--tooltip__trigger:focus {
+    outline: none;
+    box-shadow: none;
+}

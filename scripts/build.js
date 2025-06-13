@@ -1,0 +1,37 @@
+const fs = require('fs-extra')
+const path = require('path')
+const glob = require('glob')
+
+// Create dist directory if it doesn't exist
+fs.ensureDirSync('dist')
+
+// Copy all CSS files
+console.log('Copying CSS files...')
+glob.sync('**/*.css').forEach((file) => {
+    if (!file.includes('node_modules') && !file.startsWith('dist/')) {
+        const destPath = path.join('dist', file)
+        fs.ensureDirSync(path.dirname(destPath))
+        fs.copySync(file, destPath)
+        console.log(`Copied: ${file} -> ${destPath}`)
+    }
+})
+
+// Copy all SCSS files
+console.log('Copying SCSS files...')
+glob.sync('**/*.scss').forEach((file) => {
+    if (!file.includes('node_modules') && !file.startsWith('dist/')) {
+        const destPath = path.join('dist', file)
+        fs.ensureDirSync(path.dirname(destPath))
+        fs.copySync(file, destPath)
+        console.log(`Copied: ${file} -> ${destPath}`)
+    }
+})
+
+// Copy style folder if it exists
+if (fs.existsSync('style')) {
+    console.log('Copying style folder...')
+    fs.copySync('style', 'dist/style')
+    console.log('Copied: style -> dist/style')
+}
+
+console.log('Build completed successfully!')

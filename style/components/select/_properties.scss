@@ -1,0 +1,17 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use 'sass:map';
+
+$select-font-sizes: (
+    sm: (
+        font-size: to-rem(12px),
+        label-font-size: to-rem(11px)
+    ),
+    md: (
+        font-size: to-rem(14px),
+        label-font-size: to-rem(12px)
+    ),
+    lg: (
+        font-size: to-rem(16px),
+        label-font-size: to-rem(14px)
+    )
+);

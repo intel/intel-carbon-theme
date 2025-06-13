@@ -1,0 +1,142 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    notification-info-background: (
+        #ceebfc,
+        #ceebfc,
+        #393939,
+        #262626
+    ),
+    notification-info-border: (
+        #0054ae,
+        #0054ae,
+        #393939,
+        #00c7fd
+    ),
+    notification-success-background: (
+        #ebf9d1,
+        #ebf9d1,
+        #393939,
+        #393939
+    ),
+    notification-success-border: (
+        #008a00,
+        #008a00,
+        #393939,
+        #add2ad
+    ),
+    notification-error-background: (
+        #f5c7c7,
+        #f5c7c7,
+        #393939,
+        #393939
+    ),
+    notification-error-border: (
+        #d55050,
+        #d55050,
+        #393939,
+        #f5c7c7
+    ),
+    notification-warning-background: (
+        #fff6cc,
+        #fff6cc,
+        #393939,
+        #393939
+    ),
+    notification-warning-border: (
+        #ffd100,
+        #ffd100,
+        #393939,
+        #ffd100
+    ),
+    notification-action-hover: (
+        #ffffff,
+        #ffffff,
+        #242528,
+        #161616
+    ),
+    notification-action-tertiary-inverse: (
+        #ffffff,
+        #ffffff,
+        #2b2c30,
+        #2b2c30
+    ),
+    notification-action-tertiary-inverse-text: (
+        #2b2c30,
+        #2b2c30,
+        #ffffff,
+        #ffffff
+    ),
+    notification-action-tertiary-inverse-hover: (
+        #e9e9e9,
+        #e9e9e9,
+        #262626,
+        #161616
+    )
+);
+
+$tb-theme-modes: (
+    notification-info-background: (
+        #a2f6e8,
+        #a2f6e8,
+        #070c21
+    ),
+    notification-info-border: (
+        #16cfb1,
+        #16cfb1,
+        #16cfb1
+    ),
+    notification-success-background: (
+        #ebf9d1,
+        #ebf9d1,
+        #0d132b
+    ),
+    notification-success-border: (
+        #008a00,
+        #008a00,
+        #d7f3a2
+    ),
+    notification-error-background: (
+        #f5c7c7,
+        #f5c7c7,
+        #0d132b
+    ),
+    notification-error-border: (
+        #d55050,
+        #d55050,
+        #f5c7c7
+    ),
+    notification-warning-background: (
+        #fff6cc,
+        #fff6cc,
+        #0d132b
+    ),
+    notification-warning-border: (
+        #ffd100,
+        #ffd100,
+        #ffd100
+    ),
+    notification-action-hover: (
+        #ffffff,
+        #ffffff,
+        #070c21
+    ),
+    notification-action-tertiary-inverse: (
+        #ffffff,
+        #ffffff,
+        #1c223b
+    ),
+    notification-action-tertiary-inverse-text: (
+        #2b2c30,
+        #1c223b,
+        #ffffff
+    ),
+    notification-action-tertiary-inverse-hover: (
+        #f7f7f8,
+        #f1f1f3,
+        #070c21
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

@@ -1,0 +1,50 @@
+@use '@carbon/styles/scss/components/overflow-menu';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    --#{$prefix}-layer: #{var(--layer-01)};
+    --#{$prefix}-layer-hover: #{var(--layer-accent-01)};
+    --#{$prefix}-button-primary-active: #{var(--button-secondary-active)};
+
+    &__icon {
+        --#{$prefix}-icon-primary: #{var(--icon-primary)};
+    }
+    fill: #{var(--icon-primary)};
+    &[disabled] {
+        .#{$base}__icon {
+            --#{$prefix}-icon-primary: #{var(--icon-disabled)};
+        }
+        fill: var(--icon-disabled);
+    }
+    @include spark-focus;
+
+    &-options {
+        --#{$prefix}-layer: #{var(--layer-01)};
+        z-index: 8000;
+
+        @each $name, $value in $spark-overflow-menu-sizes {
+            &--#{$name} {
+                .#{$base}-options__option {
+                    block-size: map-get($value, option-block-size);
+                }
+
+                .#{$base}-options__btn {
+                    --#{$prefix}-body-compact-01-font-size: #{map-get(
+                            $value,
+                            option-btn-font-size
+                        )};
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,5 @@
+@use '../../../prefix' as *;
+
+$prefix: $spark-theme-prefix;
+$base: #{$prefix}--loading;
+$name: spark-loading;

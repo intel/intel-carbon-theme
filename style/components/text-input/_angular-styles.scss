@@ -1,0 +1,92 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+@use '@carbon/styles/scss/utilities/layout';
+@use '../../interactions' as *;
+@use '../../mixins/angular-skeleton' as *;
+@use './properties' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$base}__field-wrapper {
+        $form-requirement: #{$prefix}--form-requirement;
+        $wrapper-readonly: #{$base}-wrapper--readonly;
+        $label: #{$prefix}--label;
+        $label-wrapper: #{$base}__label-wrapper;
+
+        @include layout.redefine-tokens(
+            $overrides: (
+                size: (
+                    height: (
+                        sm: #{$spark-text-input-size-sm},
+                        md: #{$spark-text-input-size-md},
+                        lg: #{$spark-text-input-size-lg}
+                    )
+                ),
+                density: (
+                    padding-inline: (
+                        small: #{$spark-text-input-padding-inline-sm},
+                        normal: #{$spark-text-input-padding-inline-md},
+                        condensed: #{$spark-text-input-padding-inline-lg}
+                    )
+                )
+            )
+        );
+
+        @each $name, $value in $text-input-properties {
+            & .#{$base}--#{$name} {
+                @include layout.use('density', $default: #{map-get($value, density)});
+            }
+
+            &:has(.#{$base}--#{$name}) .#{$label-wrapper} .#{$label} {
+                font-size: #{map-get($value, font-size)};
+                line-height: #{map-get($value, font-line-height)};
+            }
+        }
+
+        & .#{$base} {
+            @include spark-focus;
+            &:not(.#{$prefix}--skeleton) {
+                border: $spark-text-input-border-width solid #{var(--border-strong-01)};
+                background-color: var(--field-01);
+            }
+
+            &--invalid:focus {
+                border: 2px solid #{var(--support-error)};
+            }
+            &--invalid:not(:focus) {
+                border: 2px solid transparent;
+            }
+
+            &:disabled {
+                border: none;
+                background-color: var(--layer-disabled);
+            }
+        }
+
+        &.#{$wrapper-readonly} .#{$base} {
+            border: $spark-text-input-border-width solid var(--border-subtle-02);
+        }
+
+        & .#{$form-requirement} {
+            color: #{var(--text-primary)};
+        }
+
+        &:has(.#{$prefix}--skeleton) {
+            @include angular-skeleton;
+        }
+    }
+
+    .#{$prefix}--form-item:has(.#{$base}__field-wrapper) {
+        .#{$prefix}--form-requirement {
+            color: #{var(--text-primary)};
+        }
+        @each $name, $value in $text-input-properties {
+            &:has(.#{$base}--#{$name}) {
+                --#{$prefix}-label-01-font-size: #{map-get($value, font-size)};
+                --#{$prefix}-label-01-line-height: #{map-get($value, font-line-height)};
+                --#{$prefix}-helper-text-01-font-size: #{map-get($value, font-size)};
+                --#{$prefix}-helper-text-01-line-height: #{map-get($value, font-line-height)};
+            }
+        }
+    }
+}

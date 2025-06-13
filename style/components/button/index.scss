@@ -1,0 +1,20 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+
+@use '@carbon/styles/scss/components/button/tokens' with (
+    $button-primary: var(--button-primary),
+    $button-primary-hover: var(--button-primary-hover),
+    $button-primary-active: var(--button-primary-active),
+    $button-secondary: var(--button-secondary),
+    $button-secondary-hover: var(--button-secondary-hover),
+    $button-secondary-active: var(--button-secondary-active),
+    $button-tertiary: var(--button-tertiary),
+    $button-tertiary-hover: var(--button-tertiary-hover),
+    $button-tertiary-active: var(--button-tertiary-active),
+    $button-danger-primary: var(--button-danger-primary),
+    $button-danger-hover: var(--button-danger-hover),
+    $button-danger-active: var(--button-danger-active),
+    $button-disabled: var(--button-disabled)
+);
+
+@forward './properties';
+@use 'button';

@@ -1,0 +1,43 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    tag-background-warm-gray: (
+        #f4f5f5,
+        #f4f5f5,
+        #8b8e97,
+        #8b8e97
+    ),
+    tag-color-warm-gray: (
+        #2b2c30,
+        #2b2c30,
+        #f4f5f5,
+        #f4f5f5
+    ),
+    tag-hover-warm-gray: (
+        #e9eaeb,
+        #e9eaeb,
+        #6a6d75,
+        #6a6d75
+    )
+);
+
+$tb-theme-modes: (
+    tag-background-warm-gray: (
+        #ccd0ff,
+        #ccd0ff,
+        #1818cc
+    ),
+    tag-color-warm-gray: (
+        #1e2eb8,
+        #1e2eb8,
+        #ccd0ff
+    ),
+    tag-hover-warm-gray: (
+        #b2b9ff,
+        #b2b9ff,
+        #0f1fa1
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

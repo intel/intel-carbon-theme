@@ -1,0 +1,43 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    tag-background-magenta: (
+        #ccd0ff,
+        #ccd0ff,
+        #0f1fa1,
+        #0f1fa1
+    ),
+    tag-color-magenta: (
+        #0f1fa1,
+        #0f1fa1,
+        #ccd0ff,
+        #ccd0ff
+    ),
+    tag-hover-magenta: (
+        #b2b9ff,
+        #b2b9ff,
+        #000f8a,
+        #000f8a
+    )
+);
+
+$tb-theme-modes: (
+    tag-background-magenta: (
+        #f4d7fa,
+        #f4d7fa,
+        #981fd9
+    ),
+    tag-color-magenta: (
+        #981fd9,
+        #981fd9,
+        #e4cdf1
+    ),
+    tag-hover-magenta: (
+        #eec3f7,
+        #eec3f7,
+        #7d1ab2
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

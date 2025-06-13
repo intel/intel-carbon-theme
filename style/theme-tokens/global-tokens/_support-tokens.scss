@@ -1,0 +1,131 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    support-error: (
+        #ce0000,
+        #ce0000,
+        #f88f8f,
+        #f88f8f
+    ),
+    support-success: (
+        #008a00,
+        #008a00,
+        #add2ad,
+        #add2ad
+    ),
+    support-warning: (
+        #ffd100,
+        #ffd100,
+        #ffeb92,
+        #ffeb92
+    ),
+    support-info: (
+        #0054ae,
+        #0054ae,
+        #00c7fd,
+        #00c7fd
+    ),
+    support-error-inverse: (
+        #f88f8f,
+        #f88f8f,
+        #d55050,
+        #d55050
+    ),
+    support-success-inverse: (
+        #add2ad,
+        #add2ad,
+        #006400,
+        #006400
+    ),
+    support-warning-inverse: (
+        #ffd100,
+        #ffd100,
+        #ffeb92,
+        #ffeb92
+    ),
+    support-info-inverse: (
+        #0099ec,
+        #0099ec,
+        #0054ae,
+        #0054ae
+    ),
+    support-caution-major: (
+        #ff8f51,
+        #ff8f51,
+        #ff8f51,
+        #ff8f51
+    ),
+    support-caution-minor: (
+        #fec91b,
+        #fec91b,
+        #fec91b,
+        #fec91b
+    ),
+    support-undefined: (
+        #8f5da2,
+        #8f5da2,
+        #ae79be,
+        #ae79be
+    )
+);
+
+$tb-theme-modes: (
+    support-error: (
+        #ce0000,
+        #ce0000,
+        #f88f8f
+    ),
+    support-success: (
+        #008a00,
+        #008a00,
+        #add2ad
+    ),
+    support-warning: (
+        #ffd100,
+        #ffd100,
+        #ffeb92
+    ),
+    support-info: (
+        #08746e,
+        #0054ae,
+        #5be3cd
+    ),
+    support-error-inverse: (
+        #f88f8f,
+        #f88f8f,
+        #d55050
+    ),
+    support-success-inverse: (
+        #add2ad,
+        #add2ad,
+        #006400
+    ),
+    support-warning-inverse: (
+        #ffd100,
+        #ffd100,
+        #ffeb92
+    ),
+    support-info-inverse: (
+        #16cfb1,
+        #0099ec,
+        #0f9b8f
+    ),
+    support-caution-major: (
+        #ff8f51,
+        #ff8f51,
+        #ff8f51
+    ),
+    support-caution-minor: (
+        #fec91b,
+        #fec91b,
+        #fec91b
+    ),
+    support-undefined: (
+        #8f5da2,
+        #8f5da2,
+        #ae79be
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

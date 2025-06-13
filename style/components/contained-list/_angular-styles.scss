@@ -1,0 +1,19 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+@use './properties' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    @each $name, $value in $contained-list-sizes {
+        .#{$base}.#{$base}--#{$name} {
+            .#{$base}__header {
+                block-size: map-get($value, header-height);
+            }
+            .#{$base}-item .#{$base}-item__content {
+                min-block-size: map-get($value, item-min-block-size);
+                padding-inline: map-get($value, item-padding-inline);
+                padding-block: map-get($value, item-padding-block);
+            }
+        }
+    }
+}

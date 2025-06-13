@@ -1,0 +1,142 @@
+@use '@carbon/styles/scss/components/code-snippet';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/layout';
+@use '../../interactions' as *;
+@use './vars' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    @include spark-focus;
+
+    &:not(.#{$base}--disabled) {
+        color: #{var(--text-primary)};
+    }
+
+    .#{$prefix}--btn {
+        --#{$prefix}-layout-size-height-sm: #{to-rem(32px)};
+
+        &.#{$prefix}--copy-btn {
+            @include spark-focus;
+
+            --#{$prefix}-spark-button-copy-hover: #{var(--background-hover)};
+
+            svg {
+                display: none;
+            }
+
+            &::after {
+                font-family: 'spark-icon';
+                content: '\f17e';
+                display: inline-block;
+                font-size: 1rem;
+                color: var(--text-primary);
+            }
+        }
+    }
+
+    &.#{$base}--disabled {
+        .#{$prefix}--btn {
+            &.#{$prefix}--copy-btn {
+                &::after {
+                    color: var(--text-disabled);
+                }
+            }
+        }
+    }
+
+    &.#{$base}--inline {
+        border-radius: 0px;
+        background-color: var(--layer-01);
+        border: none;
+    }
+
+    &.#{$base}--single {
+        border-radius: 0px;
+        background-color: var(--layer-01);
+        block-size: to-rem(32px);
+
+        & .#{$base}-container {
+            @include spark-focus;
+        }
+    }
+
+    &.#{$base}--multi {
+        padding: 0px;
+
+        .#{$base}-btn--expand {
+            @include spark-focus;
+            --#{$prefix}-layer: #{var(--layer-01)};
+            --#{$prefix}-spark-button-ghost-text: #{var(--text-primary)};
+            font-size: to-rem(14px);
+            font-weight: 500;
+            line-height: to-rem(16px);
+            gap: 0;
+
+            &:focus {
+                --#{$prefix}-spark-button-ghost-text: #{var(--focus)};
+                svg {
+                    fill: #{var(--focus)};
+                }
+            }
+
+            &:hover {
+                --#{$prefix}-spark-button-ghost-text: #{var(--primary-hover)};
+                svg {
+                    fill: #{var(--primary-hover)};
+                }
+            }
+        }
+
+        & .#{$base}-container {
+            background: var(--layer-01);
+            scrollbar-color: var(--border-strong-01) var(--background-selected);
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
+            padding: 0px 4px 4px 0px;
+            max-block-size: 100%;
+            max-inline-size: 100%;
+        }
+        & .#{$base}-container::-webkit-scrollbar {
+            block-size: 4px;
+            inline-size: 4px;
+            padding: 0px;
+        }
+        & .#{$base}-container:hover::-webkit-scrollbar {
+            block-size: 8px;
+            inline-size: 8px;
+        }
+        & .#{$base}-container:hover {
+            padding: 0px;
+        }
+        & .#{$base}-container:active {
+            scrollbar-color: var(--button-primary) var(--background-selected);
+        }
+        & .#{$base}-container:focus {
+            outline: none;
+        }
+        & .#{$base}-container::-webkit-scrollbar-corner {
+            background-color: transparent;
+        }
+        & .#{$base}-container::-webkit-scrollbar-thumb:active {
+            background-color: var(--button-primary);
+        }
+        & .#{$base}-container:hover::-webkit-scrollbar-track:hover {
+            background-color: var(--background-selected);
+        }
+        & .#{$base}-container:hover::-webkit-scrollbar-thumb {
+            background-color: var(--border-strong-01);
+        }
+        & .#{$base}-container:hover::-webkit-scrollbar-thumb:active {
+            background-color: var(--button-primary);
+        }
+        & .#{$base}-container:hover::-webkit-scrollbar:hover::-webkit-scrollbar-track {
+            background-color: var(--button-primary);
+        }
+    }
+}

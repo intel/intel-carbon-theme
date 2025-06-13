@@ -1,0 +1,34 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '../utils/utils' as *;
+
+$spacing-01: to-rem(2px) !default;
+$spacing-02: to-rem(4px) !default;
+$spacing-03: to-rem(8px) !default;
+$spacing-04: to-rem(12px) !default;
+$spacing-05: to-rem(16px) !default;
+$spacing-06: to-rem(24px) !default;
+$spacing-07: to-rem(32px) !default;
+$spacing-08: to-rem(40px) !default;
+$spacing-09: to-rem(48px) !default;
+$spacing-10: to-rem(64px) !default;
+$spacing-11: to-rem(80px) !default;
+$spacing-12: to-rem(96px) !default;
+$spacing-13: to-rem(160px) !default;
+
+$theme-spacing: (
+    spacing-01: $spacing-01,
+    spacing-02: $spacing-02,
+    spacing-03: $spacing-03,
+    spacing-04: $spacing-04,
+    spacing-05: $spacing-05,
+    spacing-06: $spacing-06,
+    spacing-07: $spacing-07,
+    spacing-08: $spacing-08,
+    spacing-09: $spacing-09,
+    spacing-10: $spacing-10,
+    spacing-11: $spacing-11,
+    spacing-12: $spacing-12,
+    spacing-13: $spacing-13
+);
+
+@include create-theme-properties($theme-spacing);

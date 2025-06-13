@@ -1,0 +1,131 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    C4IP-status-fatal: (
+        #000000,
+        #000000,
+        #808080,
+        #808080
+    ),
+    C4IP-status-critical: (
+        #e43544,
+        #e43544,
+        #ff5662,
+        #ff5662
+    ),
+    C4IP-status-major-warning: (
+        #ff8f51,
+        #ff8f51,
+        #ff8f51,
+        #ff8f51
+    ),
+    C4IP-status-minor-warning: (
+        #ffd100,
+        #ffd100,
+        #ffeb92,
+        #ffeb92
+    ),
+    C4IP-status-undefined: (
+        #8f5da2,
+        #8f5da2,
+        #ae79be,
+        #ae79be
+    ),
+    C4IP-status-unknown: (
+        #6f6f6f,
+        #6f6f6f,
+        #808080,
+        #808080
+    ),
+    C4IP-status-normal: (
+        #7e9a44,
+        #7e9a44,
+        #8bae46,
+        #8bae46
+    ),
+    C4IP-status-info: (
+        #0054ae,
+        #0054ae,
+        #0099ec,
+        #0099ec
+    ),
+    C4IP-status-in-progress: (
+        #0054ae,
+        #0054ae,
+        #0099ec,
+        #0099ec
+    ),
+    C4IP-status-running: (
+        #7e9a44,
+        #7e9a44,
+        #8bae46,
+        #8bae46
+    ),
+    C4IP-status-pending: (
+        #6f6f6f,
+        #6f6f6f,
+        #808080,
+        #808080
+    )
+);
+
+$tb-theme-modes: (
+    C4IP-status-fatal: (
+        #000000,
+        #000000,
+        #676d84
+    ),
+    C4IP-status-critical: (
+        #e43544,
+        #e43544,
+        #ff5662
+    ),
+    C4IP-status-major-warning: (
+        #ff8f51,
+        #ff8f51,
+        #ff8f51
+    ),
+    C4IP-status-minor-warning: (
+        #ffd100,
+        #ffd100,
+        #ffeb92
+    ),
+    C4IP-status-undefined: (
+        #8f5da2,
+        #8f5da2,
+        #ae79be
+    ),
+    C4IP-status-unknown: (
+        #6f6f6f,
+        #6f6f6f,
+        #676d84
+    ),
+    C4IP-status-normal: (
+        #7e9a44,
+        #7e9a44,
+        #8bae46
+    ),
+    C4IP-status-info: (
+        #0f9b8f,
+        #0054ae,
+        #16cfb1
+    ),
+    C4IP-status-in-progress: (
+        #0f9b8f,
+        #0054ae,
+        #5be3cd
+    ),
+    C4IP-status-running: (
+        #7e9a44,
+        #7e9a44,
+        #8bae46
+    ),
+    C4IP-status-pending: (
+        #6f6f6f,
+        #6f6f6f,
+        #676d84
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

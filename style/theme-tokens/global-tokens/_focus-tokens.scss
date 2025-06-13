@@ -1,0 +1,65 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    focus: (
+        #0054ae,
+        #0054ae,
+        #00c7fd,
+        #00c7fd
+    ),
+    focus-inset: (
+        #ffffff,
+        #f4f5f5,
+        #313236,
+        #242528
+    ),
+    focus-inverse: (
+        #ffffff,
+        #ffffff,
+        #0054ae,
+        #0054ae
+    ),
+    focus-dropdown-fill: (
+        #00377c,
+        #00377c,
+        #00c7fd,
+        #00c7fd
+    ),
+    focus-dropdown-fill-hover: (
+        #001e50,
+        #001e50,
+        #a0ebff,
+        #a0ebff
+    )
+);
+
+$tb-theme-modes: (
+    focus: (
+        #09857c,
+        #09857c,
+        #16cfb1
+    ),
+    focus-inset: (
+        #ffffff,
+        #f7f7f8,
+        #020316
+    ),
+    focus-inverse: (
+        #ffffff,
+        #ffffff,
+        #0f9b8f
+    ),
+    focus-dropdown-fill: (
+        #5400c0,
+        #5400c0,
+        #16cfb1
+    ),
+    focus-dropdown-fill-hover: (
+        #38007f,
+        #38007f,
+        #5be3cd
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

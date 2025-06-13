@@ -1,0 +1,247 @@
+@use '@carbon/styles/scss/components/date-picker';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+@use '../../mixins/spark-error-icon' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    & .cds--label--disabled ~ .cds--date-picker-input__wrapper span:before,
+    & .cds--label--readonly ~ .cds--date-picker-input__wrapper span:before {
+        color: var(--icon-disabled) !important;
+    }
+
+    &:not(.#{$base}--simple) {
+        .#{$base}-input__wrapper:not(.#{$base}-input__wrapper--invalid):not(
+                .#{$base}-input__wrapper--warn
+            ) {
+            span {
+                &::before {
+                    font-family: 'spark-icon';
+                    content: '\f142';
+                    font-weight: 400;
+                    block-size: 100%;
+                    color: var(--icon-primary);
+                    inline-size: $spark-date-picker-icon-size;
+                    font-size: $spark-date-picker-icon-font-size;
+                    line-height: $spark-date-picker-icon-line-height;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: absolute;
+                    right: $spark-date-picker-icon-right-offset;
+                    top: $spark-date-picker-icon-top-offset;
+                    z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+                }
+            }
+        }
+    }
+
+    &.#{$base}--simple {
+        .#{$base}__input {
+            @each $name, $value in $date-picker-sizes {
+                &--#{$name} {
+                    inline-size: map-get($value, inline-size);
+                }
+            }
+        }
+    }
+
+    &--range {
+        gap: $spark-date-picker-range-inputs-gap;
+        .#{$base}__input {
+            inline-size: $spark-date-picker-range-input-inline-size;
+        }
+    }
+
+    .#{$prefix}--label {
+        font-size: $spark-date-picker-label-font-size;
+    }
+
+    &__icon:not(.cds--date-picker__icon--warn) {
+        visibility: hidden;
+    }
+
+    &__input {
+        outline: none;
+        border: $spark-date-picker-input-border-width solid var(--border-strong-01);
+        --#{$prefix}-field: #{var(--field-02)};
+        --#{$prefix}-code-02-font-family: $font-families-sans;
+        @include spark-focus(true);
+
+        &--invalid:focus {
+            border: 2px solid var(--support-error);
+        }
+
+        &--invalid:not(:focus) {
+            border: 2px solid transparent;
+        }
+
+        @each $name, $value in $date-picker-sizes {
+            &--#{$name} {
+                block-size: map-get($value, block-size);
+                padding-inline: map-get($value, padding-inline);
+                --#{$prefix}-code-02-font-size: #{map-get($value, font-size)};
+                --#{$prefix}-code-02-line-height: #{map-get($value, line-height)};
+            }
+        }
+
+        &::placeholder {
+            font-style: italic;
+        }
+
+        &[readonly] {
+            --border-strong-01: transparent;
+        }
+
+        &[disabled] {
+            --border-strong-01: transparent;
+        }
+    }
+
+    &-input__wrapper--invalid span {
+        position: relative;
+        svg.#{$prefix}--date-picker__icon--invalid {
+            visibility: hidden;
+        }
+
+        @include spark-error-icon-for-input();
+
+        &::before {
+            right: to-rem(16px);
+            z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+        }
+    }
+    &-input__wrapper--warn span svg {
+        z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+    }
+
+    .#{$prefix}--form-requirement {
+        font-size: $spark-date-picker-message-font-size;
+    }
+
+    &__calendar {
+        .numInputWrapper {
+            .numInput {
+                --#{$prefix}-field-01: #{var(--background)};
+                font-weight: $spark-date-picker-calendar-month-year-font-weight;
+            }
+        }
+
+        .flatpickr {
+            &-calendar.open {
+                --#{$prefix}-layer-01: #{var(--layer-01)};
+
+                & .numInputWrapper {
+                    --#{$prefix}-layer-01: #{var(--layer-01)};
+                }
+            }
+
+            &-current-month {
+                font-weight: $spark-date-picker-calendar-month-year-font-weight;
+
+                & .cur-month:hover {
+                    --#{$prefix}-layer-hover: #{var(--layer-01)};
+                }
+            }
+
+            &-prev-month:before {
+                content: '';
+                font-family: 'spark-icon';
+                font-weight: 400;
+                block-size: 100%;
+                color: var(--icon-primary);
+                inline-size: $spark-date-picker-icon-size;
+                font-size: $spark-date-picker-icon-font-size;
+                line-height: $spark-date-picker-icon-line-height;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                right: $spark-date-picker-icon-arrow-left-offset;
+                top: $spark-date-picker-icon-top-offset;
+                z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+            }
+
+            &-next-month:before {
+                content: '';
+                font-family: 'spark-icon';
+                font-weight: 400;
+                block-size: 100%;
+                color: var(--icon-primary);
+                inline-size: $spark-date-picker-icon-size;
+                font-size: $spark-date-picker-icon-font-size;
+                line-height: $spark-date-picker-icon-line-height;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                right: $spark-date-picker-icon-arrow-right-offset;
+                top: $spark-date-picker-icon-top-offset;
+                z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+            }
+
+            &-prev-month,
+            &-next-month {
+                & svg {
+                    display: none;
+                }
+            }
+
+            &-weekday {
+                --#{$prefix}-body-compact-01-font-size: 14px;
+            }
+        }
+    }
+
+    &__day {
+        --#{$prefix}-text-primary: #{var(--text-primary)};
+        --#{$prefix}-body-compact-01-font-size: 14px;
+
+        &.selected {
+            --#{$prefix}-text-on-color: #{var(--text-inverse)};
+        }
+
+        &.today {
+            color: var(--text-primary);
+            font-weight: $spark-date-picker-calendar-item-today-font-weight;
+            &::after {
+                block-size: $spark-date-picker-selected-date-indicator-block-size;
+                inline-size: $spark-date-picker-selected-date-indicator-inline-size;
+                // inset-block-end: $spark-date-picker-selected-date-indicator-inset-block-end;
+            }
+        }
+
+        &.today.selected {
+            outline: none;
+            color: var(--text-inverse);
+            --#{$prefix}-link-primary: #{var(--text-inverse)};
+            &::after {
+                position: absolute;
+                display: block;
+                content: '';
+                background-color: var(--#{$prefix}-link-primary);
+                inset-inline-start: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        &.inRange {
+            --#{$prefix}-highlight: #{var(--interactive-highlight)};
+
+            &.today {
+                color: var(--primary);
+                &::after {
+                    content: none;
+                }
+            }
+        }
+    }
+}

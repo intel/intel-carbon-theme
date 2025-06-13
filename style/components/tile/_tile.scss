@@ -1,0 +1,34 @@
+@use '@carbon/styles/scss/components/tile';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/layout';
+@use '../../interactions' as *;
+@use './vars' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    @include spark-focus;
+    --#{$prefix}-layer: var(--layer-01);
+    --#{$prefix}-layer-hover: var(--layer-hover-01);
+
+    &__chevron {
+        @include spark-focus;
+
+        &[aria-expanded='false'] {
+            outline-offset: -3px;
+        }
+    }
+
+    &-input {
+        @include spark-focus;
+    }
+
+    &-input:focus + .#{$base} {
+        @include spark-focus-style(true);
+    }
+}

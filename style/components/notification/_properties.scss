@@ -1,0 +1,25 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$spark-notification-text-wrapper-padding-block: to-rem(15px) !default;
+$spark-notification-toast-icon-margin-block-start: to-rem(19px) !default;
+$spark-notification-icon-top-position: to-rem(15px) !default;
+$spark-notification-icon-left-position: to-rem(15px) !default;
+$spark-notification-icon-font-size: to-rem(20px) !default;
+$spark-notification-icon-font-weight: 600 !default;
+
+$spark-notification-title-font-size: to-rem(20px) !default;
+$spark-notification-title-font-weight: 400 !default;
+$spark-notification-title-line-height: to-rem(28px) !default;
+
+$spark-notification-inline-title-font-size: to-rem(14px) !default;
+$spark-notification-inline-title-font-weight: 500 !default;
+$spark-notification-inline-title-line-height: to-rem(20px) !default;
+
+$spark-notification-subtitle-font-size: to-rem(14px) !default;
+$spark-notification-subtitle-font-weight: 400 !default;
+$spark-notification-subtitle-line-height: to-rem(20px) !default;

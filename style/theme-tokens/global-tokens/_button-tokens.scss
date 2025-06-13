@@ -1,0 +1,197 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    button-primary: (
+        #0054ae,
+        #0054ae,
+        #00c7fd,
+        #00c7fd
+    ),
+    button-primary-hover: (
+        #004a9d,
+        #004a9d,
+        #87e4ff,
+        #87e4ff
+    ),
+    button-primary-active: (
+        #001e50,
+        #001e50,
+        #a0ebff,
+        #a0ebff
+    ),
+    button-secondary: (
+        #ffffff00,
+        #ffffff00,
+        #ffffff00,
+        #ffffff00
+    ),
+    button-secondary-hover: (
+        #e9eaeb,
+        #e9eaeb,
+        #3c3e42,
+        #3c3e42
+    ),
+    button-secondary-active: (
+        #c9cace,
+        #c9cace,
+        #585a62,
+        #585a62
+    ),
+    button-tertiary: (
+        #0054ae,
+        #0054ae,
+        #00c7fd,
+        #00c7fd
+    ),
+    button-tertiary-border: (
+        #c9cace,
+        #c9cace,
+        #585a62,
+        #585a62
+    ),
+    button-tertiary-hover: (
+        #004a9d,
+        #004a9d,
+        #87e4ff,
+        #87e4ff
+    ),
+    button-tertiary-active: (
+        #001e50,
+        #001e50,
+        #a0ebff,
+        #a0ebff
+    ),
+    button-danger-primary: (
+        #e43544,
+        #e43544,
+        #ff5662,
+        #ff5662
+    ),
+    button-danger-secondary: (
+        #e43544,
+        #e43544,
+        #ff5662,
+        #ff5662
+    ),
+    button-danger-hover: (
+        #ff5662,
+        #ff5662,
+        #ffb6b9,
+        #ffb6b9
+    ),
+    button-danger-secondary-hover: (
+        #ffb6b9,
+        #ffb6b9,
+        #ffb6b9,
+        #ffb6b9
+    ),
+    button-danger-active: (
+        #960e1d,
+        #960e1d,
+        #ffb6b9,
+        #ffb6b9
+    ),
+    button-separator: (
+        #e9e9e9,
+        #e9e9e9,
+        #161616,
+        #161616
+    ),
+    button-disabled: (
+        #e9eaeb,
+        #e9eaeb,
+        #3c3e42,
+        #3c3e42
+    )
+);
+
+$tb-theme-modes: (
+    button-primary: (
+        #09857c,
+        #09857c,
+        #16cfb1
+    ),
+    button-primary-hover: (
+        #065955,
+        #065955,
+        #5be3cd
+    ),
+    button-primary-active: (
+        #044845,
+        #044845,
+        #a2f6e8
+    ),
+    button-secondary: (
+        #ffffff00,
+        #ffffff00,
+        #ffffff00
+    ),
+    button-secondary-hover: (
+        #e7e7eb,
+        #e7e7eb,
+        #1c223b
+    ),
+    button-secondary-active: (
+        #bec0cb,
+        #bec0cb,
+        #555872
+    ),
+    button-tertiary: (
+        #08746e,
+        #09857c,
+        #16cfb1
+    ),
+    button-tertiary-border: (
+        #bec0cb,
+        #bec0cb,
+        #555872
+    ),
+    button-tertiary-hover: (
+        #065955,
+        #065955,
+        #5be3cd
+    ),
+    button-tertiary-active: (
+        #022b2a,
+        #044845,
+        #a2f6e8
+    ),
+    button-danger-primary: (
+        #e43544,
+        #e43544,
+        #ff5662
+    ),
+    button-danger-secondary: (
+        #e43544,
+        #e43544,
+        #ff5662
+    ),
+    button-danger-hover: (
+        #ff5662,
+        #ff5662,
+        #ffb6b9
+    ),
+    button-danger-secondary-hover: (
+        #ffb6b9,
+        #ffb6b9,
+        #ffb6b9
+    ),
+    button-danger-active: (
+        #960e1d,
+        #960e1d,
+        #ffb6b9
+    ),
+    button-separator: (
+        #e7e7eb,
+        #e7e7eb,
+        #020316
+    ),
+    button-disabled: (
+        #e7e7eb,
+        #e7e7eb,
+        #1c223b
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

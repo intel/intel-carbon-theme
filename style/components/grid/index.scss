@@ -1,0 +1,7 @@
+@use '@carbon/styles/scss/grid';
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}

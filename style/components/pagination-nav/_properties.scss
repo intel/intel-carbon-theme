@@ -1,0 +1,11 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$spark-pagination-nav-content-padding: 0 !default;
+
+$spark-pagination-nav-height: to-rem(32px) !default;
+$spark-pagination-nav-font-size: to-rem(14px) !default;

@@ -1,0 +1,160 @@
+@use '@carbon/styles/scss/components/toggle';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    $label: #{$base}__label;
+    $label-text: #{$base}__label-text;
+    $appearance: #{$base}__appearance;
+    $appearance-sm: #{$base}__appearance--sm;
+    $switch: #{$base}__switch;
+    $switch-checked: #{$base}__switch--checked;
+    $text: #{$base}__text;
+    $check: #{$base}__check;
+    $disabled: #{$base}--disabled;
+    $readonly: #{$base}--readonly;
+
+    &:not(.#{$disabled}):not(.#{$readonly})
+        .#{$label}
+        .#{$appearance}
+        .#{$switch}.#{$switch-checked} {
+        background-color: var(--button-primary);
+    }
+
+    & .#{$label} {
+        & .#{$label-text} {
+            margin-bottom: to-rem(8px);
+            font-size: to-rem(14px);
+            line-height: to-rem(16px);
+        }
+
+        & .#{$label-text}:has(+ .#{$appearance}.#{$appearance-sm}) {
+            font-size: to-rem(11px);
+            line-height: to-rem(12px);
+        }
+
+        & .#{$appearance} {
+            & .#{$switch} {
+                inline-size: to-rem(32px);
+                block-size: to-rem(16px);
+
+                &::before {
+                    background-color: var(--icon-inverse);
+                    inline-size: to-rem(10px);
+                    block-size: to-rem(10px);
+                }
+
+                &.#{$switch-checked}::before {
+                    transform: translateX(to-rem(16px));
+                }
+
+                &:not(.#{$switch-checked}) {
+                    border: to-rem(1px) solid var(--icon-primary);
+
+                    &::before {
+                        background-color: var(--icon-primary);
+                        transform: translate(to-rem(-0.5px), to-rem(-1px));
+                    }
+                }
+            }
+
+            & .#{$text} {
+                font-size: to-rem(14px);
+                line-height: to-rem(16px);
+            }
+        }
+
+        & .#{$appearance}.#{$appearance-sm} {
+            & .#{$switch} {
+                inline-size: to-rem(20px);
+                block-size: to-rem(12px);
+
+                &::before {
+                    inline-size: to-rem(6px);
+                    block-size: to-rem(6px);
+                }
+
+                & .#{$base}__check {
+                    inline-size: to-rem(3.6px);
+                    block-size: to-rem(3.6px);
+                    transform: translate(to-rem(1.25px), to-rem(-1.5px));
+                    fill: var(--icon-primary);
+                }
+
+                &.#{$switch-checked} {
+                    &::before {
+                        transform: translateX(to-rem(8px));
+                    }
+                }
+            }
+
+            & .#{$text} {
+                font-size: to-rem(11px);
+                line-height: to-rem(12px);
+            }
+        }
+    }
+
+    &.#{$disabled} .#{$label} .#{$appearance} .#{$switch} {
+        border: none;
+
+        & .#{$check} {
+            fill: var(--icon-inverse);
+        }
+
+        &::before {
+            background-color: var(--text-on-color-disabled);
+        }
+
+        &:not(.#{$switch-checked}) {
+            border: to-rem(1px) solid var(--text-on-color-disabled);
+            background-color: var(--background);
+
+            &::before {
+                transform: translate(to-rem(-0.5px), to-rem(-1px));
+            }
+        }
+    }
+
+    &.#{$readonly} .#{$label} .#{$appearance} .#{$switch} {
+        border: to-rem(1px) solid var(--icon-primary);
+
+        & .#{$check} {
+            fill: var(--icon-inverse);
+        }
+
+        &::before {
+            background-color: var(--icon-primary);
+        }
+
+        &:not(.#{$switch-checked})::before {
+            transform: translate(to-rem(0.5px), to-rem(0.25px));
+        }
+    }
+
+    &.#{$readonly} .#{$label} .#{$appearance}.#{$appearance-sm} .#{$switch} {
+        &.#{$switch-checked}::before {
+            transform: translate(to-rem(8px), to-rem(0.25px));
+        }
+
+        & .#{$check} {
+            transform: translate(to-rem(1.25px), to-rem(-1.5px));
+        }
+
+        &:not(.#{$switch-checked})::before {
+            transform: translate(to-rem(0.5px), to-rem(0.25px));
+        }
+    }
+
+    &__button:focus + .cds--toggle__label .cds--toggle__switch {
+        @include spark-focus-style;
+    }
+}

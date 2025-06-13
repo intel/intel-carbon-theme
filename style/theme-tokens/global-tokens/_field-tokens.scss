@@ -1,0 +1,76 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    field-01: (
+        #f7f7f7,
+        #ffffff,
+        #393939,
+        #262626
+    ),
+    field-02: (
+        #ffffff,
+        #f7f7f7,
+        #525252,
+        #393939
+    ),
+    field-03: (
+        #f7f7f7,
+        #ffffff,
+        #6f6f6f,
+        #525252
+    ),
+    field-hover-01: (
+        #e9e9e9,
+        #e9e9e9,
+        #262626,
+        #161616
+    ),
+    field-hover-02: (
+        #e9e9e9,
+        #e9e9e9,
+        #393939,
+        #262626
+    ),
+    field-hover-03: (
+        #e9e9e9,
+        #e9e9e9,
+        #525252,
+        #393939
+    )
+);
+
+$tb-theme-modes: (
+    field-01: (
+        #f7f7f8,
+        #ffffff,
+        #070c21
+    ),
+    field-02: (
+        #ffffff,
+        #f7f7f8,
+        #0d132b
+    ),
+    field-03: (
+        #f7f7f8,
+        #ffffff,
+        #383e56
+    ),
+    field-hover-01: (
+        #f1f1f3,
+        #f1f1f3,
+        #070c21
+    ),
+    field-hover-02: (
+        #f1f1f3,
+        #e7e7eb,
+        #0d132b
+    ),
+    field-hover-03: (
+        #f1f1f3,
+        #f1f1f3,
+        #383e56
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

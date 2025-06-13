@@ -1,0 +1,64 @@
+@use '@carbon/styles/scss/components/radio-button';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use './vars' as *;
+@use '../../interactions/index.scss' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.cds--form-item {
+    $radio-button: $base;
+    $group: #{$base}-group;
+    $label: #{$base}__label;
+    $appearance: #{$base}__appearance;
+
+    & .#{$radio-button} {
+        & + .#{$label} {
+            align-items: center;
+        }
+
+        & + .#{$label} .#{$appearance} {
+            margin-inline: 0.125rem $spacing-03;
+            inline-size: to-rem(15px);
+            block-size: to-rem(15px);
+        }
+
+        &:focus + .cds--radio-button__label .cds--radio-button__appearance {
+            @include spark-focus-style;
+        }
+
+        &:checked + .#{$label} .#{$appearance} {
+            --cds-icon-primary: #{var(--primary)};
+        }
+
+        &:disabled:checked + .#{$label} .#{$appearance} {
+            --cds-icon-disabled: #{var(--primary)};
+        }
+        &:disabled + .#{$label} .#{$appearance} {
+            --cds-icon-disabled: #{var(--text-disabled)};
+        }
+
+        &:not([disabled]) + .#{$label} {
+            color: var(--text-primary);
+        }
+    }
+
+    & .#{$group}--readonly .#{$radio-button}:not([disabled]) + .#{$label} .#{$appearance} {
+        --cds-icon-disabled: #{var(--text-primary)};
+    }
+    & .#{$group}--readonly .#{$radio-button}:checked + .#{$label} .#{$appearance} {
+        --cds-icon-disabled: #{var(--primary)};
+    }
+
+    & .#{$group}--invalid .#{$radio-button}:checked + .#{$label} .#{$appearance} {
+        --cds-support-error: #{var(--primary)};
+    }
+    & .#{$group}--invalid .#{$radio-button} + .#{$label} .#{$appearance} {
+        --cds-support-error: #{var(--text-primary)};
+    }
+}

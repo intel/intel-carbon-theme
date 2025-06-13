@@ -1,0 +1,157 @@
+@use '@carbon/styles/scss/components/contained-list';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/layout';
+@use './properties' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+@use 'sass:map';
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    $on-page: #{$base}--on-page;
+    $disclosed: #{$base}--disclosed;
+    $header: #{$base}__header;
+    $header-action: #{$base}__action;
+    $header-tag: cds--tag;
+    $item: #{$base}-item;
+    $item-content: #{$item}__content;
+    $item-with-action: #{$item}--with-action;
+    $item-action: #{$item}__action;
+    $item-clickable: #{$item}--clickable;
+    $search: cds--search;
+    $search-input: cds--search-input;
+    $btn-icon-only: cds--btn--icon-only;
+    $btn-overflow-menu: cds--overflow-menu;
+    $btn-ghost: cds--btn--ghost;
+
+    --cds-layer-hover: var(--field-hover-02);
+
+    & .#{$header} {
+        & .#{$header-tag} {
+            font-weight: $spark-contained-list-header-tag-font-weight;
+            color: var(--text-primary);
+            background-color: var(--layer-selected-02);
+        }
+
+        & .#{$header-action} {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            margin-right: $spark-contained-list-header-action-margin-right;
+
+            & .#{$btn-ghost} svg {
+                fill: var(--icon-primary);
+            }
+        }
+    }
+
+    &.#{$on-page} .#{$header} {
+        color: var(--text-primary);
+        background-color: var(--background);
+        font-weight: $spark-contained-list-header-font-weight;
+        border-block-end: none;
+        border-bottom: 1px solid var(--border-subtle-01);
+    }
+
+    &.#{$disclosed} .#{$header} {
+        color: var(--text-secondary);
+        background-color: var(--layer-01);
+        font-size: $spark-contained-list-disclosed-header-font-size;
+        line-height: $spark-contained-list-disclosed-header-line-height;
+        block-size: $spark-contained-list-disclosed-header-block-size;
+    }
+
+    & .#{$item} {
+        & .#{$item-content} {
+            display: grid;
+            align-items: center;
+            padding-inline: $spark-contained-list-item-padding-inline;
+            padding-block: $spark-contained-list-item-padding-block;
+        }
+
+        & .#{$item-content} div {
+            font-size: $spark-contained-list-item-font-size;
+        }
+
+        &.#{$item-with-action},
+        &.#{$item-clickable} {
+            z-index: 1;
+        }
+    }
+
+    & .#{$item}.#{$item-with-action} {
+        & .#{$item-content} {
+            padding-right: $spark-contained-list-item-with-action-content-padding-right;
+        }
+
+        & .#{$item-action} {
+            height: 100%;
+            align-items: center;
+            margin-right: $spark-contained-list-item-action-margin-right;
+            z-index: 1;
+
+            & .#{$btn-icon-only}:not([disabled]) svg,
+            & .#{$btn-ghost}:not([disabled]) svg {
+                fill: var(--icon-primary);
+            }
+        }
+    }
+
+    & .#{$item}.#{$item-clickable} .#{$item-content} {
+        &:not(:disabled):active {
+            background-color: var(--layer-accent-hover-03);
+        }
+
+        &:focus::after {
+            outline: none;
+        }
+
+        @include spark-focus;
+    }
+
+    & .#{$search} .#{$search-input} {
+        @include spark-focus;
+        border: none;
+        background-color: var(--field-01);
+        border-block-end: 1px solid var(--border-subtle-01);
+
+        ~ .cds--search-close {
+            border: none;
+            z-index: 2;
+            @include spark-focus;
+
+            & svg {
+                fill: var(--icon-primary);
+            }
+
+            &:hover {
+                border: none;
+                background-color: var(--field-hover-01);
+            }
+        }
+    }
+
+    @each $name, $value in $contained-list-sizes {
+        &.#{$base}--#{$name}.cds--layout--size-#{$name} {
+            & .#{$header} {
+                block-size: map-get($value, header-height);
+            }
+
+            & .#{$item} .#{$item-content},
+            & .#{$item}.#{$item-clickable} .#{$item-content} {
+                min-block-size: map-get($value, item-min-block-size);
+                padding-inline: map-get($value, item-padding-inline);
+                padding-block: map-get($value, item-padding-block);
+            }
+        }
+    }
+    .#{$base}-item__icon {
+        fill: var(--icon-primary);
+    }
+}

@@ -1,0 +1,31 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$icon-margin-sizes: (
+    sm: to-rem(10px),
+    md: to-rem(10px),
+    lg: to-rem(18px)
+);
+
+$spark-time-picker-input-border-width: 1px !default;
+
+$time-picker-sizes: (
+    sm: (
+        density: small,
+        time-picker-font-size: to-rem(12px),
+        time-picker-inline-size: to-rem(calc(56px + 2 * $spark-time-picker-input-border-width))
+    ),
+    md: (
+        density: normal,
+        time-picker-font-size: to-rem(14px),
+        time-picker-inline-size: to-rem(calc(62px + 2 * $spark-time-picker-input-border-width))
+    ),
+    lg: (
+        density: condensed,
+        time-picker-font-size: to-rem(16px),
+        time-picker-inline-size: to-rem(calc(85px + 2 * $spark-time-picker-input-border-width))
+    )
+);

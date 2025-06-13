@@ -1,0 +1,66 @@
+@use '../config';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+
+@mixin spark-error-icon($height, $width, $color, $fontSize, $lineHeight, $appendToParent: false) {
+    position: relative;
+    svg {
+        visibility: hidden;
+    }
+    @if $appendToParent {
+        &::after {
+            font-family: 'spark-icon';
+            content: '\f182';
+            height: $height;
+            width: $width;
+            color: $color;
+            font-size: $fontSize;
+            line-height: $lineHeight;
+            font-weight: 600;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+        }
+    } @else {
+        ::after {
+            font-family: 'spark-icon';
+            content: '\f182';
+            height: $height;
+            width: $width;
+            color: $color;
+            font-size: $fontSize;
+            line-height: $lineHeight;
+            font-weight: 600;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+        }
+    }
+}
+
+@mixin spark-error-icon-for-input(
+    $color: var(--support-error),
+    $height: 16px,
+    $width: 16px,
+    $fontSize: 16px,
+    $lineHeight: 16px
+) {
+    &::before {
+        font-family: 'spark-icon';
+        content: '\f182';
+        height: to-rem($height);
+        width: to-rem($width);
+        color: $color;
+        font-size: to-rem($fontSize);
+        line-height: to-rem($lineHeight);
+        font-weight: 600;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 40px;
+        z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+    }
+}

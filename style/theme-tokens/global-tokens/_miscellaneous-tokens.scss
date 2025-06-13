@@ -1,0 +1,87 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    interactive: (
+        #0054ae,
+        #0054ae,
+        #00c7fd,
+        #00c7fd
+    ),
+    interactive-hover: (
+        #004a9d,
+        #004a9d,
+        #87e4ff,
+        #87e4ff
+    ),
+    highlight: (
+        #9dd8f8,
+        #9dd8f8,
+        #00418d,
+        #00377c
+    ),
+    toggle-off: (
+        #808080,
+        #808080,
+        #808080,
+        #6f6f6f
+    ),
+    overlay: (
+        #16161680,
+        #16161680,
+        #161616b2,
+        #161616b2
+    ),
+    skeleton-element: (
+        #494b51,
+        #494b51,
+        #e3e3e5,
+        #e3e3e5
+    ),
+    skeleton-background: (
+        #c9cace,
+        #c9cace,
+        #6b6e76,
+        #585a62
+    )
+);
+
+$tb-theme-modes: (
+    interactive: (
+        #09857c,
+        #09857c,
+        #16cfb1
+    ),
+    interactive-hover: (
+        #065955,
+        #065955,
+        #5be3cd
+    ),
+    highlight: (
+        #5be3cd,
+        #5be3cd,
+        #08746e
+    ),
+    toggle-off: (
+        #82879b,
+        #82879b,
+        #555872
+    ),
+    overlay: (
+        #16161680,
+        #16161680,
+        #161616b2
+    ),
+    skeleton-element: (
+        #383e56,
+        #383e56,
+        #e7e7eb
+    ),
+    skeleton-background: (
+        #bec0cb,
+        #bec0cb,
+        #555872
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

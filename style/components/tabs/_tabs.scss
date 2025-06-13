@@ -1,0 +1,206 @@
+@use '@carbon/styles/scss/components/tabs';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    $tabs-contained: #{$base}--contained;
+    $tabs-tall: #{$base}--tall;
+    $icon-tabs-lg: #{$base}__icon--lg;
+    $icon-tabs-default: #{$base}__icon--default;
+    $skeleton: cds--skeleton;
+
+    $tabs-nav-item: #{$base}__nav-item;
+    $tabs-nav-link: #{$base}__nav-link;
+    $label: #{$tabs-nav-item}-label;
+    $secondary-label: #{$tabs-nav-item}-secondary-label;
+    $disabled: #{$tabs-nav-item}--disabled;
+    $selected: #{$tabs-nav-item}--selected;
+    $hover-off: #{$tabs-nav-item}--hover-off;
+    $nav-btn-previous: cds--tab--overflow-nav-button--previous;
+    $nav-btn-next: cds--tab--overflow-nav-button--next;
+
+    --#{$prefix}-heading-compact-01-font-size: #{to-rem(16px)};
+    & .cds--tab--list {
+        overflow: visible;
+    }
+
+    & .#{$tabs-nav-item} {
+        // keyboard navigation not available for tabs component: https://carbondesignsystem.com/components/tabs/accessibility
+
+        @include spark-focus(true);
+        &:focus {
+            outline-offset: -3px;
+        }
+        & .#{$label},
+        & .#{$secondary-label} {
+            font-weight: 500;
+            font-size: to-rem(16px);
+            line-height: to-rem(18px);
+            letter-spacing: normal;
+        }
+        &--close-icon {
+            z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+        }
+    }
+
+    &:not(.#{$tabs-contained}) {
+        .#{$tabs-nav-item} + .#{$tabs-nav-item} {
+            margin-inline-start: 0;
+        }
+
+        & .#{$tabs-nav-item} {
+            block-size: $spacing-08;
+            border-block-end-color: var(--border-strong-02);
+            border-block-end-width: to-rem(1px);
+            background-color: transparent;
+            color: var(--text-secondary);
+
+            &:not(.#{$selected}):not(.#{$disabled}):not(.#{$hover-off}):hover {
+                border-block-end-width: $spacing-01;
+                color: var(--text-primary);
+            }
+
+            &.#{$selected} {
+                border-block-end-width: $spacing-01;
+                border-block-end-color: var(--border-interactive);
+                color: var(--text-primary);
+            }
+
+            &.#{$disabled} {
+                color: var(--text-disabled);
+            }
+        }
+
+        & .#{$nav-btn-next},
+        & .#{$nav-btn-previous} {
+            z-index: 1;
+            inline-size: $spacing-08;
+            block-size: $spacing-08;
+            background-color: transparent;
+
+            &::before {
+                display: none;
+            }
+
+            & svg {
+                fill: var(--icon-primary);
+            }
+        }
+    }
+
+    &.#{$tabs-contained} {
+        padding: $spacing-02 $spacing-02 0 $spacing-02;
+        background-color: var(--tabs-block-background);
+        --cds-layout-size-height-local: #{to-rem(44px)};
+
+        &.#{$tabs-tall} {
+            --cds-layout-size-height-local: #{to-rem(72px)};
+
+            & .#{$tabs-nav-item} {
+                block-size: $spacing-10;
+            }
+        }
+
+        .#{$tabs-nav-item} {
+            & + .#{$tabs-nav-item} {
+                box-shadow: none;
+            }
+
+            block-size: $spacing-08;
+            box-shadow: inset 0 $spacing-01 0 transparent;
+            background-color: var(--tabs-block-background);
+            color: var(--text-secondary);
+
+            &:not(.#{$selected}):not(.#{$disabled}):not(.#{$hover-off}):hover {
+                box-shadow: inset 0 $spacing-01 0 transparent;
+                background-color: var(--layer-accent-hover-01);
+                color: var(--text-primary);
+            }
+
+            &.#{$selected} {
+                box-shadow: inset 0 $spacing-01 0 var(--border-interactive);
+                background-color: var(--tabs-block-background-selected);
+                color: var(--text-primary);
+            }
+
+            &.#{$disabled} {
+                background-color: var(--button-disabled);
+                color: var(--text-disabled);
+            }
+        }
+
+        & .#{$nav-btn-next},
+        & .#{$nav-btn-previous} {
+            z-index: 1;
+            inline-size: to-rem(44px);
+            block-size: to-rem(44px);
+            background-color: var(--layer-accent-01);
+
+            &::before {
+                display: none;
+            }
+
+            & svg {
+                fill: var(--icon-primary);
+            }
+        }
+    }
+
+    &.#{$skeleton} {
+        &:not(.#{$tabs-contained}) {
+            & .#{$tabs-nav-item} {
+                border-block-end-width: to-rem(-2px);
+                border-block-end-color: var(--skeleton-element);
+            }
+        }
+
+        &.#{$tabs-contained} {
+            padding: unset;
+            border-bottom-width: $spacing-01;
+            background-color: transparent;
+
+            .#{$tabs-nav-item} {
+                box-shadow: none;
+                background-color: transparent;
+            }
+        }
+
+        & .#{$tabs-nav-item} span {
+            block-size: $spacing-03;
+        }
+    }
+
+    &.#{$icon-tabs-lg} {
+        & .#{$tabs-nav-item} {
+            block-size: $spacing-09;
+            width: $spacing-09;
+
+            & .#{$label} {
+                block-size: to-rem(20px);
+            }
+        }
+    }
+
+    &.#{$icon-tabs-default} {
+        &.#{$tabs-contained} {
+            --cds-layout-size-height-local: #{$spacing-08};
+        }
+
+        & .#{$tabs-nav-item} {
+            block-size: $spacing-08;
+
+            & .#{$label} {
+                block-size: $spacing-05;
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$base}__select-icon-wrapper svg {
+        fill: var(--icon-primary);
+    }
+    .#{$base}__list-item {
+        .#{$base}__page--select {
+            &:focus {
+                background-color: var(--layer-hover-01);
+            }
+            option {
+                color: var(--text-primary);
+                background-color: var(--layer-hover-01);
+            }
+        }
+    }
+}

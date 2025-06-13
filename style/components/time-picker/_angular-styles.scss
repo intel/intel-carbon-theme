@@ -1,0 +1,53 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+@use '@carbon/styles/scss/utilities/layout';
+@use '../../mixins/angular-skeleton' as *;
+@use './properties' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$base} {
+        .#{$base}__select {
+            .#{$prefix}--select-input__wrapper {
+                &::after {
+                    display: none;
+                }
+                .#{$prefix}--select-input {
+                    border: $spark-time-picker-input-border-width solid var(--border-strong-01);
+                }
+            }
+        }
+    }
+    @each $name in (sm, md, lg) {
+        .#{$base}--#{$name} {
+            @include layout.use('size', $default: #{$name});
+            block-size: layout.size('height');
+            gap: 0.5rem;
+            .#{$base}__input:has(.#{$prefix}--skeleton) {
+                @include angular-skeleton;
+                inline-size: 4rem;
+                block-size: 100%;
+                position: relative;
+                .#{$base}__input-field {
+                    display: none;
+                }
+                ~ .#{$prefix}--select {
+                    block-size: 100%;
+                    inline-size: auto;
+                    &::after {
+                        display: none;
+                    }
+                    .#{$prefix}--select-input__wrapper {
+                        @include angular-skeleton;
+                        inline-size: 5rem;
+                        block-size: 100%;
+                        position: relative;
+                        .#{$prefix}--select-input {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

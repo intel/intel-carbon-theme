@@ -1,0 +1,29 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$menu-sizes: (
+    'xs': (
+        menu-item-block-size: $spacing-06,
+        menu-item-font-size: to-rem(12px),
+        menu-item-line-height: to-rem(14px)
+    ),
+    'sm': (
+        menu-item-block-size: $spacing-06,
+        menu-item-font-size: to-rem(12px),
+        menu-item-line-height: to-rem(14px)
+    ),
+    'md': (
+        menu-item-block-size: $spacing-07,
+        menu-item-font-size: to-rem(14px),
+        menu-item-line-height: to-rem(16px)
+    ),
+    'lg': (
+        menu-item-block-size: $spacing-08,
+        menu-item-font-size: to-rem(16px),
+        menu-item-line-height: to-rem(20px)
+    )
+);

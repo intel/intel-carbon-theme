@@ -1,0 +1,120 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    text-primary: (
+        #2b2c30,
+        #2b2c30,
+        #ffffff,
+        #ffffff
+    ),
+    text-secondary: (
+        #6a6d75,
+        #6a6d75,
+        #b7b9be,
+        #b7b9be
+    ),
+    text-placeholder: (
+        #6a6d75,
+        #6a6d75,
+        #b7b9be,
+        #6a6d75
+    ),
+    text-on-color: (
+        #ffffff,
+        #ffffff,
+        #ffffff,
+        #ffffff
+    ),
+    text-on-color-inverse: (
+        #2b2c30,
+        #2b2c30,
+        #2b2c30,
+        #2b2c30
+    ),
+    text-on-color-disabled: (
+        #808080,
+        #808080,
+        #ffffff40,
+        #ffffff40
+    ),
+    text-helper: (
+        #6a6d75,
+        #6a6d75,
+        #808080,
+        #808080
+    ),
+    text-error: (
+        #ce0000,
+        #ce0000,
+        #ffb6b9,
+        #ff848a
+    ),
+    text-inverse: (
+        #ffffff,
+        #ffffff,
+        #2b2c30,
+        #2b2c30
+    ),
+    text-disabled: (
+        #b2b3b9,
+        #b2b3b9,
+        #6b6e76,
+        #6b6e76
+    )
+);
+
+$tb-theme-modes: (
+    text-primary: (
+        #2b2c30,
+        #1c223b,
+        #ffffff
+    ),
+    text-secondary: (
+        #6a6d75,
+        #676d84,
+        #acaebc
+    ),
+    text-placeholder: (
+        #6a6d75,
+        #676d84,
+        #676d84
+    ),
+    text-on-color: (
+        #ffffff,
+        #ffffff,
+        #ffffff
+    ),
+    text-on-color-inverse: (
+        #2b2c30,
+        #1c223b,
+        #1c223b
+    ),
+    text-on-color-disabled: (
+        #6a6d75,
+        #82879b,
+        #ffffff40
+    ),
+    text-helper: (
+        #6a6d75,
+        #676d84,
+        #676d84
+    ),
+    text-error: (
+        #ce0000,
+        #ce0000,
+        #ff848a
+    ),
+    text-inverse: (
+        #ffffff,
+        #ffffff,
+        #1c223b
+    ),
+    text-disabled: (
+        #b2b3b9,
+        #acaebc,
+        #676d84
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

@@ -1,0 +1,20 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$base} {
+        &-input[disabled] {
+            &::placeholder {
+                color: #{var(--text-disabled)};
+            }
+            background-color: #{var(--layer-disabled)};
+            --#{$prefix}-border-strong: #{var(--layer-disabled)};
+            color: #{var(--text-disabled)};
+        }
+
+        .#{$prefix}--search-magnifier-icon {
+            z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+        }
+    }
+}

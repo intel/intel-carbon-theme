@@ -1,0 +1,76 @@
+@use '@carbon/styles/scss/components/menu';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/layout';
+@use './properties' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+@use 'sass:map';
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    $menu-item: cds--menu-item;
+    $menu-item-disabled: cds--menu-item--disabled;
+    $menu-item-danger: cds--menu-item--danger;
+    $menu-item-divider: cds--menu-item-divider;
+    $menu-item-icon: cds--menu-item__icon;
+
+    padding: 0;
+    --cds-layer: #{var(--layer-01)};
+    --cds-text-secondary: #{var(--text-secondary)};
+
+    @each $name, $value in $menu-sizes {
+        &.#{$base}--#{$name} .#{$menu-item} {
+            block-size: map-get($value, menu-item-block-size);
+            font-size: map-get($value, menu-item-font-size);
+            line-height: map-get($value, menu-item-line-height);
+        }
+    }
+
+    .#{$menu-item}:not(.#{$menu-item-disabled}) {
+        &:hover {
+            --cds-layer-hover: #{var(--field-hover-02)};
+            --cds-text-primary: #{var(--text-primary)};
+        }
+
+        &:focus {
+            background-color: #{var(--focus)};
+            color: #{var(--text-inverse)};
+
+            & .#{$menu-item-icon} svg {
+                fill: #{var(--text-inverse)};
+            }
+
+            &:focus:hover {
+                background-color: #{var(--primary-selected)};
+                --cds-text-primary: #{var(--text-inverse)};
+
+                & .#{$menu-item-icon} svg {
+                    fill: #{var(--text-inverse)};
+                }
+            }
+        }
+
+        &.#{$menu-item-danger} {
+            background-color: #{var(--support-error)};
+            color: #{var(--text-inverse)};
+
+            &:hover,
+            &:focus,
+            &:focus:hover {
+                background-color: #{var(--support-error-inverse)};
+                color: #{var(--text-primary)};
+            }
+        }
+    }
+
+    .#{$menu-item-divider} {
+        margin-block: 0;
+        background-color: #{var(--border-subtle-01)};
+    }
+}

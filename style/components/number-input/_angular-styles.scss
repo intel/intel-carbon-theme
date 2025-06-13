@@ -1,0 +1,38 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+@use '@carbon/styles/scss/utilities/layout';
+@use '../../mixins/angular-skeleton' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    $number-input-sizes: (
+        sm: small,
+        md: normal,
+        lg: condensed
+    );
+    @each $name, $value in $number-input-sizes {
+        .#{$base}.#{$prefix}--skeleton.#{$base}--#{$name} {
+            background: none;
+            &::before {
+                display: none;
+            }
+            .#{$base}__input-wrapper {
+                @include layout.use('size', $default: #{$name});
+                @include angular-skeleton;
+                block-size: layout.size('height');
+                border: none;
+            }
+        }
+    }
+
+    .#{$base} {
+        .#{$prefix}--number__controls {
+            .down-icon,
+            .up-icon {
+                &::before {
+                    transform: translate(-50%, -50%) !important;
+                }
+            }
+        }
+    }
+}

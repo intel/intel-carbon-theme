@@ -1,0 +1,104 @@
+@use '@carbon/styles/scss/components/progress-indicator';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './vars' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    --#{$prefix}-layer: #{var(--border-subtle-01)};
+    --#{$prefix}-interactive: #{var(--primary)};
+    --#{$prefix}-support-success: #{var(--support-success)};
+    --#{$prefix}-support-error: #{var(--support-error)};
+    --#{$prefix}-text-primary: #{var(--text-primary)};
+    --#{$prefix}-border-subtle: #{var(--border-subtle-01)};
+    --#{$prefix}-text-secondary: #{var(--text-secondary)};
+    --#{$prefix}-body-compact-01-font-size: #{to-rem(14px)};
+    --#{$prefix}-body-compact-01-font-weight: 400;
+    --#{$prefix}-body-compact-01-line-height: #{to-rem(18px)};
+    --#{$prefix}-icon-disabled: #{var(--icon-disabled)};
+    --#{$prefix}-text-disabled: #{var(--icon-disabled)};
+    --#{$prefix}-skeleton-background: #{var(--skeleton-background)};
+    &-optional {
+        font-size: to-rem(12px);
+        font-weight: 400;
+        line-height: to-rem(16px);
+    }
+    &-step {
+        &::before {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            font-family: 'spark-icon';
+            left: 0;
+            top: to-rem(5px);
+            width: to-rem(16px);
+            height: to-rem(16px);
+            font-size: to-rem(16px);
+        }
+        &--incomplete {
+            svg {
+                path {
+                    display: none;
+                }
+            }
+            &::before {
+                content: '\f167';
+                color: var(--text-primary);
+            }
+            &:has(.cds--progress__warning) {
+                &::before {
+                    content: '\f182';
+                    color: var(--support-error);
+                }
+            }
+        }
+        &--current {
+            svg {
+                path {
+                    display: none;
+                }
+            }
+            &::before {
+                content: '\25D0';
+                color: var(--primary);
+                width: to-rem(16px);
+                height: to-rem(16px);
+                font-size: to-rem(20px);
+                top: to-rem(5px);
+                line-height: 1;
+            }
+        }
+        &--disabled {
+            --#{$prefix}-text-secondary: #{var(--text-disabled)};
+            color: #{var(--text-disabled)};
+            &::before {
+                color: var(--icon-disabled);
+            }
+        }
+    }
+    &.#{$prefix}--skeleton {
+        --#{$prefix}-spark-theme-text: #{var(--text-secondary)};
+        .#{$base}-label {
+            inline-size: to-rem(100px);
+            block-size: to-rem(8px);
+        }
+        .#{$base}-step {
+            &::before {
+                top: to-rem(1px);
+            }
+        }
+    }
+    &--vertical {
+        .#{$base}-step {
+            &::before {
+                left: to-rem(8px);
+                top: to-rem(-5px);
+            }
+        }
+    }
+}

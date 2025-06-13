@@ -1,0 +1,74 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert';
+@use '../../utils/utils' as *;
+
+// global text variables
+$spark-theme-text-font-weight: 400 !default;
+$spark-theme-text-font-size: convert.to-rem(16px) !default;
+$spark-theme-text-line-height: 1.5 !default;
+$spark-theme-text-letter-spacing: 0 !default;
+
+// spark text variables
+$spark-text-size-l-font-family: get-var(spark-theme-text-font-family) !default;
+$spark-text-size-l-font-weight: 400 !default;
+$spark-text-size-l-font-size: convert.to-rem(16px) !default;
+$spark-text-size-l-line-height: convert.to-rem(24px) !default;
+$spark-text-size-l-letter-spacing: 0 !default;
+
+$spark-text-size-m-font-family: get-var(spark-theme-text-font-family) !default;
+$spark-text-size-m-font-weight: 400 !default;
+$spark-text-size-m-font-size: convert.to-rem(14px) !default;
+$spark-text-size-m-line-height: convert.to-rem(20px) !default;
+$spark-text-size-m-letter-spacing: 0 !default;
+
+$spark-text-size-s-font-family: get-var(spark-theme-text-font-family) !default;
+$spark-text-size-s-font-weight: 400 !default;
+$spark-text-size-s-font-size: convert.to-rem(12px) !default;
+$spark-text-size-s-line-height: convert.to-rem(20px) !default;
+$spark-text-size-s-letter-spacing: convert.to-rem(0.25px) !default;
+
+$spark-text-size-xs-font-family: get-var(spark-theme-text-font-family) !default;
+$spark-text-size-xs-font-weight: 400 !default;
+$spark-text-size-xs-font-size: convert.to-rem(11px) !default;
+$spark-text-size-xs-line-height: convert.to-rem(16px) !default;
+$spark-text-size-xs-letter-spacing: convert.to-rem(0.25px) !default;
+
+$text-sizes: (
+    'l': (
+        font-family: $spark-text-size-l-font-family,
+        font-size: $spark-text-size-l-font-size,
+        font-weight: $spark-text-size-l-font-weight,
+        line-height: $spark-text-size-l-line-height,
+        letter-spacing: $spark-text-size-l-letter-spacing
+    ),
+    'm': (
+        font-family: $spark-text-size-m-font-family,
+        font-size: $spark-text-size-m-font-size,
+        font-weight: $spark-text-size-m-font-weight,
+        line-height: $spark-text-size-m-line-height,
+        letter-spacing: $spark-text-size-m-letter-spacing
+    ),
+    's': (
+        font-family: $spark-text-size-s-font-family,
+        font-size: $spark-text-size-s-font-size,
+        font-weight: $spark-text-size-s-font-weight,
+        line-height: $spark-text-size-s-line-height,
+        letter-spacing: $spark-text-size-s-letter-spacing
+    ),
+    'xs': (
+        font-family: $spark-text-size-xs-font-family,
+        font-size: $spark-text-size-xs-font-size,
+        font-weight: $spark-text-size-xs-font-weight,
+        line-height: $spark-text-size-xs-line-height,
+        letter-spacing: $spark-text-size-xs-letter-spacing
+    )
+);
+
+$theme-text-global-properties: (
+    text-font-size: $spark-theme-text-font-size,
+    text-font-weight: $spark-theme-text-font-weight,
+    text-line-height: $spark-theme-text-line-height,
+    text-letter-spacing: $spark-theme-text-letter-spacing
+);
+
+@include create-theme-properties($theme-text-global-properties);

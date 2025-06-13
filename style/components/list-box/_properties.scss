@@ -1,0 +1,30 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$spark-list-box-padding-inline-lg: to-rem(16px) !default;
+$spark-list-box-size-lg: to-rem(40px) !default;
+
+$spark-list-box-padding-inline-md: to-rem(8px) !default;
+$spark-list-box-size-md: to-rem(32px) !default;
+
+$spark-list-box-padding-inline-sm: to-rem(8px) !default;
+$spark-list-box-size-sm: to-rem(24px) !default;
+
+$list-box-properties: (
+    padding-inline-lg: $spark-list-box-padding-inline-lg,
+    size-lg: $spark-list-box-size-lg,
+
+    padding-inline-md: $spark-list-box-padding-inline-md,
+    size-md: $spark-list-box-size-md,
+
+    padding-inline-sm: $spark-list-box-padding-inline-sm,
+    size-sm: $spark-list-box-size-sm
+);
+
+@mixin list-box-properties {
+    @include create-properties($list-box-properties, $name);
+}

@@ -1,0 +1,128 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use 'sass:map' as *;
+@use 'sass:list';
+@use '../prefix' as *;
+
+$prefix: $spark-theme-prefix;
+
+// Create properties tokens for components
+@mixin create-properties($properties-object, $component-name) {
+    :root {
+        @each $name, $value in $properties-object {
+            @include declaration($component-name + '-' + $name, $value);
+        }
+    }
+}
+
+@mixin create-theme-properties($theme-base-object) {
+    :root {
+        @each $name, $value in $theme-base-object {
+            @include declaration($name, $value);
+            @include declaration('spark-theme-' + $name, $value);
+        }
+    }
+}
+
+// Creates color modes tokens for all default theme variants (white, g-10, g-90, g-100)
+@mixin create-global-default-theme-modes($theme-base-object) {
+    [data-theme='white'] {
+        @each $name, $value in $theme-base-object {
+            --#{$name}: #{list.nth($value, 1)};
+        }
+    }
+
+    [data-theme='g-10'] {
+        @each $name, $value in $theme-base-object {
+            --#{$name}: #{list.nth($value, 2)};
+        }
+    }
+
+    [data-theme='g-90'] {
+        @each $name, $value in $theme-base-object {
+            --#{$name}: #{list.nth($value, 3)};
+        }
+    }
+
+    [data-theme='g-100'] {
+        @each $name, $value in $theme-base-object {
+            --#{$name}: #{list.nth($value, 4)};
+        }
+    }
+}
+
+// Creates color modes tokens for all tb theme variants (white, tb-g-10, tb-g-100)
+@mixin create-global-tb-theme-modes($theme-base-object) {
+    [data-theme='tb-white'] {
+        @each $name, $value in $theme-base-object {
+            --#{$name}: #{list.nth($value, 1)};
+        }
+    }
+
+    [data-theme='tb-g-10'] {
+        @each $name, $value in $theme-base-object {
+            --#{$name}: #{list.nth($value, 2)};
+        }
+    }
+
+    [data-theme='tb-g-100'] {
+        @each $name, $value in $theme-base-object {
+            --#{$name}: #{list.nth($value, 3)};
+        }
+    }
+}
+
+// This function processes spark island theme attributes and returns the updated list
+@function process-theme-attributes(
+    $default-theme-modes,
+    $tb-theme-modes,
+    $processed-attributes: ()
+) {
+    // Process default theme modes
+    @if $default-theme-modes != null {
+        @each $name, $values in $default-theme-modes {
+            // Only add if not already in the list
+            @if not index($processed-attributes, $name) {
+                $processed-attributes: append($processed-attributes, $name);
+            }
+        }
+    }
+
+    // Process TB theme modes
+    @if $tb-theme-modes != null {
+        @each $name, $values in $tb-theme-modes {
+            // Only add if not already in the list
+            @if not index($processed-attributes, $name) {
+                $processed-attributes: append($processed-attributes, $name);
+            }
+        }
+    }
+
+    // Return the updated list
+    @return $processed-attributes;
+}
+
+// This mixin processes all theme tokens
+@mixin process-all-theme-tokens($all-default-theme-maps, $all-tb-theme-maps) {
+    $processed-attributes: ();
+
+    // Process each default theme map
+    @each $map in $all-default-theme-maps {
+        @if $map {
+            $processed-attributes: process-theme-attributes($map, null, $processed-attributes);
+        }
+    }
+
+    // Process each TB theme map
+    @each $map in $all-tb-theme-maps {
+        @if $map {
+            $processed-attributes: process-theme-attributes(null, $map, $processed-attributes);
+        }
+    }
+
+    // Output the results
+    :root {
+        @each $name in $processed-attributes {
+            --#{$prefix}-#{$name}: var(--#{$name});
+        }
+    }
+}

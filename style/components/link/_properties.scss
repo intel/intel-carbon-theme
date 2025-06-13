@@ -1,0 +1,21 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$link-sizes: (
+    'sm': (
+        size-font-size: to-rem(12px),
+        size-line-height: to-rem(16px)
+    ),
+    'md': (
+        size-font-size: to-rem(14px),
+        size-line-height: to-rem(18px)
+    ),
+    'lg': (
+        size-font-size: to-rem(16px),
+        size-line-height: to-rem(22px)
+    )
+);

@@ -1,0 +1,5 @@
+@use '../../../prefix' as *;
+
+$prefix: $spark-theme-prefix;
+$base: #{$prefix}--toggle;
+$name: spark-toggle-switch;

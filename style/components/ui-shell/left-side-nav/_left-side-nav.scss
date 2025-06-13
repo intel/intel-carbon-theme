@@ -1,0 +1,87 @@
+@use '@carbon/styles/scss/components/ui-shell/side-nav';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../../../interactions' as *;
+@use '../../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    --#{$prefix}-text-primary: var(--text-secondary);
+    --#{$prefix}-text-secondary: var(--text-secondary);
+    --#{$prefix}-background: var(--layer-01);
+    --#{$prefix}-background-hover: var(--layer-hover-01);
+    --#{$prefix}-background-selected: var(--layer-selected-01);
+    --#{$prefix}-icon-primary: var(--icon-primary);
+    --#{$prefix}-icon-secondary: var(--icon-primary);
+    --#{$prefix}-border-interactive: var(--focus);
+
+    .spark-icon {
+        color: var(--icon-primary);
+    }
+
+    &__item a.#{$base}__link > &__link-text,
+    &__submenu-title {
+        font-size: to-rem(14px);
+        font-weight: $spark-side-nav-menu-link-font-weight;
+        line-height: to-rem(18px);
+    }
+
+    &__item--active &__submenu,
+    &__submenu:hover,
+    &__submenu:active {
+        --#{$prefix}-text-primary: var(--text-primary);
+    }
+
+    &__menu &__menu-item a.#{$base}__link:not([aria-current='page']) > &__link-text {
+        font-weight: 400;
+    }
+
+    &__link:active,
+    &__submenu:active {
+        --#{$prefix}-background-hover: var(--layer-active-01);
+    }
+
+    &__item.#{$base}__item--active &__submenu-title,
+    a.#{$base}__link[aria-current='page'],
+    a.#{$base}__link--current {
+        font-weight: $spark-side-nav-menu-link-font-weight;
+    }
+
+    &__submenu-chevron {
+        svg {
+            display: none;
+        }
+
+        &::after {
+            font-family: 'spark-icon';
+            content: '\f15d';
+            display: inline-block;
+            font-size: 1rem;
+            color: var(--icon-primary);
+            transition: transform 0.1s ease;
+            transform: rotate(0deg);
+        }
+    }
+
+    &__submenu[aria-expanded='true'] &__submenu-chevron::after,
+    &__submenu[aria-expanded='true'] &__submenu-chevron::after {
+        transform: rotate(180deg);
+    }
+
+    &__submenu[aria-expanded='false'] &__submenu-chevron::after,
+    &__submenu[aria-expanded='false'] &__submenu-chevron::after {
+        transform: rotate(0deg);
+    }
+}
+
+a.#{$prefix}--side-nav__link:focus,
+.#{$prefix}--side-nav__submenu:focus {
+    @include spark-focus;
+    --#{$prefix}-spark-focus-border-offset: -3px;
+}

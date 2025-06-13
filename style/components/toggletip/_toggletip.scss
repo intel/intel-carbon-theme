@@ -1,0 +1,40 @@
+@use '@carbon/styles/scss/components/toggletip';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    &-button {
+        @include spark-focus;
+    }
+    .#{$prefix}--popover-content {
+        --#{$prefix}-popover-background-color: var(--background-inverse);
+
+        .#{$prefix}--toggletip-content {
+            padding: 0;
+            .#{$prefix}--toggletip-actions {
+                a,
+                .#{$prefix}--link:visited {
+                    color: var(--link-inverse);
+                    --focus: var(--focus-inverse);
+                }
+                .#{$prefix}--btn {
+                    @include spark-focus;
+                    --focus: var(--focus-inverse);
+
+                    &.#{$prefix}--btn--primary {
+                        --#{$prefix}-text-on-color: var(--text-primary);
+                        background: var(--link-inverse);
+                    }
+                }
+            }
+        }
+    }
+}

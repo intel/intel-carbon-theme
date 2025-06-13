@@ -1,0 +1,22 @@
+@use './properties' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+
+@include focus-properties;
+
+@mixin spark-focus-style($withWhiteFrame: false) {
+    --#{$prefix}-interactive: #{var(--cds-focus)};
+    outline: get-var(spark-focus-border-width) solid var(--cds-focus);
+    outline-offset: get-var(spark-focus-border-offset);
+    box-shadow: unset;
+    z-index: get-var(spark-focus-z-index);
+    @if $withWhiteFrame {
+        box-shadow: 0px 0px 0px 6px #{var(--background)};
+    }
+}
+
+@mixin spark-focus($withWhiteFrame: false) {
+    &:focus {
+        @include spark-focus-style($withWhiteFrame);
+    }
+}

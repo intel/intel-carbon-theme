@@ -1,0 +1,76 @@
+@use '@carbon/styles/scss/components/pagination';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../button/button';
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    background-color: var(--layer-01);
+    border-color: var(--border-subtle-01);
+
+    &--sm {
+        block-size: $spark-pagination-s-height;
+        font-size: $spark-pagination-s-font-size;
+        line-height: $spark-pagination-s-line-height;
+    }
+
+    &--md {
+        block-size: $spark-pagination-m-height;
+        font-size: $spark-pagination-m-font-size;
+        line-height: $spark-pagination-m-line-height;
+    }
+
+    &--lg {
+        block-size: $spark-pagination-l-height;
+        font-size: $spark-pagination-l-font-size;
+        line-height: $spark-pagination-l-line-height;
+    }
+    &__left {
+        padding: $spark-pagination-content-padding;
+        label {
+            display: none;
+        }
+    }
+    &__right {
+        border-color: var(--border-subtle-01);
+    }
+    .#{$prefix}--select-input__wrapper {
+        select.#{$prefix}--select-input {
+            border: none;
+        }
+
+        & .#{$prefix}--select-input:not(:disabled) {
+            @include spark-focus;
+            --#{$prefix}-field: #{var(--field-02)};
+            --#{$prefix}-background: #{var(--field-02)};
+            color: var(--text-primary);
+
+            &:hover {
+                --#{$prefix}-layer-hover: #{var(--field-hover-02)};
+            }
+            &:focus {
+                --#{$prefix}-layer: #{var(--field-hover-02)};
+            }
+        }
+        .#{$prefix}--select-option,
+        optgroup.#{$prefix}--select-optgroup {
+            color: var(--text-primary);
+            background-color: var(--layer-hover-01);
+        }
+    }
+    &__control-buttons {
+        .#{$base}__button {
+            border-inline-start-color: var(--border-subtle-01);
+            @include spark-focus;
+        }
+        --#{$prefix}-icon-primary: #{var(--icon-primary)};
+    }
+}

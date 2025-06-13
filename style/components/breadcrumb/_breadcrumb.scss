@@ -1,0 +1,34 @@
+@use '@carbon/styles/scss/components/breadcrumb';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    $menu-options: #{$base}-menu-options;
+    $item: #{base}-item;
+
+    --#{$prefix}-body-compact-01-font-size: to-rem(14px);
+    --#{$prefix}-body-compact-01-line-height: to-rem(18px);
+
+    & .#{$menu-options} {
+        --#{$prefix}-layer: #{var(--layer-01)};
+    }
+
+    &-item .#{prefix}--overflow-menu {
+        @include spark-focus;
+    }
+
+    .cds--link:visited {
+        color: var(--link-primary);
+    }
+    .cds--link:visited:hover {
+        color: var(--link-primary-hover);
+    }
+}

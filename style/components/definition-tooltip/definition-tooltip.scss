@@ -1,0 +1,11 @@
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+.#{$base}-term {
+    @include spark-focus;
+}
