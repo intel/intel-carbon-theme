@@ -1,0 +1,147 @@
+@use '@carbon/styles/scss/components/checkbox';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../form/form';
+@use '../../../config';
+@use './angular-styles' as *;
+@use '../../mixins/spark-error-icon' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+$wrapper: #{$base}-wrapper;
+$wrapper-readonly: #{$wrapper}--readonly;
+$wrapper-invalid: #{$base}-wrapper--invalid;
+$wrapper-warning: #{$base}-wrapper--warning;
+$group: #{$base}-group;
+$group-invalid: #{$group}--invalid;
+$label: #{$base}-label;
+$validation-msg: #{$base}__validation-msg;
+$group-validation-msg: #{$base}-group__validation-msg;
+$invalid-icon: #{$base}__invalid-icon;
+
+.#{$base}-wrapper {
+    .#{$label} {
+        padding-block-start: 0;
+        &::before {
+            margin-block: 0 0.25rem;
+            --#{$prefix}-icon-primary: #{var(--text-primary)};
+        }
+        &::after {
+            inset-block-start: 0.35rem;
+            --#{$prefix}-icon-inverse: #{var(--icon-inverse)};
+        }
+    }
+    & .#{$base} {
+        &:indeterminate + .#{$label}:after {
+            transform: scale(0.9) translateY(#{to-rem(-2px)});
+        }
+        & + .#{$label} {
+            &:before {
+                border-width: to-rem(1.5px);
+            }
+        }
+
+        &:focus + .cds--checkbox-label:before {
+            @include spark-focus-style;
+            border-radius: 0;
+        }
+        &:focus + .cds--checkbox-label:after {
+            z-index: 5;
+        }
+    }
+
+    &.#{$wrapper-readonly} .#{$base}:indeterminate + .#{$label}:after {
+        transform: scale(0.9) translateY(#{to-rem(-2px)});
+    }
+
+    &.#{$wrapper-readonly} .#{$base}:checked + .#{$label}:after {
+        transform: scale(0.9) rotate(-45deg) translateX(#{to-rem(-0.5px)});
+    }
+    &.#{$wrapper-readonly} .#{$base}:checked + .#{$label}:before {
+        border-width: to-rem(1.5px);
+    }
+
+    &:not(.#{$wrapper-readonly}) {
+        & .#{$base}:checked + .#{$label}:before,
+        .#{$base}:indeterminate + .#{$label}:before {
+            --#{$prefix}-icon-primary: #{var(--button-primary)};
+        }
+    }
+
+    &.#{$wrapper-readonly} .#{$base}:indeterminate + .#{$label} {
+        &:before {
+            --#{$prefix}-icon-primary: transparent;
+            border: to-rem(1.5px) solid #{var(--icon-disabled)};
+        }
+
+        &:after {
+            --#{$prefix}-icon-inverse: #{var(--icon-primary)};
+        }
+    }
+
+    &:not(.#{$wrapper-warning}):not(.#{$wrapper-invalid}) {
+        flex-direction: column-reverse;
+    }
+
+    & .#{$label} {
+        color: var(--text-primary);
+    }
+    & .#{form.$helper-text} {
+        margin-block-end: to-rem(4px);
+    }
+
+    & .#{$validation-msg},
+    ~ .#{$group-validation-msg} {
+        margin-block-start: to-rem(8px);
+        font-size: 14px;
+        align-items: end;
+    }
+
+    &.#{$wrapper-invalid} {
+        .#{$label}::before,
+        .#{$base}:checked + .#{$label}::before {
+            border-color: var(--text-primary);
+        }
+        & .#{$validation-msg},
+        ~ .#{$group-validation-msg} {
+            @include spark-error-icon(
+                to-rem(16px),
+                to-rem(16px),
+                var(--support-error),
+                to-rem(16px),
+                to-rem(16px)
+            );
+            ::after {
+                left: 3px;
+            }
+        }
+    }
+
+    & .#{$validation-msg} .#{$invalid-icon} {
+        margin-block-start: to-rem(1.5px);
+    }
+
+    & ~ .#{$group-validation-msg} .#{$invalid-icon} {
+        margin-block-start: to-rem(3.5px);
+    }
+}
+
+.#{$group}.#{$group-invalid} {
+    .#{$group-validation-msg} {
+        align-items: flex-start;
+        @include spark-error-icon(
+            to-rem(16px),
+            to-rem(16px),
+            var(--support-error),
+            to-rem(16px),
+            to-rem(16px)
+        );
+        ::after {
+            left: 3px;
+        }
+    }
+}

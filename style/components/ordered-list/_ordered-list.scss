@@ -1,0 +1,20 @@
+@use '@carbon/styles/scss/components/list';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    font-size: to-rem(16px);
+    line-height: to-rem(24px);
+
+    &.#{$prefix}--list--nested {
+        margin-inline-start: $spark-list-ordered-nested-padding;
+    }
+}

@@ -1,0 +1,108 @@
+@use '@carbon/styles/scss/utilities/layout';
+@use '@carbon/styles/scss/components/content-switcher';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '../../interactions' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    $button: #{$base}-btn;
+    $iconOnly: #{$base}--icon-only;
+    $selected: #{$base}--selected;
+    $popover: #{$base}-popover;
+    $popoverSelected: #{$popover}--selected;
+    $popoverWrapper: #{$popover}__wrapper;
+
+    @include layout.use('size', $default: 'md', $min: 'sm', $max: 'lg');
+    @include layout.redefine-tokens(
+        $overrides: (
+            size: (
+                height: (
+                    sm: $spark-content-switcher-sm-height,
+                    md: $spark-content-switcher-md-height,
+                    lg: $spark-content-switcher-lg-height
+                )
+            )
+        )
+    );
+    @each $name, $value in $content-switcher-sizes {
+        &.#{$base}--#{$name} {
+            --#{$prefix}-layout-size-height-local: #{map-get($value, height)};
+            --#{$prefix}-body-compact-01-font-size: #{map-get($value, font-size)};
+            --#{$prefix}-body-compact-01-line-height: #{map-get($value, line-height)};
+        }
+    }
+
+    &:not(.#{$iconOnly}) {
+        .#{$button} {
+            &:first-child {
+                border-start-start-radius: $spark-content-switcher-border-radius;
+                border-end-start-radius: $spark-content-switcher-border-radius;
+            }
+            &:last-child {
+                border-end-end-radius: $spark-content-switcher-border-radius;
+                border-start-end-radius: $spark-content-switcher-border-radius;
+            }
+        }
+    }
+
+    .#{$button} {
+        --#{$prefix}-body-compact-01-font-weight: 500;
+        --#{$prefix}-layer-selected-disabled: #{var(--layer-disabled)};
+        --#{$prefix}-text-disabled: #{var(--text-disabled)};
+        --#{$prefix}-layer-selected-inverse: #{var(--button-primary)};
+        --#{$prefix}-border-inverse: #{var(--border-strong-01)};
+        --#{$prefix}-text-secondary: #{var(--text-secondary)};
+        --#{$prefix}-layer-hover: #{var(--background-hover)};
+        --#{$prefix}-text-primary: #{var(--text-primary)};
+        --#{$prefix}-border-subtle: #{var(--border-strong-01)};
+
+        @include spark-focus(true);
+    }
+
+    &.#{$iconOnly} {
+        .#{$button} {
+            --#{$prefix}-icon-primary: #{var(--icon-primary)};
+            --#{$prefix}-border-inverse: #{var(--border-inverse)};
+            --#{$prefix}-icon-inverse: #{var(--icon-inverse)};
+            --#{$prefix}-background: #{var(--button-primary)};
+            --#{$prefix}-layer-selected-disabled: #{var(--layer-disabled)};
+            .#{$popoverWrapper} {
+                &:first-child {
+                    .#{$button} {
+                        border-start-start-radius: $spark-content-switcher-border-radius;
+                        border-end-start-radius: $spark-content-switcher-border-radius;
+                    }
+                }
+                &:last-child {
+                    .#{$button} {
+                        border-end-end-radius: $spark-content-switcher-border-radius;
+                        border-start-end-radius: $spark-content-switcher-border-radius;
+                    }
+                }
+            }
+        }
+        .#{$prefix}--btn {
+            &--sm {
+                block-size: $spark-content-switcher-sm-height;
+            }
+            &--disabled {
+                border-color: #{var(--border-disabled)};
+                --#{$prefix}-background: #{var(--layer-disabled)};
+                --#{$prefix}-border-inverse: #{var(--border-disabled)};
+            }
+        }
+        .#{$popoverSelected} + .#{$popoverWrapper} {
+            .#{$button}::before {
+                background-color: transparent;
+            }
+        }
+    }
+}

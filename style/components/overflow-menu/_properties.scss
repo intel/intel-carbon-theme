@@ -1,0 +1,20 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$spark-overflow-menu-sizes: (
+    'sm': (
+        option-block-size: to-rem(24px),
+        option-btn-font-size: to-rem(12px)
+    ),
+    'md': (
+        option-block-size: to-rem(32px),
+        option-btn-font-size: to-rem(14px)
+    ),
+    'lg': (
+        option-block-size: to-rem(40px),
+        option-btn-font-size: to-rem(16px)
+    )
+);

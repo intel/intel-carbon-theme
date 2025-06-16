@@ -1,0 +1,42 @@
+@use '@carbon/styles/scss/components/inline-loading';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './vars' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+@use '../../mixins/spark-error-icon' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    --#{$prefix}-layer: #{var(--border-subtle-01)};
+    --#{$prefix}-interactive: #{var(--primary)};
+    --#{$prefix}-support-success: #{var(--support-success)};
+    --#{$prefix}-support-error: #{var(--support-error)};
+    --#{$prefix}-text-primary: #{var(--text-primary)};
+    &__text {
+        font-size: to-rem(12px);
+        font-weight: 400;
+        line-height: to-rem(20px);
+    }
+
+    .#{$prefix}--loading {
+        block-size: to-rem(16px);
+        inline-size: to-rem(16px);
+    }
+    .#{$base}__animation:has(> .#{$base}--error) {
+        @include spark-error-icon(
+            to-rem(16px),
+            to-rem(16px),
+            var(--support-error),
+            to-rem(16px),
+            to-rem(16px),
+            true
+        );
+        svg {
+            visibility: hidden;
+        }
+    }
+}

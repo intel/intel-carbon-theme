@@ -1,0 +1,14 @@
+node_modules
+node_modules/**
+.github
+.github/**
+.vscode
+.vscode/**
+.husky
+.husky/**
+npm-debug.log
+.stylelintrc.json
+commitlint.config.js
+.nvmrc
+.releaserc
+dist/**

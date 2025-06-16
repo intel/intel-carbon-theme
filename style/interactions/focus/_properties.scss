@@ -1,0 +1,20 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$spark-focus-border-width: to-rem(3px);
+$spark-focus-border-offset: to-rem(3px);
+$spark-focus-z-index: 5;
+
+$focus-properties: (
+    border-width: $spark-focus-border-width,
+    border-offset: $spark-focus-border-offset,
+    z-index: $spark-focus-z-index
+);
+
+@mixin focus-properties {
+    @include create-properties($focus-properties, $name);
+}

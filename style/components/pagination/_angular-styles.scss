@@ -1,0 +1,27 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$base} {
+        .#{$prefix}--select-option,
+        optgroup.#{$prefix}--select-optgroup {
+            color: var(--text-primary);
+            background-color: var(--layer-hover-01);
+        }
+        .#{$prefix}--select-input:not(:disabled) {
+            --#{$prefix}-field: #{var(--field-02)};
+            --#{$prefix}-background: #{var(--field-02)};
+            color: var(--text-primary);
+
+            &:hover {
+                --#{$prefix}-layer-hover: #{var(--field-hover-02)};
+            }
+            &:focus {
+                --#{$prefix}-layer: #{var(--field-hover-02)};
+            }
+
+            // @include spark-focus;
+        }
+    }
+}

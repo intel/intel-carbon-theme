@@ -1,0 +1,3 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+
+$spark-slider-thumb-size: to-rem(14px) !default;

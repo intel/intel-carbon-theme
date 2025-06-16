@@ -1,0 +1,46 @@
+@use '@carbon/styles/scss/components/link';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    @include spark-focus;
+
+    $visited: #{$base}--visited;
+    $disabled: #{$base}--disabled;
+
+    --#{$prefix}-link-text-color: #{var(--link-primary)};
+
+    @each $name, $value in $link-sizes {
+        &--#{$name} {
+            font-size: map-get($value, font-size);
+            line-height: map-get($value, line-height);
+        }
+    }
+    &:active {
+        outline: none;
+        text-decoration: none;
+    }
+    &:hover {
+        color: var(--link-primary-hover);
+        text-decoration: none;
+    }
+    &:focus {
+        text-decoration: none;
+    }
+
+    &.#{$visited} {
+        --#{$prefix}-link-text-color: #{var(--link-visited)};
+    }
+    &.#{$disabled} {
+        --#{$prefix}-text-disabled: #{var(--text-disabled)};
+    }
+}

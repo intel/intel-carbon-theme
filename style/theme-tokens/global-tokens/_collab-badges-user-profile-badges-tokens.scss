@@ -1,0 +1,164 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    collab-badge-geode: (
+        #a923f1,
+        #a923f1,
+        #a923f1,
+        #a923f1
+    ),
+    collab-badge-cobalt: (
+        #1e1eff,
+        #1e1eff,
+        #1e1eff,
+        #1e1eff
+    ),
+    collab-badge-aqua: (
+        #16cfb1,
+        #16cfb1,
+        #16cfb1,
+        #16cfb1
+    ),
+    collab-badge-moss: (
+        #9fd541,
+        #9fd541,
+        #9fd541,
+        #9fd541
+    ),
+    collab-badge-daisy: (
+        #ffe500,
+        #ffe500,
+        #ffe500,
+        #ffe500
+    ),
+    collab-badge-rust: (
+        #fe8022,
+        #fe8022,
+        #fe8022,
+        #fe8022
+    ),
+    collab-badge-coral: (
+        #da2e56,
+        #da2e56,
+        #da2e56,
+        #da2e56
+    ),
+    collab-badge-dark-geode: (
+        #7d1ab2,
+        #7d1ab2,
+        #7d1ab2,
+        #7d1ab2
+    ),
+    collab-badge-dark-cobalt: (
+        #1616bf,
+        #1616bf,
+        #1616bf,
+        #1616bf
+    ),
+    collab-badge-dark-aqua: (
+        #08746e,
+        #08746e,
+        #08746e,
+        #08746e
+    ),
+    collab-badge-dark-moss: (
+        #678a2a,
+        #678a2a,
+        #678a2a,
+        #678a2a
+    ),
+    collab-badge-dark-daisy: (
+        #ccb700,
+        #ccb700,
+        #ccb700,
+        #ccb700
+    ),
+    collab-badge-dark-rust: (
+        #bf601a,
+        #bf601a,
+        #bf601a,
+        #bf601a
+    ),
+    collab-badge-dark-coral: (
+        #ba2145,
+        #ba2145,
+        #ba2145,
+        #ba2145
+    )
+);
+
+$tb-theme-modes: (
+    collab-badge-geode: (
+        #a923f1,
+        #a923f1,
+        #a923f1
+    ),
+    collab-badge-cobalt: (
+        #1e1eff,
+        #1e1eff,
+        #1e1eff
+    ),
+    collab-badge-aqua: (
+        #16cfb1,
+        #16cfb1,
+        #16cfb1
+    ),
+    collab-badge-moss: (
+        #9fd541,
+        #9fd541,
+        #9fd541
+    ),
+    collab-badge-daisy: (
+        #ffe500,
+        #ffe500,
+        #ffe500
+    ),
+    collab-badge-rust: (
+        #fe8022,
+        #fe8022,
+        #fe8022
+    ),
+    collab-badge-coral: (
+        #da2e56,
+        #da2e56,
+        #da2e56
+    ),
+    collab-badge-dark-geode: (
+        #7d1ab2,
+        #7d1ab2,
+        #7d1ab2
+    ),
+    collab-badge-dark-cobalt: (
+        #1616bf,
+        #1616bf,
+        #1616bf
+    ),
+    collab-badge-dark-aqua: (
+        #08746e,
+        #08746e,
+        #08746e
+    ),
+    collab-badge-dark-moss: (
+        #678a2a,
+        #678a2a,
+        #678a2a
+    ),
+    collab-badge-dark-daisy: (
+        #ccb700,
+        #ccb700,
+        #ccb700
+    ),
+    collab-badge-dark-rust: (
+        #bf601a,
+        #bf601a,
+        #bf601a
+    ),
+    collab-badge-dark-coral: (
+        #ba2145,
+        #ba2145,
+        #ba2145
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

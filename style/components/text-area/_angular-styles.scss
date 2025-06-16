@@ -1,0 +1,13 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$base}__wrapper {
+        .#{$prefix}--text-input__invalid-icon--warning {
+            right: 1rem;
+            top: 12px;
+            transform: none;
+        }
+    }
+}

@@ -1,0 +1,96 @@
+@use '@carbon/styles/scss/components/file-uploader';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$prefix}--form-item:has(.#{$base}-container),
+.#{$prefix}--form-item:has(.#{$base}__drop-container) {
+    --#{$prefix}-text-primary: #{var(--text-primary)};
+    --#{$prefix}-heading-compact-01-font-weight: #{$spark-file-uploader-label-font-weight};
+    --#{$prefix}-heading-compact-01-font-size: #{$spark-file-uploader-label-font-size};
+    --#{$prefix}-heading-compact-01-line-height: #{$spark-file-uploader-label-line-height};
+
+    --#{$prefix}-text-secondary: #{var(--text-primary)};
+    --#{$prefix}-body-compact-01-font-weight: #{$spark-file-uploader-info-font-weight};
+    --#{$prefix}-body-compact-01-font-size: #{$spark-file-uploader-info-font-size};
+    --#{$prefix}-body-compact-01-line-height: #{$spark-file-uploader-info-line-height};
+    --#{$prefix}-text-disabled: #{var(--text-disabled)};
+    .#{$prefix}--btn {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.#{$base} {
+    &__selected-file {
+        --#{$prefix}-layer: #{var(--layer-01)};
+        --#{$prefix}-icon-primary: #{var(--icon-primary)};
+        &--invalid {
+            --#{$prefix}-text-primary: #{var(--support-error)};
+            --#{$prefix}-text-error: #{var(--icon-primary)};
+            --#{$prefix}-border-subtle: #{var(--button-secondary-active)};
+            .#{$prefix}--form-requirement {
+                font-weight: #{$spark-file-uploader-sm-file-item-font-weight};
+                font-size: #{$spark-file-uploader-sm-file-item-font-size};
+                line-height: #{$spark-file-uploader-sm-file-item-line-height};
+            }
+            .#{$base}-container-item {
+                position: relative;
+                svg.#{$base}-invalid {
+                    path {
+                        display: none;
+                    }
+                }
+                &::before {
+                    font-family: 'spark-icon';
+                    content: '\f182';
+                    font-weight: 600;
+                    width: to-rem(16px);
+                    height: to-rem(16px);
+                    font-size: to-rem(16px);
+                    line-height: to-rem(16px);
+                    color: var(--support-error);
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+    }
+
+    --#{$prefix}-border-strong: #{var(--border-strong-01)};
+    --#{$prefix}-text-primary: #{var(--text-primary)};
+    --#{$prefix}-text-secondary: #{var(--text-primary)};
+    @each $name, $value in $file-uploader-sizes {
+        &--#{$name} {
+            --#{$prefix}-body-compact-01-font-weight: #{map-get($value, file-item-font-weight)};
+            --#{$prefix}-body-compact-01-font-size: #{map-get($value, file-item-font-size)};
+            --#{$prefix}-body-compact-01-line-height: #{map-get($value, file-item-line-height)};
+        }
+        &__selected-file--#{$name} {
+            gap: $spark-file-uploader-file-items-gap;
+            min-block-size: map-get($value, file-item-height);
+        }
+    }
+    &__state-container {
+        .#{$base}-complete {
+            --#{$prefix}-interactive: #{var(--support-success)};
+        }
+    }
+    & .#{$base}__drop-container,
+    &__state-container .#{$base}-close {
+        @include spark-focus;
+    }
+}

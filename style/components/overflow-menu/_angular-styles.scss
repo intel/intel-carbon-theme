@@ -1,0 +1,9 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$base}-options__option:hover {
+        --#{$prefix}-layer-hover: #{var(--layer-accent-01)};
+    }
+}

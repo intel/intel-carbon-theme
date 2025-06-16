@@ -1,0 +1,131 @@
+@use '../../utils/utils' as *;
+// TODO add missing tokens
+$default-theme-modes: (
+    status-fatal: (
+        var(--spark-color-black),
+        var(--spark-color-black),
+        var(--spark-color-carbon),
+        var(--spark-color-carbon)
+    ),
+    status-critical: (
+        #e43544,
+        #e43544,
+        var(--spark-color-coral),
+        var(--spark-color-coral)
+    ),
+    status-major-warning: (
+        var(--spark-color-rust-tint1),
+        var(--spark-color-rust-tint1),
+        var(--spark-color-rust-tint1),
+        var(--spark-color-rust-tint1)
+    ),
+    status-minor-warning: (
+        #ffd100,
+        #ffd100,
+        #ffeb92,
+        #ffeb92
+    ),
+    status-undefined: (
+        var(--spark-color-geode),
+        var(--spark-color-geode),
+        #ae79be,
+        #ae79be
+    ),
+    status-unknown: (
+        #6f6f6f,
+        #6f6f6f,
+        var(--spark-color-carbon),
+        var(--spark-color-carbon)
+    ),
+    status-normal: (
+        #7e9a44,
+        #7e9a44,
+        var(--spark-color-moss),
+        var(--spark-color-moss)
+    ),
+    status-info: (
+        var(--spark-color-classic-blue),
+        var(--spark-color-classic-blue),
+        var(--spark-color-classic-blue-tint1),
+        var(--spark-color-classic-blue-tint1)
+    ),
+    status-in-progress: (
+        var(--spark-color-classic-blue),
+        var(--spark-color-classic-blue),
+        var(--spark-color-classic-blue-tint1),
+        var(--spark-color-classic-blue-tint1)
+    ),
+    status-running: (
+        #7e9a44,
+        #7e9a44,
+        var(--spark-color-moss),
+        var(--spark-color-moss)
+    ),
+    status-pending: (
+        #6f6f6f,
+        #6f6f6f,
+        var(--spark-color-carbon),
+        var(--spark-color-carbon)
+    )
+);
+
+$tb-theme-modes: (
+    status-fatal: (
+        var(--spark-color-black),
+        var(--spark-color-black),
+        var(--spark-color-tb-theme-light-gray700)
+    ),
+    status-critical: (
+        #e43544,
+        #e43544,
+        var(--spark-color-coral)
+    ),
+    status-major-warning: (
+        var(--spark-color-rust-tint1),
+        var(--spark-color-rust-tint1),
+        var(--spark-color-rust-tint1)
+    ),
+    status-minor-warning: (
+        #ffd100,
+        #ffd100,
+        #ffeb92
+    ),
+    status-undefined: (
+        var(--spark-color-geode),
+        var(--spark-color-geode),
+        #ae79be
+    ),
+    status-unknown: (
+        #6f6f6f,
+        #6f6f6f,
+        var(--spark-color-tb-theme-light-gray700)
+    ),
+    status-normal: (
+        #7e9a44,
+        #7e9a44,
+        var(--spark-color-moss)
+    ),
+    status-info: (
+        var(--spark-color-aqua-shade1),
+        var(--spark-color-classic-blue),
+        var(--spark-color-aqua-tint1)
+    ),
+    status-in-progress: (
+        var(--spark-color-aqua-shade1),
+        var(--spark-color-classic-blue),
+        var(--spark-color-aqua-tint1)
+    ),
+    status-running: (
+        #7e9a44,
+        #7e9a44,
+        var(--spark-color-moss)
+    ),
+    status-pending: (
+        #6f6f6f,
+        #6f6f6f,
+        var(--spark-color-tb-theme-light-gray700)
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

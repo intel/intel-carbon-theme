@@ -1,0 +1,111 @@
+@use '@carbon/styles/scss/components/slider';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    --#{$prefix}-text-secondary: #{var(--text-secondary)};
+    --#{$prefix}-text-primary: #{var(--text-primary)};
+    --#{$prefix}-layer-selected-inverse: #{var(--border-interactive)};
+    --#{$prefix}-border-subtle: #{var(--border-subtle-01)};
+    &__thumb {
+        @include spark-focus;
+
+        &:hover {
+            --#{$prefix}-layer-selected-inverse: #{var(--border-interactive)};
+        }
+
+        &:focus,
+        &:hover {
+            transform: scale(1.1429);
+        }
+    }
+    &-container {
+        &--disabled {
+            .#{$base}__thumb {
+                &:hover,
+                &:focus {
+                    transform: none;
+                }
+            }
+            .#{$base}__thumb-wrapper:focus-within ~ .#{$base}__filled-track {
+                background-color: var(--border-disabled);
+            }
+        }
+        &--readonly {
+            .#{$base}__filled-track {
+                --#{$prefix}-layer-selected-inverse: #{var(--border-strong-01)};
+            }
+            .#{$base}__thumb {
+                --#{$prefix}-layer-selected-inverse: #{var(--border-strong-01)};
+                block-size: $spark-slider-thumb-size;
+                inline-size: $spark-slider-thumb-size;
+
+                &:hover {
+                    transform: none;
+                }
+                &:focus {
+                    transform: none;
+                    outline: none;
+                    background-color: #{var(--border-strong-01)};
+                }
+            }
+            .#{$base}__thumb-wrapper:focus-within ~ .#{$base}__filled-track {
+                background-color: #{var(--border-strong-01)};
+            }
+        }
+        .#{$prefix}--slider__thumb {
+            &--lower,
+            &--upper {
+                @extend .#{$base}__thumb;
+                block-size: $spark-slider-thumb-size;
+                inline-size: $spark-slider-thumb-size;
+                svg,
+                &::before {
+                    display: none;
+                }
+            }
+            &:focus {
+                svg,
+                &::before {
+                    display: none;
+                }
+            }
+            &-wrapper {
+                &--lower,
+                &--upper {
+                    block-size: $spark-slider-thumb-size;
+                    inline-size: $spark-slider-thumb-size;
+                }
+            }
+        }
+
+        .#{$prefix}--text-input {
+            &--invalid {
+                block-size: to-rem(32px);
+            }
+            &:disabled {
+                --#{$prefix}-field: transparent;
+                border: 1px solid var(--border-disabled);
+            }
+        }
+
+        .#{$base}-text-input--warn {
+            block-size: to-rem(32px);
+        }
+
+        &.#{$prefix}--skeleton {
+            .#{$base} {
+                --#{$prefix}-layer-selected-inverse: #{var(--border-subtle-01)};
+            }
+        }
+    }
+}

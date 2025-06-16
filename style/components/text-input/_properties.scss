@@ -1,0 +1,40 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$spark-text-input-border-width: to-rem(1px) !default;
+
+$spark-text-input-padding-inline-sm: to-rem(8px) !default;
+$spark-text-input-padding-inline-md: to-rem(8px) !default;
+$spark-text-input-padding-inline-lg: to-rem(16px) !default;
+
+$spark-text-input-size-sm: to-rem(24px) !default;
+$spark-text-input-size-md: to-rem(32px) !default;
+$spark-text-input-size-lg: to-rem(40px) !default;
+
+$text-input-text-sizes: (
+    sm: to-rem(12px),
+    md: to-rem(14px),
+    lg: to-rem(16px)
+);
+
+$text-input-properties: (
+    sm: (
+        density: small,
+        font-size: to-rem(11px),
+        font-line-height: to-rem(12px)
+    ),
+    md: (
+        density: normal,
+        font-size: to-rem(12px),
+        font-line-height: to-rem(14px)
+    ),
+    lg: (
+        density: condensed,
+        font-size: to-rem(14px),
+        font-line-height: to-rem(16px)
+    )
+);

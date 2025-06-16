@@ -1,0 +1,203 @@
+@use '@carbon/styles/scss/components/number-input';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '@carbon/styles/scss/utilities/layout';
+@use '../form/form';
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+@use '../../mixins/spark-error-icon' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+$open: null;
+
+$number-input-sizes: (
+    sm: small,
+    md: normal,
+    lg: condensed
+);
+
+.#{$base} {
+    $control-btn: #{$base}__control-btn;
+    $open: #{$base}--open !global;
+    $label: #{$prefix}--label;
+    $wrapper: #{$base}__input-wrapper;
+    $wrapper-warning: #{$wrapper}--warning;
+    $rule-divider: #{$base}__rule-divider;
+    $label-disabled: #{$prefix}--label--disabled;
+
+    --#{$prefix}-border-strong: #{var(--border-strong-01)};
+    @include layout.redefine-tokens(
+        $overrides: (
+            size: (
+                height: (
+                    sm: to-rem(24px),
+                    md: to-rem(32px),
+                    lg: to-rem(40px)
+                )
+            ),
+            density: (
+                padding-inline: (
+                    small: to-rem(8px),
+                    normal: to-rem(8px),
+                    condensed: to-rem(16px)
+                )
+            )
+        )
+    );
+
+    @each $name, $value in $number-input-sizes {
+        &--#{$name} {
+            input[type='number'] {
+                @include layout.use('density', $default: #{$value});
+                @include layout.use('size', $default: #{$name});
+                block-size: layout.size('height');
+                padding-inline: layout.density('padding-inline')
+                    calc(#{layout.density('padding-inline')} + 3rem);
+            }
+        }
+    }
+
+    @each $name, $value in $number-input-sizes-map {
+        &--#{$name} {
+            input[type='number'] {
+                font-size: #{map-get($value, input-font-size)};
+            }
+
+            --#{$prefix}-helper-text-01-font-size: #{map-get($value, font-size)};
+
+            --#{$prefix}-label-01-font-size: #{map-get($value, font-size)};
+
+            .#{$label},
+            .#{$prefix}--form__helper-text,
+            .#{$prefix}--form-requirement {
+                line-height: #{map-get($value, line-height)};
+            }
+        }
+    }
+
+    & input[type='number'] {
+        @include spark-focus;
+        --#{$prefix}-field: #{var(--field-01)};
+        --#{$prefix}-border-strong: transparent;
+
+        &:disabled {
+            --#{$prefix}-field: #{var(--layer-disabled)};
+        }
+
+        &:focus ~ .#{$prefix}--number__controls {
+            --#{$prefix}-focus: transparent;
+            z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+        }
+    }
+
+    &[data-invalid='true'] {
+        .#{$wrapper} {
+            @include spark-error-icon-for-input();
+
+            &::before {
+                right: 4.5rem;
+            }
+
+            outline-offset: to-rem(-2px);
+            outline: to-rem(2px) solid var(--support-error);
+
+            input[data-invalid][type='number'] {
+                &:focus {
+                    border: to-rem(2px) solid var(--support-error);
+                }
+
+                &:not(:focus) {
+                    border: to-rem(2px) solid transparent;
+                }
+
+                ~ svg {
+                    display: none;
+                }
+
+                outline: none;
+
+                ~ .cds--number__controls {
+                    .cds--number__control-btn {
+                        border-block-end-color: transparent;
+
+                        &:hover {
+                            box-shadow: none;
+                            border: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .#{$prefix}--number__invalid {
+        inset-inline-end: 4.5rem;
+    }
+
+    & .#{$label-disabled} ~ .#{$wrapper} {
+        --#{$prefix}-border-strong: #{var(--layer-disabled)};
+        --#{$prefix}-icon-disabled: #{var(--text-disabled)};
+
+        & .#{$rule-divider} {
+            --#{$prefix}-icon-disabled: #{var(--border-disabled)};
+        }
+    }
+
+    & .#{$prefix}--number__controls {
+        --#{$prefix}-border-strong: transparent;
+        inline-size: 4rem;
+
+        .down-icon,
+        .up-icon {
+            position: relative;
+
+            svg {
+                visibility: hidden;
+            }
+
+            &::before {
+                font-family: 'spark-icon';
+                font-weight: 300;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            &:hover {
+                --#{$prefix}-icon-primary: #{var(--icon-inverse)};
+            }
+        }
+
+        .down-icon::before {
+            content: '\f15d';
+        }
+
+        .up-icon::before {
+            content: '\f164';
+        }
+    }
+
+    & .#{$wrapper}.#{$wrapper-warning} ~ .#{form.$requirement} {
+        color: var(--text-primary) !important;
+    }
+
+    .#{$wrapper-warning} {
+        svg {
+            z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+        }
+    }
+
+    & .#{$wrapper} {
+        border: to-rem(1px) solid var(--border-strong-01);
+    }
+}

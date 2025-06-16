@@ -1,0 +1,20 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use 'sass:map';
+
+$search-sizes: (
+    sm: (
+        padding-inline-start: to-rem(24px),
+        size: to-rem(24px),
+        density: small
+    ),
+    md: (
+        padding-inline-start: to-rem(32px),
+        size: to-rem(32px),
+        density: normal
+    ),
+    lg: (
+        padding-inline-start: to-rem(40px),
+        size: to-rem(40px),
+        density: condensed
+    )
+);

@@ -1,0 +1,24 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$number-input-sizes-map: (
+    'lg': (
+        input-font-size: to-rem(16px),
+        font-size: to-rem(14px),
+        line-height: to-rem(16px)
+    ),
+    'md': (
+        input-font-size: to-rem(14px),
+        font-size: to-rem(12px),
+        line-height: to-rem(14px)
+    ),
+    'sm': (
+        input-font-size: to-rem(12px),
+        font-size: to-rem(11px),
+        line-height: to-rem(12px)
+    )
+);

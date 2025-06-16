@@ -1,0 +1,48 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$spark-button-font-weight: 500 !default;
+$spark-button-border-width: to-rem(1px) !default;
+
+$spark-button-s-block-size: $spacing-06 !default;
+$spark-button-m-block-size: $spacing-07 !default;
+$spark-button-l-block-size: $spacing-08 !default;
+
+$spark-button-l-padding-inline: calc($spacing-05 + calc($spacing-05 / 4)) !default;
+
+$button-sizes: (
+    'sm': (
+        font-size: to-rem(12px),
+        padding-inline: $spacing-04,
+        gap: $spacing-02,
+        set-gap: $spacing-03
+    ),
+    'md': (
+        font-size: to-rem(14px),
+        padding-inline: $spacing-05,
+        gap: $spacing-02,
+        set-gap: $spacing-04
+    ),
+    'lg': (
+        font-size: to-rem(16px),
+        padding-inline: calc($spacing-05 + calc($spacing-05 / 4)),
+        gap: $spacing-03,
+        set-gap: $spacing-05
+    ),
+    'xl': (
+        font-size: to-rem(16px),
+        padding-inline: calc($spacing-05 + calc($spacing-05 / 4)),
+        gap: $spacing-03,
+        set-gap: $spacing-05
+    ),
+    '2xl': (
+        font-size: to-rem(16px),
+        padding-inline: calc($spacing-05 + calc($spacing-05 / 4)),
+        gap: $spacing-03,
+        set-gap: $spacing-05
+    )
+);

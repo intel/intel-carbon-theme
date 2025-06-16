@@ -1,0 +1,186 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    border-subtle-00: (
+        #e9e9e9,
+        #c6c6c6,
+        #525252,
+        #393939
+    ),
+    border-subtle-01: (
+        #e2e2e4,
+        #e2e2e4,
+        #585a62,
+        #484a50
+    ),
+    border-subtle-02: (
+        #e9e9e9,
+        #c6c6c6,
+        #6f6f6f,
+        #525252
+    ),
+    border-subtle-03: (
+        #c6c6c6,
+        #e9e9e9,
+        #808080,
+        #6f6f6f
+    ),
+    border-subtle-selected-01: (
+        #c6c6c6,
+        #c6c6c6,
+        #6f6f6f,
+        #525252
+    ),
+    border-subtle-selected-02: (
+        #c6c6c6,
+        #c6c6c6,
+        #808080,
+        #6f6f6f
+    ),
+    border-subtle-selected-03: (
+        #c6c6c6,
+        #c6c6c6,
+        #aeaeae,
+        #808080
+    ),
+    border-strong-01: (
+        #8b8e97,
+        #8b8e97,
+        #8e9099,
+        #8e9099
+    ),
+    border-strong-02: (
+        #6a6d75,
+        #6a6d75,
+        #b7b9be,
+        #b7b9be
+    ),
+    border-strong-03: (
+        #808080,
+        #808080,
+        #c6c6c6,
+        #aeaeae
+    ),
+    border-tile-01: (
+        #c6c6c6,
+        #aeaeae,
+        #6f6f6f,
+        #525252
+    ),
+    border-tile-02: (
+        #aeaeae,
+        #c6c6c6,
+        #808080,
+        #6f6f6f
+    ),
+    border-tile-03: (
+        #c6c6c6,
+        #aeaeae,
+        #aeaeae,
+        #808080
+    ),
+    border-inverse: (
+        #161616,
+        #161616,
+        #f7f7f7,
+        #f7f7f7
+    ),
+    border-disabled: (
+        #c6c6c6,
+        #c6c6c6,
+        #8d8d8d80,
+        #8d8d8d80
+    ),
+    border-interactive: (
+        #0054ae,
+        #0054ae,
+        #00c7fd,
+        #00c7fd
+    )
+);
+
+$tb-theme-modes: (
+    border-subtle-00: (
+        #e7e7eb,
+        #bec0cb,
+        #0d132b
+    ),
+    border-subtle-01: (
+        #dcdce3,
+        #dcdce3,
+        #383e56
+    ),
+    border-subtle-02: (
+        #e7e7eb,
+        #bec0cb,
+        #383e56
+    ),
+    border-subtle-03: (
+        #bec0cb,
+        #e7e7eb,
+        #555872
+    ),
+    border-subtle-selected-01: (
+        #bec0cb,
+        #bec0cb,
+        #383e56
+    ),
+    border-subtle-selected-02: (
+        #bec0cb,
+        #bec0cb,
+        #555872
+    ),
+    border-subtle-selected-03: (
+        #bec0cb,
+        #bec0cb,
+        #676d84
+    ),
+    border-strong-01: (
+        #82879b,
+        #82879b,
+        #8e9099
+    ),
+    border-strong-02: (
+        #676d84,
+        #676d84,
+        #b7b9be
+    ),
+    border-strong-03: (
+        #82879b,
+        #82879b,
+        #82879b
+    ),
+    border-tile-01: (
+        #bec0cb,
+        #acaebc,
+        #383e56
+    ),
+    border-tile-02: (
+        #acaebc,
+        #bec0cb,
+        #555872
+    ),
+    border-tile-03: (
+        #bec0cb,
+        #acaebc,
+        #676d84
+    ),
+    border-inverse: (
+        #1c223b,
+        #1c223b,
+        #ffffff
+    ),
+    border-disabled: (
+        #bec0cb,
+        #bec0cb,
+        #8d8d8d80
+    ),
+    border-interactive: (
+        #09857c,
+        #09857c,
+        #16cfb1
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

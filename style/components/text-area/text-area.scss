@@ -1,0 +1,53 @@
+@use '@carbon/styles/scss/components/text-area';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './vars' as *;
+@use '@carbon/styles/scss/theme';
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+@use '../../mixins/spark-error-icon' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base}__wrapper {
+    $form-requirement: #{$prefix}--form-requirement;
+
+    & .#{$base} {
+        @include spark-focus;
+        --#{$prefix}-field: #{var(--field-02)};
+        &:not(.#{$prefix}--skeleton) {
+            padding: to-rem(16px);
+        }
+        &:disabled {
+            border-block-end: to-rem(1px) solid #{var(--border-subtle-01)};
+        }
+
+        &--invalid:focus {
+            border: 2px solid var(--support-error);
+        }
+        &--invalid:not(:focus) {
+            border: 2px solid transparent;
+        }
+    }
+
+    & .#{$form-requirement} {
+        color: #{var(--border-subtle-01)};
+    }
+
+    &:has(.#{$base}__invalid-icon):not(&--warn) {
+        svg {
+            visibility: hidden;
+        }
+
+        @include spark-error-icon-for-input();
+
+        &::before {
+            right: 1rem;
+            top: 12px;
+            transform: none;
+        }
+    }
+}

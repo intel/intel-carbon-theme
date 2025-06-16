@@ -1,0 +1,55 @@
+@use '@carbon/styles/scss/components/structured-list';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    $row: #{$base}-row;
+    $row-selected: #{$row}--selected;
+    $header-row: #{$row}--header-row;
+    &-th {
+        font-size: to-rem(14px);
+        line-height: to-rem(18px);
+        font-weight: 500;
+    }
+    &-td {
+        font-size: to-rem(14px);
+        line-height: to-rem(20px);
+        font-weight: 400;
+    }
+    .#{$row} {
+        border-color: #{var(--border-subtle-01)};
+        border-block-start-color: #{var(--border-subtle-01)};
+        &:last-child {
+            border-block-end-color: #{var(--border-subtle-01)};
+        }
+        &--focused-within {
+            @include spark-focus-style;
+        }
+    }
+    &--selection {
+        .#{$row}:not(.#{$header-row}):not(.#{$row-selected}) {
+            &:hover {
+                background-color: #{var(--background-hover)};
+            }
+        }
+        .#{$row} {
+            &.#{$row-selected} {
+                background-color: var(--background-selected);
+                border-color: #{var(--border-subtle-01)};
+                .#{$base}-td {
+                    svg.#{$base}-svg {
+                        fill: #{var(--icon-primary)};
+                    }
+                }
+            }
+        }
+    }
+}

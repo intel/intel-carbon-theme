@@ -1,0 +1,20 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$spark-pagination-content-padding: 0 !default;
+
+$spark-pagination-s-height: to-rem(24px) !default;
+$spark-pagination-s-font-size: to-rem(12px) !default;
+$spark-pagination-s-line-height: to-rem(14px) !default;
+
+$spark-pagination-m-height: to-rem(32px) !default;
+$spark-pagination-m-font-size: to-rem(14px) !default;
+$spark-pagination-m-line-height: to-rem(18px) !default;
+
+$spark-pagination-l-height: to-rem(40px) !default;
+$spark-pagination-l-font-size: to-rem(14px) !default;
+$spark-pagination-l-line-height: to-rem(18px) !default;

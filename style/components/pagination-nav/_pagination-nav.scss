@@ -1,0 +1,49 @@
+@use '@carbon/styles/scss/components/pagination-nav';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../button/button';
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    $nav-button-prefix: #{$prefix}--btn;
+
+    block-size: $spark-pagination-nav-height;
+    --#{$prefix}-body-compact-01-font-size: #{$spark-pagination-nav-font-size};
+    &__list {
+        block-size: $spark-pagination-nav-height;
+        &-item {
+            block-size: $spark-pagination-nav-height;
+            inline-size: $spark-pagination-nav-height;
+            .#{$base}__page {
+                @include spark-focus;
+                min-inline-size: unset;
+                padding: $spark-pagination-nav-content-padding;
+                block-size: $spark-pagination-nav-height;
+                inline-size: $spark-pagination-nav-height;
+                &--select {
+                    &:focus {
+                        background-color: var(--layer-hover-01);
+                        & ~ .#{$base}__select-icon-wrapper {
+                            z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+                        }
+                    }
+                    option {
+                        color: var(--text-primary);
+                        background-color: var(--layer-hover-01);
+                    }
+                }
+            }
+            .#{$nav-button-prefix}--icon-only {
+                --#{$prefix}-icon-primary: #{var(--icon-primary)};
+            }
+        }
+    }
+}

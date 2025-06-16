@@ -1,0 +1,47 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+@use '../../mixins/angular-skeleton' as *;
+@use './properties' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$base}.#{$prefix}--skeleton {
+        .#{$base}-container {
+            .#{$prefix}--label {
+                color: transparent;
+            }
+            .#{$base}-input__wrapper {
+                @include angular-skeleton;
+                block-size: $spark-date-picker-block-size-md;
+                inline-size: $spark-date-picker-inline-size-lg;
+                position: relative;
+                span {
+                    svg {
+                        display: none;
+                    }
+                    &::before {
+                        content: unset;
+                    }
+                }
+            }
+        }
+    }
+
+    .#{$base}-input__wrapper:not(.#{$base}-input__wrapper--invalid) {
+        span {
+            &::before {
+                top: unset !important;
+            }
+        }
+    }
+
+    .#{$prefix}--skeleton {
+        .#{$base}-input__wrapper {
+            span {
+                &::before {
+                    content: unset !important;
+                }
+            }
+        }
+    }
+}

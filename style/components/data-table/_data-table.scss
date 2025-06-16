@@ -1,0 +1,199 @@
+@use '@carbon/styles/scss/components/data-table';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+@use '../../interactions/index' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    --#{$prefix}-heading-compact-01-font-size: #{$spark-data-table-heading-font-size};
+    --#{$prefix}-heading-compact-01-font-weight: #{$spark-data-table-heading-font-weight};
+    --#{$prefix}-heading-compact-01-line-height: #{$spark-data-table-heading-line-height};
+
+    --#{$prefix}-body-compact-01-font-size: #{$spark-data-table-item-font-size};
+    --#{$prefix}-body-compact-01-font-weight: #{$spark-data-table-item-font-weight};
+    --#{$prefix}-body-compact-01-line-height: #{$spark-data-table-item-line-height};
+
+    --#{$prefix}-text-primary: #{var(--text-primary)};
+    --#{$prefix}-text-secondary: #{var(--text-secondary)};
+
+    --#{$prefix}-layer: #{var(--layer-01)};
+    --#{$prefix}-layer-accent: #{var(--background-hover)};
+    --#{$prefix}-layer-hover: #{var(--layer-hover-01)};
+
+    --#{$prefix}-border-subtle: #{var(--border-subtle-01)};
+    --#{$prefix}-background-brand: #{var(--primary)};
+
+    --#{$prefix}-icon-inverse: #{var(--icon-primary)};
+
+    --#{$prefix}-icon-disabled: #{var(--icon-disabled)};
+    --#{$prefix}-text-disabled: #{var(--text-disabled)};
+
+    --#{$prefix}-skeleton-element: #{var(--skeleton-background)};
+    --#{$prefix}-layer-selected-inverse: #{var(--layer-selected-inverse)};
+
+    @each $size, $value in $data-table-sizes {
+        &--#{$size} {
+            tbody,
+            thead {
+                tr {
+                    block-size: map-get($value, block-size);
+                }
+            }
+            tr.#{$prefix}--parent-row.#{$prefix}--expandable-row
+                + tr[data-child-row]
+                td
+                .#{$prefix}--child-row-inner-container {
+                padding-block: map-get($value, padding-block-size);
+            }
+        }
+        &-container {
+            .#{$prefix}--table-toolbar--#{$size} {
+                .#{$prefix}--toolbar-content {
+                    // fixes spark-focus for toolbar items
+                    clip-path: none;
+                }
+                &:has(.cds--batch-actions--active) {
+                    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                }
+                .#{$prefix}--btn {
+                    display: flex;
+                    align-items: center;
+                    @include spark-focus(true);
+                }
+                .#{$prefix}--overflow-menu {
+                    @include spark-focus(true);
+                    --#{$prefix}-field-hover: var(--layer-hover);
+                    --#{$prefix}-layer-02: var(--layer-hover);
+                }
+                .#{$prefix}--search {
+                    .#{$prefix}--search-input {
+                        @include spark-focus(true);
+                    }
+                    @include spark-focus(true);
+                    --#{$prefix}-field-hover: var(--layer-hover);
+                    .#{$prefix}--search-close {
+                        block-size: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    &-header {
+        --#{$prefix}-layer: #{var(--layer-01)};
+        &__title {
+            --#{$prefix}-heading-03-font-size: #{$spark-data-table-header-font-size};
+            --#{$prefix}-heading-03-font-weight: #{$spark-data-table-header-font-weight};
+            --#{$prefix}-heading-03-line-height: #{$spark-data-table-header-line-height};
+        }
+        &__description {
+            --#{$prefix}-body-compact-01-font-size: #{$spark-data-table-header-description-font-size};
+            --#{$prefix}-body-compact-01-font-weight: #{$spark-data-table-header-description-font-weight};
+            --#{$prefix}-body-compact-01-line-height: #{$spark-data-table-header-description-line-height};
+        }
+    }
+    &-container {
+        .#{$prefix}--table-toolbar {
+            --#{$prefix}-layer: #{var(--layer-01)};
+            .#{$prefix}--batch-actions {
+                --#{$prefix}-background-brand: #{var(--button-primary)};
+            }
+            .#{$prefix}--batch-summary__para {
+                color: var(--text-inverse);
+            }
+            .#{$prefix}--batch-summary__cancel::before {
+                inset-block-start: unset;
+            }
+        }
+    }
+
+    .#{$prefix}--table-sort {
+        @include spark-focus();
+        &:focus {
+            outline-offset: -3px;
+        }
+        &:hover {
+            --#{$prefix}-layer-selected-hover: #{var(--background-hover)};
+        }
+    }
+
+    &.#{$prefix}--skeleton {
+        tr {
+            th,
+            td {
+                span {
+                    block-size: $spark-data-table-skeleton-block-size;
+                    &::before {
+                        block-size: $spark-data-table-skeleton-block-size;
+                    }
+                }
+            }
+        }
+        th {
+            --#{$prefix}-skeleton-element: #{var(--skeleton-background)};
+        }
+    }
+    .#{$prefix}--checkbox-label {
+        &::before {
+            border: $spark-data-table-select-icons-border-width solid #{var(--icon-primary)};
+        }
+        &::after {
+            --#{$prefix}-icon-inverse: #{var(--icon-primary)};
+            border-block-end-width: $spark-data-table-select-icons-border-width;
+            border-inline-start-width: $spark-data-table-select-icons-border-width;
+        }
+    }
+    .#{$prefix}--checkbox {
+        &:checked,
+        &:indeterminate {
+            + .#{$prefix}--checkbox-label {
+                &::before {
+                    border: $spark-data-table-select-icons-border-width solid #{var(--icon-primary)};
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+    .#{$prefix}--radio-button__appearance {
+        --#{$prefix}-icon-primary: #{get-var(spark-data-table-icon-inverse)};
+        block-size: $spark-data-table-select-radio-icon-size;
+        inline-size: $spark-data-table-select-radio-icon-size;
+        border: $spark-data-table-select-icons-border-width solid #{var(--icon-primary)};
+    }
+
+    .#{$prefix}--table-expand__button {
+        svg {
+            display: none;
+        }
+
+        &::after {
+            font-family: 'spark-icon';
+            content: '\f15d';
+            display: inline-block;
+            font-size: 1rem;
+            color: #{var(--icon-primary)};
+            transition: transform 0.1s ease;
+            transform: rotate(0deg);
+        }
+
+        &[aria-expanded='true']::after,
+        &[aria-expanded='true']::after {
+            transform: rotate(180deg);
+        }
+
+        &[aria-expanded='false']::after,
+        &[aria-expanded='false']::after {
+            transform: rotate(0deg);
+        }
+    }
+}
+.cds--toolbar-action__menu {
+    --cds-layer-02: #{var(--layer-01)};
+}

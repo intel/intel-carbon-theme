@@ -1,0 +1,21 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+@use '../../mixins/angular-skeleton' as *;
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$prefix}--checkbox-label.#{$prefix}--skeleton {
+        pointer-events: none;
+        &::after {
+            display: none;
+        }
+        span {
+            position: relative;
+            color: transparent;
+            margin-inline-start: 0.625rem;
+            padding-inline-start: 0;
+            block-size: 1rem;
+            inline-size: 6.25rem;
+            @include angular-skeleton;
+        }
+    }
+}

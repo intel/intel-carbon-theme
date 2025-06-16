@@ -1,0 +1,32 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    tabs-block-background: (
+        #e9eaeb,
+        #e9eaeb,
+        #313236,
+        #242528
+    ),
+    tabs-block-background-selected: (
+        #ffffff,
+        #f9f9f9,
+        #525252,
+        #393939
+    )
+);
+
+$tb-theme-modes: (
+    tabs-block-background: (
+        #f1f1f3,
+        #e7e7eb,
+        #020316
+    ),
+    tabs-block-background-selected: (
+        #ffffff,
+        #f7f7f8,
+        #0d132b
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

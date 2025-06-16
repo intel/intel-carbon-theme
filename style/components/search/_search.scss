@@ -1,0 +1,91 @@
+@use '@carbon/styles/scss/components/search';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/layout';
+@use './properties' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    $input: #{$base}-input;
+    $disabled: #{$base}--disabled;
+    $close: #{$base}-close;
+
+    --#{$prefix}-border-strong: #{var(--border-strong-01)};
+
+    @include layout.redefine-tokens(
+        $overrides: (
+            size: (
+                height: (
+                    sm: #{map-get(map-get($search-sizes, sm), size)},
+                    md: #{map-get(map-get($search-sizes, md), size)},
+                    lg: #{map-get(map-get($search-sizes, lg), size)}
+                )
+            ),
+            density: (
+                padding-inline: (
+                    small: #{to-rem(4px)},
+                    normal: #{to-rem(8px)},
+                    condensed: #{to-rem(16px)}
+                )
+            )
+        )
+    );
+    @each $name, $value in $search-sizes {
+        &.#{$base}--#{$name} .#{$input} {
+            @include layout.use('density', $default: #{map-get($value, density)});
+            @include layout.use('size', $default: #{$name});
+            block-size: layout.size('height');
+            padding-inline-start: calc(#{map-get($value, padding-inline-start)} + to-rem(4px));
+
+            & ~ .#{$close} {
+                @include layout.use('size', $default: #{$name});
+                block-size: layout.size('height');
+
+                &:before {
+                    display: none;
+                }
+
+                &:hover {
+                    border-block: 1px solid var(--border-strong-01);
+                    border-inline-end: 1px solid var(--border-strong-01);
+                }
+            }
+        }
+    }
+
+    & .#{$input} {
+        @include spark-focus;
+        --#{$prefix}-field: #{var(--field-01)};
+        border: 1px solid var(--border-strong-01);
+        font-size: 14px;
+
+        & ~ .#{$close} {
+            border: 1px solid transparent;
+        }
+    }
+
+    &.#{$disabled} {
+        --#{$prefix}-icon-on-color-disabled: #{var(--text-disabled)};
+
+        & .#{$input}:disabled {
+            --#{$prefix}-field: #{var(--layer-disabled)};
+            --#{$prefix}-border-strong: #{var(--layer-disabled)};
+        }
+    }
+    .#{$close} {
+        --#{$prefix}-field-hover: #{var(--button-secondary-hover)};
+        --#{$prefix}-layout-size-height-lg: 100%;
+    }
+    .#{$close}:not(.#{$close}--hidden),
+    .#{$prefix}--search-magnifier {
+        z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+        @include spark-focus();
+    }
+}

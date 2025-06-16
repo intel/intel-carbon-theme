@@ -1,0 +1,13 @@
+@mixin angular-skeleton {
+    background-color: #e8e8e8;
+    &::before {
+        background: #c6c6c6;
+        position: absolute;
+        animation: 3000ms ease-in-out cds--skeleton infinite;
+        block-size: 100%;
+        content: '';
+        z-index: 1;
+        inline-size: 100%;
+        will-change: transform-origin, transform, opacity;
+    }
+}

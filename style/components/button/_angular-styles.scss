@@ -1,0 +1,59 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    $primary: #{$base}--primary;
+    $secondary: #{$base}--secondary;
+    $tertiary: #{$base}--tertiary;
+    $ghost: #{$base}--ghost;
+    $danger: #{$base}--danger;
+    $icon-only: #{$base}--icon-only !global;
+    $disabled: #{$base}--disabled;
+    $icon-reverse: #{$name}--icon-reverse;
+    $unstyled: #{$name}--unstyled;
+    $underline: #{$name}--underline;
+
+    .#{$base} {
+        &.#{$primary},
+        &.#{$secondary},
+        &.#{$tertiary},
+        &.#{$ghost},
+        &.#{$danger},
+        &.#{$danger}--ghost,
+        &.#{$danger}--tertiary {
+            &:disabled {
+                --#{$prefix}-button-disabled: #{var(--button-disabled)};
+                --#{$prefix}-text-on-color-disabled: #{var(--text-disabled)};
+                border-color: var(--button-disabled);
+                background-color: var(--button-disabled);
+                color: var(--#{$prefix}-text-on-color-disabled);
+                border: none;
+                &:hover {
+                    background-color: var(--button-disabled);
+                    color: var(--#{$prefix}-text-on-color-disabled);
+                }
+            }
+        }
+
+        &.#{$danger} {
+            &--tertiary {
+                &:hover:not(.#{$disabled}) {
+                    background-color: var(--button-disabled);
+                }
+                &:hover:not(:disabled) {
+                    background-color: var(--button-danger-hover);
+                }
+            }
+        }
+
+        &:has(.#{$base}__icon) {
+            display: flex;
+            align-items: center;
+            .#{$base}__icon {
+                position: relative;
+                inset: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+@use './properties' as *;
+@use './vars' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+@each $name2, $value in $text-sizes {
+    .#{$name}-size-#{$name2} {
+        font-family: map-get($value, font-family);
+        font-weight: map-get($value, font-weight);
+        font-size: map-get($value, font-size);
+        line-height: map-get($value, line-height);
+        letter-spacing: map-get($value, letter-spacing);
+    }
+}

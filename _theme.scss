@@ -1,0 +1,54 @@
+@forward 'config';
+@forward 'prefix';
+@forward './style/theme-tokens/spark-breakpoint';
+
+@use './prefix' as *;
+@use './style/theme-tokens/spark-breakpoint' as *;
+@use '@carbon/styles/scss/config' with (
+    $prefix: $spark-theme-prefix,
+    // Disables styles for body tag with font color and bg color
+    $css--body: false,
+
+    // Disabled styles for h1-h6 heading and p element, font-sizes only
+    $css--default-type: false,
+
+    $css--font-face: false,
+
+    $use-flexbox-grid: true,
+
+    $grid-breakpoints: (
+        sm: (
+            columns: 4,
+            margin: 0,
+            width: $spark-breakpoint-mobile
+        ),
+        md: (
+            columns: 8,
+            margin: $cds-spark-theme-spacing-05,
+            width: $spark-breakpoint-tablet
+        ),
+        lg: (
+            columns: 16,
+            margin: $cds-spark-theme-spacing-05,
+            width: $spark-breakpoint-laptop
+        ),
+        xlg: (
+            columns: 16,
+            margin: $cds-spark-theme-spacing-05,
+            width: $spark-breakpoint-desktop
+        ),
+        max: (
+            columns: 16,
+            margin: $cds-spark-theme-spacing-06,
+            width: $spark-breakpoint-desktop
+        )
+    )
+);
+@forward './style/global/intel-one-mono';
+@forward './style/theme-tokens/typography';
+@forward './style/theme-tokens/global-tokens';
+@forward './style/theme-tokens/spacing';
+@forward './style/components';
+@forward '@carbon/styles/scss/components';
+@forward '@carbon/styles/scss/reset';
+@forward './style/global';

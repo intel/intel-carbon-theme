@@ -1,0 +1,54 @@
+@use '@carbon/styles/scss/components/progress-bar';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+@use '../../mixins/spark-error-icon' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    --#{$prefix}-layer: #{var(--border-subtle-01)};
+    --#{$prefix}-interactive: #{var(--primary)};
+    --#{$prefix}-support-success: #{var(--support-success)};
+    --#{$prefix}-support-error: #{var(--support-error)};
+    --#{$prefix}-text-primary: #{var(--text-primary)};
+
+    @each $name, $value in $progress-bar-sizes {
+        &.#{$base}--#{$name} {
+            --#{$prefix}-body-compact-01-font-size: #{map-get($value, label-font-size)};
+            --#{$prefix}-body-compact-01-font-weight: #{map-get($value, label-font-weight)};
+            --#{$prefix}-body-compact-01-line-height: #{map-get($value, label-line-height)};
+            .#{$base}__track {
+                block-size: map-get($value, block-size);
+            }
+            .#{$base}__helper-text {
+                font-size: map-get($value, helper-font-size);
+                font-weight: map-get($value, helper-font-weight);
+                line-height: map-get($value, helper-line-height);
+            }
+        }
+    }
+    &__helper-text {
+        color: var(--text-secondary);
+    }
+    &--error {
+        --#{$prefix}-text-secondary: #{var(--support-error)};
+        .#{$base}__label {
+            @include spark-error-icon(
+                to-rem(15px),
+                to-rem(15px),
+                var(--support-error),
+                to-rem(16px),
+                to-rem(16px)
+            );
+            ::after {
+                right: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,21 @@
+@use '@carbon/styles/scss/components/form';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './vars' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+$helper-text: null;
+$requirement: null;
+
+.#{$base} {
+    $helper-text: #{$base}__helper-text !global;
+    $requirement: #{$base}-requirement !global;
+    &--fluid .#{$prefix}--label {
+        z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+    }
+}

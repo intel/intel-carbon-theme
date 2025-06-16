@@ -1,0 +1,65 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    link-primary: (
+        #0054ae,
+        #0054ae,
+        #00c7fd,
+        #00c7fd
+    ),
+    link-primary-hover: (
+        #004a9d,
+        #004a9d,
+        #87e4ff,
+        #87e4ff
+    ),
+    link-secondary: (
+        #2b2c30,
+        #2b2c30,
+        #ffffff,
+        #ffffff
+    ),
+    link-inverse: (
+        #00c7fd,
+        #00c7fd,
+        #0054ae,
+        #0054ae
+    ),
+    link-visited: (
+        #8f5da2,
+        #8f5da2,
+        #eec3f7,
+        #eec3f7
+    )
+);
+
+$tb-theme-modes: (
+    link-primary: (
+        #08746e,
+        #09857c,
+        #16cfb1
+    ),
+    link-primary-hover: (
+        #044845,
+        #065955,
+        #5be3cd
+    ),
+    link-secondary: (
+        #2b2c30,
+        #1c223b,
+        #ffffff
+    ),
+    link-inverse: (
+        #5be3cd,
+        #5be3cd,
+        #0f9b8f
+    ),
+    link-visited: (
+        #38007f,
+        #38007f,
+        #af98ff
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

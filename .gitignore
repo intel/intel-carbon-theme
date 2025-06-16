@@ -1,0 +1,13 @@
+node_modules
+npm-debug.log
+.idea
+.vscode/
+yarn-error.log
+tsconfig.tsbuildinfo
+.rollup.cache
+*.zip
+coverage
+dist/**
+dist.zip
+styles.css
+styles.css.map

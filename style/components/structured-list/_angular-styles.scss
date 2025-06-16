@@ -1,0 +1,12 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$base} {
+        .#{$base}-row:has(.#{$base}-input:checked) {
+            background-color: var(--background-selected);
+            border-color: var(--border-subtle-01);
+        }
+    }
+}

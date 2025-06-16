@@ -1,0 +1,149 @@
+@use '@carbon/styles/scss/components/tag';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/layout';
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    $tag-sm: #{$base}--sm;
+    $tag-label: #{$base}__label;
+    $tag-close-btn: #{$base}__close-icon;
+    $tag-disabled: #{$base}--disabled;
+    $skeleton: #{$prefix}--skeleton;
+    $high-contrast: #{$base}--high-contrast;
+    $outline: #{$base}--outline;
+
+    font-size: to-rem(12px);
+    line-height: to-rem(15px);
+    block-size: to-rem(24px);
+    color: #{var(--text-primary)};
+
+    & .#{$tag-close-btn} {
+        @include spark-focus(true);
+        margin-left: to-rem(6px);
+    }
+
+    &.#{$tag-sm} {
+        block-size: to-rem(18px);
+    }
+
+    $tag-theme: (
+        'blue': (
+            background-color: var(--tag-background-blue),
+            color: var(--tag-color-blue),
+            background-color-hover: var(--tag-hover-blue)
+        ),
+        'purple': (
+            background-color: var(--tag-background-purple),
+            color: var(--tag-color-purple),
+            background-color-hover: var(--tag-hover-purple)
+        ),
+        'cool-gray': (
+            background-color: var(--tag-background-cool-gray),
+            color: var(--tag-color-cool-gray),
+            background-color-hover: var(--tag-hover-cool-gray)
+        ),
+        'cyan': (
+            background-color: var(--tag-background-cyan),
+            color: var(--tag-color-cyan),
+            background-color-hover: var(--tag-hover-cyan)
+        ),
+        'red': (
+            background-color: var(--tag-background-red),
+            color: var(--tag-color-red),
+            background-color-hover: var(--tag-hover-red)
+        ),
+        'warm-gray': (
+            background-color: var(--tag-background-warm-gray),
+            color: var(--tag-color-warm-gray),
+            background-color-hover: var(--tag-hover-warm-gray)
+        ),
+        'green': (
+            background-color: var(--tag-background-green),
+            color: var(--tag-color-green),
+            background-color-hover: var(--tag-hover-green)
+        ),
+        'teal': (
+            background-color: var(--tag-background-teal),
+            color: var(--tag-color-teal),
+            background-color-hover: var(--tag-hover-teal)
+        ),
+        'magenta': (
+            background-color: var(--tag-background-magenta),
+            color: var(--tag-color-magenta),
+            background-color-hover: var(--tag-hover-magenta)
+        ),
+        'gray': (
+            background-color: var(--tag-background-gray),
+            color: var(--tag-color-gray),
+            background-color-hover: var(--tag-hover-gray)
+        )
+    );
+
+    @each $theme-color-name, $theme-value in $tag-theme {
+        &.#{$base}--#{$theme-color-name}:not(.#{$tag-disabled}) {
+            background-color: map-get($theme-value, background-color);
+            .#{$base}__label {
+                background-color: map-get($theme-value, background-color);
+                color: #{var(--text-primary)};
+            }
+            & .#{$tag-close-btn}:hover {
+                background-color: map-get($theme-value, background-color-hover);
+            }
+        }
+    }
+
+    &.#{$high-contrast}:not(.#{$tag-disabled}) {
+        background-color: #{var(--background-inverse)};
+        color: #{var(--text-inverse)};
+
+        & .#{$tag-close-btn}:hover {
+            background-color: #{var(--background-inverse)};
+        }
+        span.#{$base}__label {
+            background-color: #{var(--background-inverse)};
+            color: #{var(--text-inverse)};
+        }
+    }
+
+    &.#{$outline}:not(.#{$tag-disabled}):not(.cds--tag--operational):not(span) {
+        background-color: transparent;
+        outline-color: #{var(--border-inverse)};
+
+        & .#{$tag-close-btn}:hover {
+            background-color: #{var(--background-hover)};
+        }
+    }
+
+    &.#{$outline}.#{$tag-disabled},
+    &.#{$outline}.#{$tag-disabled}:not(.cds--tag--operational):not(span) {
+        background-color: transparent;
+        outline: 1px solid #{var(--text-disabled)};
+        .#{$base}__label {
+            background-color: transparent;
+        }
+        & .#{$tag-close-btn}:hover {
+            background-color: #{var(--background-hover)};
+        }
+    }
+
+    &.#{$tag-disabled} {
+        background-color: #{var(--layer-01)};
+        color: #{var(--text-disabled)};
+        .#{$base}__label {
+            background-color: #{var(--layer-01)};
+            color: #{var(--text-disabled)};
+        }
+
+        & .#{$tag-close-btn} {
+            color: #{var(--text-disabled)};
+        }
+    }
+}

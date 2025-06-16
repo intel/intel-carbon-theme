@@ -1,0 +1,118 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    cds-header {
+        .cds--header {
+            .spark-ui-shell-header-logo {
+                position: absolute;
+            }
+
+            &:has(.spark-ui-shell-header-logo):not(:has(cds-hamburger)) > :first-child {
+                margin-left: var(--logo-img-width);
+            }
+
+            &:has(.spark-ui-shell-header-logo):has(cds-hamburger) {
+                .spark-ui-shell-header-logo {
+                    left: 48px; // shifted by hamburger width
+                }
+                > :nth-child(2) {
+                    margin-left: var(--logo-img-width);
+                }
+            }
+
+            &:has(.spark-ui-shell-header-logo.unboxed):not(:has(cds-hamburger)) > :first-child {
+                margin-left: calc(var(--logo-img-width) + var(--unboxed-logo-margin-left));
+            }
+
+            &:has(.spark-ui-shell-header-logo.unboxed):has(cds-hamburger) {
+                .spark-ui-shell-header-logo {
+                    left: 48px; // shifted by hamburger width
+                }
+                > :nth-child(2) {
+                    margin-left: calc(var(--logo-img-width) + var(--unboxed-logo-margin-left));
+                }
+            }
+        }
+
+        &[header-mode='white'] {
+            .#{$base} {
+                --#{$prefix}-background: var(--header-background-white);
+                --#{$prefix}-icon-primary: var(--text-primary);
+                --#{$prefix}-icon-secondary: var(--text-primary);
+                --#{$prefix}-text-primary: var(--text-primary);
+                --#{$prefix}-text-secondary: var(--text-primary);
+            }
+        }
+
+        &[header-mode='blue'] {
+            .#{$base} {
+                --#{$prefix}-background: var(--header-background-blue);
+            }
+        }
+
+        &[header-mode='black'] {
+            .#{$base} {
+                --#{$prefix}-background: var(--header-background-black);
+            }
+        }
+    }
+    :root,
+    [data-theme='g-100'],
+    [data-theme='g-90'],
+    [data-theme='tb-g-100'] {
+        cds-header {
+            &[header-mode='white'] {
+                .spark-ui-shell-header-logo {
+                    background-image: var(--spark-logo-digital-boxed-black1c);
+                    &.unboxed {
+                        background-image: var(--spark-logo-digital-unboxed-energyblue-white);
+                    }
+                }
+            }
+            &[header-mode='blue'],
+            &[header-mode='black'] {
+                .spark-ui-shell-header-logo {
+                    background-image: var(--spark-logo-digital-boxed-black1c);
+                    &.unboxed {
+                        background-image: var(--spark-logo-digital-unboxed-energyblue-white);
+                    }
+                }
+            }
+        }
+    }
+    [data-theme='white'],
+    [data-theme='g-10'],
+    [data-theme='tb-white'],
+    [data-theme='tb-g-10'] {
+        cds-header {
+            &[header-mode='white'] {
+                .spark-ui-shell-header-logo {
+                    background-image: var(--spark-logo-digital-boxed-classicblue);
+                    &.unboxed {
+                        background-image: var(--spark-logo-digital-unboxed-classicblue);
+                    }
+                }
+            }
+
+            &[header-mode='blue'] {
+                .spark-ui-shell-header-logo {
+                    background-image: var(--spark-logo-digital-boxed-classicblue);
+                    &.unboxed {
+                        background-image: var(--spark-logo-digital-unboxed-energyblue-white);
+                    }
+                }
+            }
+
+            &[header-mode='black'] {
+                .spark-ui-shell-header-logo {
+                    background-image: var(--spark-logo-digital-boxed-classicblue);
+                    &.unboxed {
+                        background-image: var(--spark-logo-digital-unboxed-energyblue-white);
+                    }
+                }
+            }
+        }
+    }
+}

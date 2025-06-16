@@ -1,0 +1,127 @@
+@use '@carbon/styles/scss/components/time-picker';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/layout';
+@use './properties' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+@use '../../mixins/spark-error-icon' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    $field-bg: --#{$prefix}-field;
+    $field-bg-hover: --#{$prefix}-field-hover;
+
+    @include layout.redefine-tokens(
+        $overrides: (
+            size: (
+                height: (
+                    sm: to-rem(24px),
+                    md: to-rem(32px),
+                    lg: to-rem(40px)
+                )
+            ),
+            density: (
+                padding-inline: (
+                    small: get-var(spark-theme-spacing-03),
+                    normal: get-var(spark-theme-spacing-03),
+                    condensed: get-var(spark-theme-spacing-05)
+                )
+            )
+        )
+    );
+    @each $name, $value in $time-picker-sizes {
+        &.#{$base}--#{$name} {
+            .#{$base}__input-field,
+            .#{$prefix}--select-input {
+                @include layout.use('density', $default: #{map-get($value, density)});
+                @include layout.use('size', $default: #{$name});
+                block-size: layout.size('height');
+                padding-inline-start: layout.density('padding-inline');
+            }
+
+            .#{$base}__input-field:not(.#{$base}__input-field-error) {
+                inline-size: #{map-get($value, time-picker-inline-size)};
+                --#{$prefix}-code-02-font-size: #{map-get($value, time-picker-font-size)};
+            }
+
+            .#{$prefix}--select-input {
+                --#{$prefix}-body-compact-01-font-size: #{map-get($value, time-picker-font-size)};
+            }
+        }
+    }
+
+    &__input-field,
+    .#{$prefix}--select-input {
+        @include spark-focus;
+        --#{$prefix}-code-02-font-family: $font-families-sans;
+        border: $spark-time-picker-input-border-width solid var(--border-strong-01);
+        #{$field-bg}: var(--field-02);
+        #{$field-bg-hover}: var(--field-02);
+
+        &:disabled {
+            #{$field-bg}: var(--button-disabled);
+            border: $spark-time-picker-input-border-width solid transparent;
+        }
+
+        &.#{$prefix}--time-picker__input-field[data-invalid]:focus {
+            border: 2px solid var(--support-error);
+        }
+    }
+
+    .#{$prefix}--select-input {
+        &[readonly] {
+            border: $spark-time-picker-input-border-width solid var(--border-subtle-00);
+        }
+    }
+
+    &__input-field {
+        &::placeholder {
+            font-style: italic;
+        }
+
+        &[readonly] {
+            background-color: var(--field-02);
+            border: $spark-time-picker-input-border-width solid var(--border-subtle-01);
+        }
+    }
+
+    &__select::after {
+        font-family: 'spark-icon';
+        content: '\f15d';
+        display: inline-block;
+        font-size: 1rem;
+        position: absolute;
+        pointer-events: none;
+        z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+    }
+
+    @each $size, $icon-margin in $icon-margin-sizes {
+        &--#{$size} &__select::after {
+            right: $icon-margin;
+        }
+    }
+}
+
+.#{$base}__select::after {
+    color: var(--icon-primary);
+}
+
+.#{$base}--invalid {
+    .#{$base}__error__icon {
+        svg {
+            visibility: hidden;
+        }
+
+        @include spark-error-icon-for-input();
+
+        &::before {
+            right: 0;
+        }
+    }
+}

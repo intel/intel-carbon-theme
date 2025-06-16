@@ -1,0 +1,25 @@
+@use 'sass:string';
+@use '../utils/utils' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/type' with (
+    $body-01: (
+        font-size: to-rem(16px),
+        font-weight: 400,
+        line-height: 20px
+    ),
+    $body-compact-01: (
+        font-size: to-rem(16px),
+        font-weight: 400,
+        line-height: 1.28572
+    ),
+    $font-families: (
+        'mono':
+            string.unquote(
+                "'IntelOneMono', system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', monospace"
+            ),
+        'sans':
+            string.unquote(
+                "'IntelOneText', system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', sans-serif"
+            )
+    )
+);

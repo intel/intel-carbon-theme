@@ -1,0 +1,84 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+@use '../../mixins/angular-skeleton' as *;
+@use './properties' as *;
+
+@mixin angular-data-table-skeleton {
+    &::before {
+        animation: 3000ms ease-in-out cds--skeleton infinite;
+        position: absolute;
+        content: '';
+        z-index: 1;
+        will-change: transform-origin, transform, opacity;
+        block-size: $spark-data-table-skeleton-block-size;
+        inline-size: 50%;
+        top: calc(50% - $spark-data-table-skeleton-block-size / 2);
+        background-color: var(--skeleton-element);
+    }
+    &::after {
+        block-size: $spark-data-table-skeleton-block-size;
+        inline-size: 50%;
+        top: calc(50% - $spark-data-table-skeleton-block-size / 2);
+        background-color: #e8e8e8;
+        position: absolute;
+        content: '';
+    }
+}
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$base} {
+        &.#{$prefix}--skeleton {
+            th {
+                position: relative;
+                @include angular-data-table-skeleton;
+                overflow: hidden;
+                padding-inline: 0;
+                button > span {
+                    background-color: transparent;
+                    &::before {
+                        display: none;
+                    }
+                }
+            }
+            tbody > tr > td {
+                overflow: hidden;
+                position: relative;
+                @include angular-data-table-skeleton;
+                &::before {
+                    background-color: #c6c6c6;
+                }
+                background-color: var(--layer-01);
+            }
+        }
+
+        .#{$prefix}--checkbox {
+            + .#{$prefix}--checkbox-label {
+                &::after {
+                    border-color: transparent;
+                }
+            }
+            &:checked,
+            &:indeterminate {
+                + .#{$prefix}--checkbox-label {
+                    &::before {
+                        border: $spark-data-table-select-icons-border-width solid
+                            var(--icon-inverse);
+                        background-color: transparent;
+                    }
+                    &::after {
+                        border-color: var(--icon-inverse);
+                        margin-block-start: to-rem(-2px);
+                    }
+                }
+            }
+        }
+
+        tr.#{$base}--selected {
+            background-color: var(--layer-01);
+            td {
+                border-block-color: #{var(--border-subtle-01)};
+            }
+        }
+    }
+}

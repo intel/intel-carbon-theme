@@ -1,0 +1,56 @@
+@use '@carbon/styles/scss/components/popover';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+$open: null;
+$high-contrast: null;
+$content: null;
+
+.#{$base} {
+    $open: #{$base}--open !global;
+    $high-contrast: #{$base}--high-contrast !global;
+    $tab-tip-button: #{$base}--tab-tip__button;
+    $content: #{$base}-content !global;
+    $caret: #{$base}-caret;
+
+    &-container {
+        & .#{$content} {
+            --#{$prefix}-popover-border-radius: #{$spark-popover-content-border-radius};
+            padding: $spark-popover-content-padding;
+        }
+
+        &:not(.#{$high-contrast}) .#{$content},
+        &:not(.#{$high-contrast}) .#{$caret} {
+            --#{$prefix}-popover-background-color: #{var(--layer-01)};
+        }
+
+        &.#{$high-contrast} .#{$base} {
+            --#{$prefix}-background-inverse: #{var(--background-inverse)};
+        }
+    }
+
+    &--drop-shadow .#{$base} {
+        --#{$prefix}-popover-drop-shadow: drop-shadow(#{$spark-popover-box-shadow});
+    }
+
+    &--tab-tip.#{$open} .#{$tab-tip-button} {
+        --#{$prefix}-layer: #{var(--layer-01)};
+        box-shadow: $spark-popover-box-shadow;
+        z-index: 6001;
+
+        &:not(:focus)::after {
+            content: '';
+            block-size: $spark-popover-tab-tip-shadow-border-block-size;
+            inset-inline-start: 0;
+            inset-block-end: calc(0rem - $spark-popover-tab-tip-shadow-border-block-size);
+        }
+    }
+}

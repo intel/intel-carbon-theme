@@ -1,0 +1,53 @@
+{
+    "name": "intel-carbon-theme",
+    "description": "Intel's brand theme for IBM Carbon Design System.",
+    "version": "1.0.0",
+    "private": true,
+    "main": "index.scss",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/intel/intel-carbon-theme.git"
+    },
+    "scripts": {
+        "format": "prettier --write --plugin-search-dir=. .",
+        "check:format": "prettier --check --plugin-search-dir=. .",
+        "prepare": "husky install",
+        "semantic-release": "semantic-release",
+        "build:css": "sass index.scss styles.css  --load-path=node_modules",
+        "release:build": "node scripts/build.js",
+        "release:zip": "npm run zip:custom ./dist dist.zip",
+        "release:prepare": "npm run build:css && npm run release:build && npm run release:zip",
+        "zip:custom": "node scripts/create-zip.js"
+    },
+    "dependencies": {
+        "intel-one-mono": "file: style/fonts/IntelOneMono/OFL.txt"
+    },
+    "devDependencies": {
+        "@carbon/styles": "1.82",
+        "@commitlint/cli": "^19.5.0",
+        "@commitlint/config-conventional": "^12.1.4",
+        "@semantic-release/changelog": "^6.0.3",
+        "@semantic-release/commit-analyzer": "^13.0.1",
+        "@semantic-release/git": "^10.0.1",
+        "@semantic-release/github": "^11.0.3",
+        "@semantic-release/npm": "^12.0.1",
+        "@semantic-release/release-notes-generator": "^14.0.3",
+        "adm-zip": "^0.5.16",
+        "fs-extra": "^11.3.0",
+        "glob": "^11.0.3",
+        "husky": "^9.1.7",
+        "lint-staged": "^11.2.6",
+        "prettier": "^2.8.8",
+        "sass": "^1.89.2",
+        "semantic-release": "^24.2.5"
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,json,css,scss,babelrc,yml,md,mdx}": [
+            "prettier --write --plugin-search-dir=. ."
+        ]
+    },
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/intel/intel-carbon-theme/issues"
+    }
+}

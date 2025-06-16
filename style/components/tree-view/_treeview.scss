@@ -1,0 +1,15 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '../../interactions/' as *;
+@use './vars' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    & &-node {
+        color: var(--text-primary);
+    }
+}

@@ -1,0 +1,14 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$spark-accordion-s-block-size: $spacing-06 !default;
+$spark-accordion-m-block-size: $spacing-07 !default;
+$spark-accordion-l-block-size: $spacing-08 !default;
+
+$spark-accordion-sm-font-size: to-rem(12px) !default;
+$spark-accordion-md-font-size: to-rem(14px) !default;
+$spark-accordion-lg-font-size: to-rem(16px) !default;

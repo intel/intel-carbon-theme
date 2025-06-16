@@ -1,0 +1,48 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$spark-contained-list-header-tag-font-weight: 400 !default;
+$spark-contained-list-header-action-margin-right: $spacing-05 !default;
+$spark-contained-list-header-font-weight: 500 !default;
+
+$spark-contained-list-disclosed-header-font-size: to-rem(14px) !default;
+$spark-contained-list-disclosed-header-line-height: $spacing-05 !default;
+$spark-contained-list-disclosed-header-block-size: $spacing-08 !default;
+
+$spark-contained-list-item-padding-inline: $spacing-05 !default;
+$spark-contained-list-item-padding-block: to-rem(10px) !default;
+$spark-contained-list-item-font-size: to-rem(14px) !default;
+
+$spark-contained-list-item-with-action-content-padding-right: $spacing-09 !default;
+$spark-contained-list-item-action-margin-right: $spacing-03 !default;
+
+$contained-list-sizes: (
+    'sm': (
+        header-height: $spacing-07,
+        item-min-block-size: $spacing-06,
+        item-padding-inline: $spacing-05,
+        item-padding-block: to-rem(5px)
+    ),
+    'md': (
+        header-height: $spacing-08,
+        item-min-block-size: $spacing-07,
+        item-padding-inline: $spacing-05,
+        item-padding-block: $spacing-03
+    ),
+    'lg': (
+        header-height: $spacing-09,
+        item-min-block-size: $spacing-08,
+        item-padding-inline: $spacing-05,
+        item-padding-block: to-rem(10px)
+    ),
+    'xl': (
+        header-height: $spacing-09,
+        item-min-block-size: $spacing-09,
+        item-padding-inline: $spacing-05,
+        item-padding-block: to-rem(10px)
+    )
+);

@@ -1,0 +1,17 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$base}-item {
+        button.#{$prefix}--overflow-menu {
+            min-block-size: to-rem(20px);
+            block-size: to-rem(24px);
+            display: flex;
+            align-items: flex-end;
+            svg {
+                transform: rotate(90deg);
+            }
+        }
+    }
+}

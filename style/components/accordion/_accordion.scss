@@ -1,0 +1,98 @@
+@use '@carbon/styles/scss/utilities/layout';
+@use '@carbon/styles/scss/components/accordion';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../../interactions/' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    --cds-layer-hover: #{var(--field-hover-01)};
+    @include layout.use('size', $default: 'md', $min: 'sm', $max: 'lg');
+    @include layout.redefine-tokens(
+        $overrides: (
+            size: (
+                height: (
+                    sm: $spark-accordion-s-block-size,
+                    md: $spark-accordion-m-block-size,
+                    lg: $spark-accordion-l-block-size
+                )
+            )
+        )
+    );
+
+    @each $name,
+        $value
+            in (
+                sm: $spark-accordion-sm-font-size,
+                md: $spark-accordion-md-font-size,
+                lg: $spark-accordion-lg-font-size
+            )
+    {
+        &.#{$prefix}--accordion--#{$name} {
+            --#{$prefix}-body-01-font-size: #{$value};
+        }
+    }
+    &__arrow {
+        display: none;
+    }
+
+    &__heading::after {
+        font-family: 'spark-icon';
+        content: '\f15d';
+        display: inline-block;
+        font-size: 1rem;
+        color: var(--icon-primary);
+        position: absolute;
+        right: 1rem;
+        transition: transform 0.1s ease;
+        transform: rotate(0deg);
+    }
+
+    &--start {
+        .#{$base}__title {
+            margin-inline-start: 2rem;
+        }
+        .#{$base}__heading::after {
+            left: 1rem;
+            right: unset;
+        }
+    }
+
+    &__heading[aria-expanded='true']::after,
+    &__heading[aria-expanded='true']::after {
+        transform: rotate(180deg);
+    }
+
+    &__heading[aria-expanded='false']::after,
+    &__heading[aria-expanded='false']::after {
+        transform: rotate(0deg);
+    }
+
+    &__heading {
+        @include spark-focus;
+
+        &[aria-expanded='true']::after,
+        &[aria-expanded='true']::after {
+            transform: rotate(180deg);
+        }
+
+        &[aria-expanded='false']::after,
+        &[aria-expanded='false']::after {
+            transform: rotate(0deg);
+        }
+
+        &:disabled {
+            --cds-spark-accordion-icon-color: #{var(--icon-on-color-disabled)};
+
+            & ~ .cds--accordion__wrapper {
+                color: var(--icon-on-color-disabled);
+            }
+        }
+    }
+}

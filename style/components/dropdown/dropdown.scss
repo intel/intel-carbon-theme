@@ -1,0 +1,165 @@
+@use '@carbon/styles/scss/components/dropdown';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/layout';
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+@use '../list-box/list-box';
+@use '../list-box/properties' as *;
+@use '../../mixins/spark-error-icon' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base}__wrapper {
+    $input: #{$base}-input;
+    $listbox: #{$prefix}--list-box;
+    $listbox-menu: #{$prefix}--list-box__menu;
+    $disabled: #{$base}--disabled;
+
+    @include layout.redefine-tokens(
+        $overrides: (
+            size: (
+                height: (
+                    sm: #{$spark-list-box-size-sm},
+                    md: #{$spark-list-box-size-md},
+                    lg: #{$spark-list-box-size-lg}
+                )
+            ),
+            density: (
+                padding-inline: (
+                    small: #{$spark-list-box-padding-inline-sm},
+                    normal: #{$spark-list-box-padding-inline-md},
+                    condensed: #{$spark-list-box-padding-inline-lg}
+                )
+            )
+        )
+    );
+
+    @each $height-class-name, $height-value in list-box.$sizes {
+        & .#{list-box.$base-class}--#{$height-class-name} {
+            @include layout.use(
+                'size',
+                $default: #{$height-value},
+                $min: #{$height-value},
+                $max: #{$height-value}
+            );
+            block-size: layout.size('height');
+        }
+    }
+
+    @each $padding-class-name, $padding-value in list-box.$padding-inline {
+        & .#{list-box.$base-class}--#{$padding-class-name} {
+            @include layout.use(
+                'density',
+                $default: #{$padding-value},
+                $min: #{$padding-value},
+                $max: #{$padding-value}
+            );
+            &:not(.#{list-box.$invalid}):not(.#{list-box.$warning}) .#{list-box.$field} {
+                padding-inline: layout.density('padding-inline')
+                    calc(#{layout.density('padding-inline')} + 2rem);
+            }
+            &.#{list-box.$invalid} .#{list-box.$field},
+            .#{list-box.$warning} .#{list-box.$field} {
+                padding-inline: layout.density('padding-inline')
+                    calc(#{layout.density('padding-inline')} + 3rem);
+            }
+        }
+    }
+
+    & .#{$listbox}:not(.#{$disabled}) {
+        --#{$prefix}-field: #{var(--field-02)};
+        --#{$prefix}-border-strong: #{var(--border-strong-01)};
+        border-inline: to-rem(1px) solid var(--border-strong-01);
+        border-block: to-rem(1px) solid var(--border-strong-01);
+
+        &:hover,
+        & .#{$base}:hover {
+            --#{$prefix}-field-hover: #{var(--field-hover-02)};
+            --#{$prefix}-layer-hover: #{var(--field-hover-02)};
+            --#{$prefix}-border-strong: #{var(--border-strong-03)};
+        }
+
+        & .#{$listbox-menu} {
+            --#{$prefix}-layer: #{var(--layer-01)};
+
+            &-icon svg {
+                --#{$prefix}-icon-primary: #{var(--icon-primary)};
+            }
+
+            &-item {
+                --#{$prefix}-layer-hover: #{var(--layer-selected-02)};
+                --#{$prefix}-layer-selected: #{var(--layer-selected-02)};
+                --#{$prefix}-layer-selected-hover: #{var(--layer-selected-02)};
+
+                &__selected-icon {
+                    --#{$prefix}-icon-primary: #{var(--icon-primary)};
+                }
+
+                &__option {
+                    --#{$prefix}-text-primary: #{var(--text-primary)};
+                    --#{$prefix}-text-secondary: #{var(--text-primary)};
+                    --#{$prefix}-border-subtle-01: #{var(--background-active)};
+                }
+            }
+        }
+    }
+
+    & #{$base}.#{$base}--readonly.#{$listbox},
+    & #{$base}.#{$base}--readonly.#{$listbox}:hover {
+        --#{$prefix}-border-strong: #{var(--border-subtle-01)};
+    }
+
+    & .cds--dropdown--disabled {
+        --cds-field: #{var(--button-disabled)};
+
+        & + .cds--form-requirement {
+            color: var(--text-disabled);
+        }
+    }
+
+    & .cds--label,
+    .cds--form__helper-text,
+    .cds--form-requirement {
+        font-size: to-rem(12px);
+    }
+
+    .#{$prefix}--list-box__menu-icon {
+        svg {
+            display: none;
+        }
+
+        &::after {
+            font-family: 'spark-icon';
+            content: '\f15d';
+            display: inline-block;
+            font-size: 1rem;
+            color: var(--icon-primary);
+        }
+    }
+
+    .#{list-box.$field}:disabled .#{$prefix}--list-box__menu-icon::after {
+        color: var(--icon-disabled);
+    }
+
+    @each $size, $icon-margin in (sm: to-rem(4px), md: to-rem(8px), lg: to-rem(12px)) {
+        .#{$prefix}--list-box--#{$size} .#{$prefix}--list-box__menu-icon {
+            right: $icon-margin;
+        }
+    }
+
+    .#{$prefix}--dropdown--inline .#{$prefix}--list-box__menu-icon {
+        right: to-rem(0px);
+    }
+    .#{$listbox}--invalid {
+        position: relative;
+        svg.cds--list-box__invalid-icon {
+            visibility: hidden;
+        }
+        @include spark-error-icon-for-input();
+    }
+}

@@ -1,0 +1,21 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+@use './properties' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$base} {
+        @each $name,
+            $value
+                in (
+                    sm: $spark-accordion-sm-font-size,
+                    md: $spark-accordion-md-font-size,
+                    lg: $spark-accordion-lg-font-size
+                )
+        {
+            &.#{$prefix}--accordion--#{$name} .#{$prefix}--accordion__content {
+                font-size: #{$value};
+            }
+        }
+    }
+}

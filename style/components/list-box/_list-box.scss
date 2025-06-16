@@ -1,0 +1,49 @@
+@use '@carbon/styles/scss/components/list-box';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './properties' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+@include list-box-properties;
+
+$base-class: null;
+$field: null;
+$disabled: null;
+$invalid: null;
+$warning: null;
+$menu: null;
+$menu-item: null;
+$sizes: null;
+$padding-inline: null;
+
+.#{$base} {
+    $base-class: #{$base} !global;
+    $field: #{$base}__field !global;
+    $disabled: #{$base}--disabled !global;
+    $invalid: #{$base}--invalid !global;
+    $warning: #{$base}--warning !global;
+    $menu: #{$base}__menu !global;
+    $menu-item: #{$base}__menu-item !global;
+
+    $sizes: (
+        sm: sm,
+        md: md,
+        lg: lg
+    ) !global;
+
+    $padding-inline: (
+        sm: small,
+        md: normal,
+        lg: condensed
+    ) !global;
+
+    & .#{$field} {
+        @include spark-focus;
+        overflow: visible;
+    }
+}

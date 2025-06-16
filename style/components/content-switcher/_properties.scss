@@ -1,0 +1,30 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$spark-content-switcher-sm-height: to-rem(24px);
+$spark-content-switcher-md-height: to-rem(32px);
+$spark-content-switcher-lg-height: to-rem(40px);
+
+$spark-content-switcher-border-radius: to-rem(4px);
+
+$content-switcher-sizes: (
+    'sm': (
+        height: $spark-content-switcher-sm-height,
+        font-size: to-rem(12px),
+        line-height: to-rem(12px)
+    ),
+    'md': (
+        height: $spark-content-switcher-md-height,
+        font-size: to-rem(14px),
+        line-height: to-rem(16px)
+    ),
+    'lg': (
+        height: $spark-content-switcher-lg-height,
+        font-size: to-rem(16px),
+        line-height: to-rem(20px)
+    )
+);

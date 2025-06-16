@@ -1,0 +1,54 @@
+@use '../../utils/utils' as *;
+
+$default-theme-modes: (
+    header-background-blue: (
+        #0054ae,
+        #0054ae,
+        #00377c,
+        #00377c
+    ),
+    header-background-black: (
+        #3c3e42,
+        #3c3e42,
+        #3c3e42,
+        #3c3e42
+    ),
+    header-background-white: (
+        #ffffff,
+        #ffffff,
+        #3c3e42,
+        #3c3e42
+    ),
+    header-selected-border-on-color: (
+        #a0ebff,
+        #a0ebff,
+        #ffffff,
+        #ffffff
+    )
+);
+
+$tb-theme-modes: (
+    header-background-blue: (
+        #0d132b,
+        #0d132b,
+        #1c223b
+    ),
+    header-background-black: (
+        #020316,
+        #1c223b,
+        #0d132b
+    ),
+    header-background-white: (
+        #ffffff,
+        #ffffff,
+        #1c223b
+    ),
+    header-selected-border-on-color: (
+        #a2f6e8,
+        #a2f6e8,
+        #ffffff
+    )
+);
+
+@include create-global-default-theme-modes($default-theme-modes);
+@include create-global-tb-theme-modes($tb-theme-modes);

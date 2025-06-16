@@ -1,0 +1,14 @@
+node_modules
+node_modules/**
+npm-debug.log
+dist
+.vscode/
+.rollup.cache
+yarn.lock
+yarn-error.log
+package-lock.json
+tsconfig.tsbuildinfo
+packages/iconfont/dist.web/index.d.ts
+packages/iconfont/dist.web/icons.json
+packages/iconfont/dist.web/icons.css
+*.hbs

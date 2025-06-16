@@ -1,0 +1,120 @@
+@use '@carbon/styles/scss/components/breadcrumb';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+$sizes: (
+    'mini': (
+        font-size: to-rem(9px),
+        line-height: to-rem(12px),
+        font-weight: 400,
+        inline-font-size: to-rem(12px),
+        inline-line-height: to-rem(14px),
+        inline-font-weight: 700
+    ),
+    '2xs': (
+        font-size: to-rem(12px),
+        line-height: to-rem(16px),
+        font-weight: 400,
+        inline-font-size: to-rem(12px),
+        inline-line-height: to-rem(14px),
+        inline-font-weight: 700
+    ),
+    'xs': (
+        font-size: to-rem(12px),
+        line-height: to-rem(16px),
+        font-weight: 400,
+        inline-font-size: to-rem(12px),
+        inline-line-height: to-rem(14px),
+        inline-font-weight: 700
+    ),
+    'sm': (
+        font-size: to-rem(16px),
+        line-height: to-rem(21px),
+        font-weight: 400,
+        inline-font-size: to-rem(12px),
+        inline-line-height: to-rem(14px),
+        inline-font-weight: 700
+    ),
+    'md': (
+        font-size: to-rem(16px),
+        line-height: to-rem(21px),
+        font-weight: 400,
+        inline-font-size: to-rem(14px),
+        inline-line-height: to-rem(18px),
+        inline-font-weight: 400
+    ),
+    'lg': (
+        font-size: to-rem(16px),
+        line-height: to-rem(21px),
+        font-weight: 400,
+        inline-font-size: to-rem(16px),
+        inline-line-height: to-rem(20px),
+        inline-font-weight: 400
+    ),
+    'xl': (
+        font-size: to-rem(20px),
+        line-height: to-rem(26px),
+        font-weight: 500,
+        inline-font-size: to-rem(16px),
+        inline-line-height: to-rem(20px),
+        inline-font-weight: 400
+    )
+);
+
+.#{$base} {
+    $slugBtn: #{$base}__button;
+    $slugInlineBtn: #{$slugBtn}--inline;
+    $slugInlineBtnWithContent: #{$slugInlineBtn}-with-content;
+
+    @each $size, $value in $sizes {
+        & .#{$slugBtn}.#{$slugBtn}--#{$size} {
+            @include spark-focus;
+
+            font-size: map-get($value, font-size);
+            font-weight: map-get($value, font-weight);
+            line-height: map-get($value, line-height);
+
+            &.#{$slugInlineBtn} {
+                &:not(.#{$slugInlineBtnWithContent}) {
+                    border: none;
+                }
+                border-radius: 0;
+                font-size: map-get($value, inline-font-size);
+                font-weight: map-get($value, inline-font-weight);
+                line-height: map-get($value, inline-line-height);
+            }
+
+            &:hover {
+                &:not(.#{$slugInlineBtn}) {
+                    --#{$prefix}-background-inverse-hover: var(--background-inverse-hover);
+                    background: var(--background-inverse-hover);
+                }
+                &.#{$slugInlineBtn}:not(.#{$slugInlineBtnWithContent}) {
+                    border: none;
+                }
+            }
+            &:focus {
+                border: 1px solid var(--border-inverse);
+            }
+            &:hover:active:not(.#{$slugInlineBtn}) {
+                --#{$prefix}-background-inverse-hover: var(--background-inverse-hover);
+                background: var(--background-inverse-hover);
+                border: 1px solid var(--border-inverse);
+                box-shadow: none;
+            }
+
+            &.#{$slugInlineBtnWithContent}:hover:focus {
+                box-shadow: none;
+                border-color: var(--border-inverse);
+            }
+        }
+    }
+}

@@ -1,0 +1,5 @@
+@use '../../../prefix' as *;
+
+$prefix: $spark-theme-prefix;
+$base: #{$prefix}--date-picker;
+$name: spark-date-picker;

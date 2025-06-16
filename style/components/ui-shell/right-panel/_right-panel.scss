@@ -1,0 +1,42 @@
+@use '@carbon/styles/scss/components/ui-shell/side-nav';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use './vars' as *;
+@use '../../../interactions/index.scss' as *;
+@use '../../../../config';
+@use './angular-styles' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    --#{$prefix}-layer: var(--layer-01);
+    --#{$prefix}-border-subtle: var(--border-subtle-01);
+    --#{$prefix}-text-primary: var(--text-primary);
+    --#{$prefix}-text-secondary: var(--text-secondary);
+    --#{$prefix}-heading-compact-01-font-size: #{to-rem(14px)};
+    --#{$prefix}-heading-compact-01-font-weight: 500;
+    --#{$prefix}-heading-compact-01-line-height: #{to-rem(18px)};
+    --#{$prefix}-layer-hover: var(--background-hover);
+    --#{$prefix}-layer-active: var(--background-active);
+    --#{$prefix}-layer-selected: var(--background-selected);
+
+    .#{$prefix}--switcher__item-link {
+        @include spark-focus;
+        --#{$prefix}-spark-focus-border-offset: -3px;
+
+        &--selected {
+            position: relative;
+            &::before {
+                position: absolute;
+                background-color: var(--focus);
+                content: '';
+                inline-size: to-rem(3px);
+                inset-block-end: 0;
+                inset-block-start: 0;
+                inset-inline-start: 0;
+            }
+        }
+    }
+}

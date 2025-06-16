@@ -1,0 +1,174 @@
+@use '@carbon/styles/scss/components/select';
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/layout';
+@use './properties' as *;
+@use './vars' as *;
+@use '../../interactions' as *;
+@use '../../../config';
+@use './angular-styles' as *;
+@use '../list-box/list-box';
+@use '../../mixins/spark-error-icon' as *;
+
+@if config.$use-angular-styles {
+    @include angular-styles;
+}
+
+.#{$base} {
+    $input: #{$base}-input;
+    $option: #{$base}-option;
+    $disabled: #{$base}--disabled;
+    $invalid: #{$base}--invalid;
+    $warning: #{$base}--warning;
+    $arrow: #{$base}__arrow;
+    $readonly: #{$base}--readonly;
+
+    $high-contrast: #{$base}--high-contrast;
+    $tab-tip-button: #{$base}--tab-tip__button;
+    $content: #{$base}-content;
+
+    @include layout.redefine-tokens(
+        $overrides: (
+            size: (
+                height: (
+                    sm: #{get-var(spark-list-box-size-sm)},
+                    md: #{get-var(spark-list-box-size-md)},
+                    lg: #{get-var(spark-list-box-size-lg)}
+                )
+            ),
+            density: (
+                padding-inline: (
+                    small: #{get-var(spark-list-box-padding-inline-sm)},
+                    normal: #{get-var(spark-list-box-padding-inline-md)},
+                    condensed: #{get-var(spark-list-box-padding-inline-lg)}
+                )
+            )
+        )
+    );
+
+    @each $height-class-name, $height-value in list-box.$sizes {
+        &:not(.#{$warning}) .#{$input}--#{$height-class-name} {
+            @include layout.use(
+                'size',
+                $default: #{$height-value},
+                $min: #{$height-value},
+                $max: #{$height-value}
+            );
+            block-size: layout.size('height');
+        }
+    }
+
+    @each $padding-class-name, $padding-value in list-box.$padding-inline {
+        &:not(.#{$warning}) .#{$input}--#{$padding-class-name} {
+            @include layout.use(
+                'density',
+                $default: #{$padding-value},
+                $min: #{$padding-value},
+                $max: #{$padding-value}
+            );
+            padding-inline: layout.density('padding-inline')
+                calc(#{layout.density('padding-inline')} + 2rem);
+            &.#{$invalid} .#{$base}.#{$input}--#{$padding-class-name},
+            .#{$warning} .#{$base}.#{$input}--#{$padding-class-name} {
+                padding-inline: layout.density('padding-inline')
+                    calc(#{layout.density('padding-inline')} + 3rem);
+            }
+        }
+        &:has(.#{$input}--#{$padding-class-name}) .#{$prefix}--select-input__wrapper::after {
+            @include layout.use(
+                'density',
+                $default: #{$padding-value},
+                $min: #{$padding-value},
+                $max: #{$padding-value}
+            );
+            right: layout.density('padding-inline');
+        }
+
+        &-input__wrapper:after {
+            right: get-var(spark-list-box-padding-inline-lg);
+        }
+    }
+
+    @each $size, $value in $select-font-sizes {
+        .#{$input}.#{$input}--#{$size} {
+            --#{$prefix}-body-compact-01-font-size: #{map-get($value, font-size)};
+        }
+
+        &:has(.#{$input}.#{$input}--#{$size}) {
+            --#{$prefix}-label-01-font-size: #{map-get($value, label-font-size)};
+            --#{$prefix}-helper-text-01-font-size: #{map-get($value, label-font-size)};
+        }
+    }
+
+    &-input--inline__wrapper &-input__wrapper .#{$input}:not(:disabled) {
+        background-color: var(--layer-01);
+        &:hover,
+        &:focus {
+            background-color: var(--field-hover-02);
+        }
+    }
+    &-input__wrapper .#{$input}:not(:disabled) {
+        --#{$prefix}-field: #{var(--layer-01)};
+        --#{$prefix}-background: #{var(--layer-01)};
+        --#{$prefix}-border-strong: #{var(--border-strong-03)};
+        border: to-rem(1px) solid #{var(--border-strong-03)};
+        color: var(--text-primary);
+        --#{$prefix}-field-hover: #{var(--field-hover-02)};
+        @include spark-focus;
+    }
+
+    & .#{$arrow} {
+        display: none;
+    }
+
+    &-input__wrapper::after {
+        font-family: 'spark-icon';
+        content: '\f15d';
+        display: inline-block;
+        font-size: 1rem;
+        color: var(--icon-primary);
+        position: absolute;
+        pointer-events: none;
+        z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+    }
+
+    &.#{$disabled} {
+        & .#{$input}:disabled {
+            --#{$prefix}-text-disabled: #{var(--text-disabled)};
+            --#{$prefix}-field: #{var(--layer-disabled)};
+            border-inline: to-rem(1px) solid var(--border-disabled);
+            border-block: to-rem(1px) solid var(--border-disabled);
+        }
+    }
+
+    &.#{$readonly} .#{$input} {
+        border-inline: unset;
+        border-block-start: unset;
+        --#{$prefix}-border-strong: #{var(--icon-disabled)};
+    }
+
+    &-input__wrapper[data-invalid] .cds--select-input:not(:focus) {
+        border: 2px solid transparent;
+    }
+    &-input__wrapper[data-invalid] .cds--select-input:focus {
+        border: 2px solid var(--support-error);
+    }
+
+    &.#{$warning} {
+        .#{$base}__invalid-icon--warning {
+            z-index: #{calc(get-var(spark-focus-z-index) + 1)};
+        }
+    }
+}
+
+.cds--select--disabled {
+    --cds-spark-select-icon-color: #{var(--icon-disabled)};
+}
+.cds--select:not(.cds--select--warning) {
+    .cds--select-input__wrapper:has(.cds--select__invalid-icon) {
+        svg.cds--select__invalid-icon {
+            visibility: hidden;
+        }
+        @include spark-error-icon-for-input();
+    }
+}

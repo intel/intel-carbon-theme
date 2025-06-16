@@ -1,0 +1,64 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '../utils/utils' as *;
+@use '../components/heading';
+@use '../config';
+
+$spark-theme-text-font-family: IntelOneText !default;
+$spark-theme-heading-font-family: IntelOneDisplay !default;
+$spark-theme-mono-font-family: IntelOneMono !default;
+
+$theme-font-family-global-properties: (
+    text-font-family: $spark-theme-text-font-family,
+    heading-font-family: $spark-theme-heading-font-family,
+    mono-font-family: $spark-theme-mono-font-family
+);
+
+@include create-theme-properties($theme-font-family-global-properties);
+
+@if config.$use-global-body-styles {
+    // Global body styles
+    body {
+        background-color: var(--background);
+        color: var(--text-primary);
+        font-family: get-var(spark-theme-text-font-family);
+        font-size: get-var(spark-theme-text-font-size);
+        font-weight: get-var(spark-theme-text-font-weight);
+        line-height: get-var(spark-theme-text-line-height);
+        letter-spacing: get-var(spark-theme-text-letter-spacing);
+    }
+}
+
+@if config.$use-global-heading-styles {
+    //  Global typography styles
+    //  Heading styles
+    @each $number, $value in heading.$heading-default-sizes {
+        h#{$number} {
+            color: var(--cds-text-primary);
+            font-family: #{map-get($value, font-family)};
+            font-weight: #{map-get($value, font-weight)};
+            font-size: #{map-get($value, font-size)};
+            line-height: #{map-get($value, line-height)};
+            letter-spacing: #{map-get($value, letter-spacing)};
+        }
+    }
+}
+
+@if config.$use-global-text-styles {
+    // Global text styles
+    p {
+        font-family: get-var(spark-theme-text-font-family);
+        font-size: get-var(spark-theme-text-font-size);
+        font-weight: get-var(spark-theme-text-font-weight);
+        line-height: get-var(spark-theme-text-line-height);
+        letter-spacing: get-var(spark-theme-text-letter-spacing);
+    }
+
+    a {
+        color: var(--cds-link-primary);
+    }
+
+    em {
+        font-style: italic;
+    }
+}

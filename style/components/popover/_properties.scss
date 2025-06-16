@@ -1,0 +1,11 @@
+@use '@carbon/styles/scss/utilities/convert' as *;
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use '@carbon/layout/scss/generated/spacing' as *;
+@use 'sass:map';
+@use '../../utils/utils' as *;
+@use './vars' as *;
+
+$spark-popover-content-padding: $spacing-05 !default;
+$spark-popover-content-border-radius: to-rem(0px) !default;
+$spark-popover-box-shadow: 0 to-rem(2px) to-rem(4px) rgba(0, 0, 0, 0.25) !default;
+$spark-popover-tab-tip-shadow-border-block-size: to-rem(8px) !default;

@@ -1,0 +1,49 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+@use '../../mixins/spark-error-icon' as *;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$base}__wrapper {
+        &:has(> .#{$prefix}--list-box--inline) {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            label.#{$prefix}--label {
+                margin: 0;
+            }
+        }
+    }
+    .#{$prefix}--list-box__menu {
+        --#{$prefix}-layer: #{var(--layer-01)};
+
+        &-icon svg {
+            --#{$prefix}-icon-primary: #{var(--icon-primary)};
+        }
+
+        &-item {
+            --#{$prefix}-layer-hover: #{var(--layer-selected-02)};
+            --#{$prefix}-layer-selected: #{var(--layer-selected-02)};
+            --#{$prefix}-layer-selected-hover: #{var(--layer-selected-02)};
+
+            &__selected-icon {
+                --#{$prefix}-icon-primary: #{var(--icon-primary)};
+            }
+
+            &__option {
+                --#{$prefix}-text-primary: #{var(--text-primary)};
+                --#{$prefix}-text-secondary: #{var(--text-primary)};
+                --#{$prefix}-border-subtle-01: #{var(--background-active)};
+            }
+        }
+    }
+    .#{$base}--invalid {
+        .#{$prefix}--list-box__field {
+            position: relative;
+            svg.cds--dropdown__invalid-icon {
+                visibility: hidden;
+            }
+            @include spark-error-icon-for-input();
+        }
+    }
+}

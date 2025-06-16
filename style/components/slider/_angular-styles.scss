@@ -1,0 +1,108 @@
+@use '@carbon/styles/scss/utilities/custom-property' as *;
+@use './vars' as *;
+@use '@carbon/styles/scss/utilities/layout';
+@use '../../interactions' as *;
+@use '../../mixins/angular-skeleton' as *;
+@use './properties' as *;
+@use '../text-input/properties' as textInputProps;
+
+// Additional styles that are required only for Angular to have proper styling
+@mixin angular-styles {
+    .#{$base}__field-wrapper {
+        $form-requirement: #{$prefix}--form-requirement;
+        $wrapper-readonly: #{$base}-wrapper--readonly;
+        $label: #{$prefix}--label;
+        $label-wrapper: #{$base}__label-wrapper;
+
+        @include layout.redefine-tokens(
+            $overrides: (
+                size: (
+                    height: (
+                        sm: #{textInputProps.$spark-text-input-size-sm},
+                        md: #{textInputProps.$spark-text-input-size-md},
+                        lg: #{textInputProps.$spark-text-input-size-lg}
+                    )
+                ),
+                density: (
+                    padding-inline: (
+                        small: #{textInputProps.$spark-text-input-padding-inline-sm},
+                        normal: #{textInputProps.$spark-text-input-padding-inline-md},
+                        condensed: #{textInputProps.$spark-text-input-padding-inline-lg}
+                    )
+                )
+            )
+        );
+
+        @each $name, $value in textInputProps.$text-input-properties {
+            & .#{$base}--#{$name} {
+                @include layout.use('density', $default: #{map-get($value, density)});
+            }
+
+            &:has(.#{$base}--#{$name}) .#{$label-wrapper} .#{$label} {
+                font-size: #{map-get($value, font-size)};
+                line-height: #{map-get($value, font-line-height)};
+            }
+        }
+
+        & .#{$base} {
+            @include spark-focus;
+            &:not(.#{$prefix}--skeleton) {
+                border: textInputProps.$spark-text-input-border-width solid #{get-var(
+                        spark-theme-border-strong-01
+                    )};
+                background-color: get-var(spark-theme-field-01);
+            }
+
+            &--invalid:focus {
+                border: 2px solid #{get-var(spark-theme-support-error)};
+            }
+            &--invalid:not(:focus) {
+                border: 2px solid transparent;
+            }
+
+            &:disabled {
+                border: none;
+                background-color: get-var(spark-text-input-disabled-background-color);
+            }
+        }
+
+        &.#{$wrapper-readonly} .#{$base} {
+            border: textInputProps.$spark-text-input-border-width solid
+                get-var(spark-text-input-read-only-border-color);
+        }
+
+        & .#{$form-requirement} {
+            color: #{get-var(spark-theme-text-primary)};
+        }
+    }
+    .#{$base}-container.#{$prefix}--skeleton {
+        .#{$prefix}--slider__thumb {
+            block-size: $spark-slider-thumb-size;
+            inline-size: $spark-slider-thumb-size;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    .#{$prefix}--form-item:has(.#{$base}__field-wrapper) {
+        .#{$prefix}--form-requirement {
+            color: #{get-var(spark-theme-text-primary)};
+        }
+        @each $name, $value in textInputProps.$text-input-properties {
+            &:has(.#{$base}--#{$name}) {
+                --#{$prefix}-label-01-font-size: #{map-get($value, font-size)};
+                --#{$prefix}-label-01-line-height: #{map-get($value, font-line-height)};
+                --#{$prefix}-helper-text-01-font-size: #{map-get($value, font-size)};
+                --#{$prefix}-helper-text-01-line-height: #{map-get($value, font-line-height)};
+            }
+        }
+    }
+
+    .#{$base}--disabled .#{$base}__thumb:hover {
+        transform: none;
+    }
+    .#{$base}__thumb:hover {
+        --#{$prefix}-layer-selected-inverse: #{get-var(spark-slider-thumb-color)};
+    }
+}
