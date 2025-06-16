@@ -12,3 +12,4 @@ packages/iconfont/dist.web/index.d.ts
 packages/iconfont/dist.web/icons.json
 packages/iconfont/dist.web/icons.css
 *.hbs
+CHANGELOG.md
