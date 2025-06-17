@@ -19,9 +19,7 @@
         "release:prepare": "npm run build:css && npm run release:build && npm run release:zip",
         "zip:custom": "node scripts/create-zip.js"
     },
-    "dependencies": {
-        "intel-one-mono": "file: style/fonts/IntelOneMono/OFL.txt"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@carbon/styles": "1.82",
         "@commitlint/cli": "^19.5.0",
