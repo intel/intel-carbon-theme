@@ -23,7 +23,7 @@
     "devDependencies": {
         "@carbon/styles": "1.82",
         "@commitlint/cli": "^19.5.0",
-        "@commitlint/config-conventional": "^12.1.4",
+        "@commitlint/config-conventional": "^19.8.1",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/commit-analyzer": "^13.0.1",
         "@semantic-release/git": "^10.0.1",
