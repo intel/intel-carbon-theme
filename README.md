@@ -1,3 +1,6 @@
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/intel/intel-carbon-theme/badge)](https://scorecard.dev/viewer/?uri=github.com/intel/intel-carbon-theme)
+[![CodeQL](https://github.com/intel/intel-carbon-theme/workflows/CodeQL/badge.svg)](https://github.com/intel/intel-carbon-theme/security/code-scanning)
+
 # Intel® Carbon Theme
 
 Intel® Carbon Theme, Intel's brand theme for IBM Carbon Design System.
