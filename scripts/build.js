@@ -34,4 +34,11 @@ if (fs.existsSync('style')) {
     console.log('Copied: style -> dist/style')
 }
 
+// Copy LICENSE.md file if it exists
+if (fs.existsSync('LICENSE.md')) {
+    console.log('Copying LICENSE.md file...')
+    fs.copySync('LICENSE.md', 'dist/LICENSE.md')
+    console.log('Copied: LICENSE.md -> dist/LICENSE.md')
+}
+
 console.log('Build completed successfully!')
