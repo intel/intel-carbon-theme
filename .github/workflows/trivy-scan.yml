@@ -45,7 +45,7 @@ jobs:
                   path: trivy-report.json
                   retention-days: 30
 
-            - name: Check High/Criticial Vulnerabilities
+            - name: Check High/Critical Vulnerabilities
               id: checkVulnerabilities
               uses: aquasecurity/trivy-action@76071ef0d7ec797419534a183b498b4d6366cf37 # master
               with:
