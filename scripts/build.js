@@ -41,4 +41,11 @@ if (fs.existsSync('LICENSE.md')) {
     console.log('Copied: LICENSE.md -> dist/LICENSE.md')
 }
 
+// Copy README.md file if it exists
+if (fs.existsSync('README.md')) {
+    console.log('Copying README.md file...')
+    fs.copySync('README.md', 'dist/README.md')
+    console.log('Copied: README.md -> dist/README.md')
+}
+
 console.log('Build completed successfully!')
