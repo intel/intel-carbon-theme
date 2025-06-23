@@ -24,3 +24,8 @@ Michael Manzano
 Patricia Montenegro
 Ray Karrenbauer
 Amichai Regev
+Arkadiusz Lelinski
+Patryk Styraniec
+Cezary Pietrzak
+Francis Storr
+Chris Keroack
