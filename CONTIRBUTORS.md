@@ -1,0 +1,31 @@
+# Contributors to the Intel Carbon Theme
+
+Adam Page
+Agustín Francesa-Alfaro
+Alexander Yurev
+Ayoob Nabwani
+Alexander Yurev
+Denis Kadnikov
+Erin Olmon
+Georgii Kukushin
+Hayat Benchenaa
+Jacek Jankowski
+Jacek Skowron
+Jakub Kozakiewicz
+Jingyi Zhu
+Kasia Bojarowska
+Ken Downey
+KS Foong
+Lee Yang
+Luzan Fero
+Mariusz Waclawczyk
+Matteo Scandolo
+Michael Manzano
+Patricia Montenegro
+Ray Karrenbauer
+Amichai Regev
+Arkadiusz Lelinski
+Patryk Styraniec
+Cezary Pietrzak
+Francis Storr
+Chris Keroack
