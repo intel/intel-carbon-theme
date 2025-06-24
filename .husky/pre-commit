@@ -6,5 +6,5 @@ if [ "$RELEASE_PROCESS" = "true" ]; then
   echo "Skipping pre-commit hook during release process"
   exit 0
 fi
-
+npm run format
 npx lint-staged --allow-empty
