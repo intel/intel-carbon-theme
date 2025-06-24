@@ -2,7 +2,12 @@ const fs = require('fs-extra')
 const path = require('path')
 const glob = require('glob')
 
-// Create dist directory if it doesn't exist
+//Delete and create the dist directory
+if (fs.existsSync('dist')) {
+    console.log('Removing existing dist directory...')
+    fs.removeSync('dist')
+}
+console.log('Creating dist directory...')
 fs.ensureDirSync('dist')
 
 // Copy all CSS files
@@ -27,25 +32,16 @@ glob.sync('**/*.scss').forEach((file) => {
     }
 })
 
-// Copy style folder if it exists
-if (fs.existsSync('style')) {
-    console.log('Copying style folder...')
-    fs.copySync('style', 'dist/style')
-    console.log('Copied: style -> dist/style')
-}
+const elementsToCopy = ['style', 'LICENSE.md', 'README.md', 'package.json', 'CHANGELOG.md']
 
-// Copy LICENSE.md file if it exists
-if (fs.existsSync('LICENSE.md')) {
-    console.log('Copying LICENSE.md file...')
-    fs.copySync('LICENSE.md', 'dist/LICENSE.md')
-    console.log('Copied: LICENSE.md -> dist/LICENSE.md')
-}
-
-// Copy README.md file if it exists
-if (fs.existsSync('README.md')) {
-    console.log('Copying README.md file...')
-    fs.copySync('README.md', 'dist/README.md')
-    console.log('Copied: README.md -> dist/README.md')
-}
+elementsToCopy.forEach((element) => {
+    if (fs.existsSync(element)) {
+        console.log(`Copying ${element}...`)
+        fs.copySync(element, path.join('dist', element))
+        console.log(`Copied: ${element} -> dist/${element}`)
+    } else {
+        console.warn(`Warning: ${element} does not exist and will not be copied.`)
+    }
+})
 
 console.log('Build completed successfully!')

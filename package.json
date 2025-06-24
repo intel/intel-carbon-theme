@@ -2,7 +2,6 @@
     "name": "intel-carbon-theme",
     "description": "Intel's brand theme for IBM Carbon Design System.",
     "version": "1.0.0",
-    "private": true,
     "main": "index.scss",
     "repository": {
         "type": "git",

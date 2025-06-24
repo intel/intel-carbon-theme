@@ -13,12 +13,10 @@
         line-height: 1.28572
     ),
     $font-families: (
-        'mono':
-            string.unquote(
+        'mono': string.unquote(
                 "'IntelOneMono', system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', monospace"
             ),
-        'sans':
-            string.unquote(
+        'sans': string.unquote(
                 "'IntelOneText', system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', sans-serif"
             )
     )

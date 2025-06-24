@@ -47,9 +47,8 @@
         & .#{$base} {
             @include spark-focus;
             &:not(.#{$prefix}--skeleton) {
-                border: textInputProps.$spark-text-input-border-width solid #{get-var(
-                        spark-theme-border-strong-01
-                    )};
+                border: textInputProps.$spark-text-input-border-width solid
+                    #{get-var(spark-theme-border-strong-01)};
                 background-color: get-var(spark-theme-field-01);
             }
 
