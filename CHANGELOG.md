@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/intel/intel-carbon-theme/compare/v1.0.0...v1.0.1) (2025-06-25)
+
+### Bug Fixes
+
+* fixing husky hooks and prettier command ([06484cb](https://github.com/intel/intel-carbon-theme/commit/06484cb75b5829f73e9d6bdf5a7039011f5fd31d))
+
 ## 1.0.0 (2025-06-25)
 
 ### Features
