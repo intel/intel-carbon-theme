@@ -8,8 +8,8 @@
         "url": "git+https://github.com/intel/intel-carbon-theme.git"
     },
     "scripts": {
-        "format": "prettier --write --plugin-search-dir=. .",
-        "check:format": "prettier --check --plugin-search-dir=. .",
+        "format": "prettier --write .",
+        "check:format": "prettier --check .",
         "prepare": "husky install",
         "semantic-release": "semantic-release",
         "build:css": "sass index.scss styles.css  --load-path=node_modules",
