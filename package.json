@@ -18,7 +18,6 @@
         "release:prepare": "npm run build:css && npm run release:build && npm run release:zip",
         "zip:custom": "node scripts/create-zip.js"
     },
-    "dependencies": {},
     "devDependencies": {
         "@carbon/styles": "1.82",
         "@commitlint/cli": "^19.5.0",
@@ -30,6 +29,7 @@
         "@semantic-release/npm": "^12.0.1",
         "@semantic-release/release-notes-generator": "^14.0.3",
         "adm-zip": "^0.5.16",
+        "conventional-changelog-conventionalcommits": "^9.0.0",
         "fs-extra": "^11.3.0",
         "glob": "^11.0.3",
         "husky": "^9.1.7",
