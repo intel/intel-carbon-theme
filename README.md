@@ -3,7 +3,7 @@
 
 # Intel® Carbon Theme
 
-Intel® Carbon Theme, Intel's brand theme for IBM Carbon Design System.
+Intel® Carbon Theme, Intel's brand theme for IBM Carbon Design System. [Figma file here](https://www.figma.com/design/ufLFqcp3lcboSQA2BLvIJ6/Spark-Island-v2).
 
 ## Package installation
 
