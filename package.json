@@ -19,7 +19,7 @@
         "zip:custom": "node scripts/create-zip.js"
     },
     "devDependencies": {
-        "@carbon/styles": "1.82",
+        "@carbon/styles": "1.86",
         "@commitlint/cli": "^19.5.0",
         "@commitlint/config-conventional": "^19.8.1",
         "@semantic-release/changelog": "^6.0.3",
