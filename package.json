@@ -15,11 +15,16 @@
         "build:css": "sass index.scss styles.css  --load-path=node_modules",
         "release:build": "node scripts/build.js",
         "release:zip": "npm run zip:custom ./dist dist.zip",
+        "release:zip": "npm run zip:custom ./dist intel-carbon-theme-npm-1.0.1-36e7108224-10c0.zip",
         "release:prepare": "npm run build:css && npm run release:build && npm run release:zip",
         "zip:custom": "node scripts/create-zip.js"
     },
+    "dependencies": {
+        "@carbon/grid": "^11.42.0",
+        "@carbon/layout": "^11.40.0",
+        "@carbon/styles": "^1.82.0"
+    },
     "devDependencies": {
-        "@carbon/styles": "1.82",
         "@commitlint/cli": "^19.5.0",
         "@commitlint/config-conventional": "^19.8.1",
         "@semantic-release/changelog": "^6.0.3",
