@@ -2,7 +2,7 @@
 @use '@carbon/styles/scss/utilities/convert' as *;
 @use '../utils/utils' as *;
 @use '../components/heading';
-@use '../config';
+@use '../../config';
 
 $spark-theme-text-font-family: IntelOneText !default;
 $spark-theme-heading-font-family: IntelOneDisplay !default;

@@ -1,7 +1,7 @@
 @use '@carbon/styles/scss/utilities/custom-property' as *;
 @use 'sass:map' as *;
 @use 'sass:list';
-@use '../prefix' as *;
+@use '../../prefix' as *;
 
 $prefix: $spark-theme-prefix;
 
