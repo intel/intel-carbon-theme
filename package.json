@@ -26,7 +26,7 @@
         "@semantic-release/commit-analyzer": "^13.0.1",
         "@semantic-release/git": "^10.0.1",
         "@semantic-release/github": "^11.0.3",
-        "@semantic-release/npm": "^12.0.1",
+        "@semantic-release/npm": "^13.1.2",
         "@semantic-release/release-notes-generator": "^14.0.3",
         "adm-zip": "^0.5.16",
         "conventional-changelog-conventionalcommits": "^9.0.0",
@@ -36,7 +36,7 @@
         "lint-staged": "^16.1.2",
         "prettier": "^3.6.1",
         "sass": "^1.89.2",
-        "semantic-release": "^24.2.5"
+        "semantic-release": "^25.0.2"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,json,css,scss,babelrc,yml,md,mdx}": [
